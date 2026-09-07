@@ -95,10 +95,16 @@ and build-metadata tags before any registry authentication is attached.
 Run the repository checks on the exact commit that will be tagged:
 
 ```sh
-bun install
-bun run check
+pnpm install --frozen-lockfile
+pnpm run check
 dagger call -m dagger check --source .
 ```
+
+Lamplit pins Node 24.20.0 in its application image. DSH core supports
+`^22.19.0 || >=24.0.0`, and the published dsh-mail 0.1.2 plus mcporter 0.13.10
+packages declare `>=24`; the live DSH runtime is Node 24.19.0. A Node 22.19
+dsh-mail smoke can pass in practice, but Node 24 remains the supported
+intersection of the declared contracts.
 
 The public Dagger module builds and publishes only the Core and Full
 application roles, targets Linux amd64, checks image users/entrypoints/
@@ -132,9 +138,6 @@ backing, so Dagger's graph and module cache volumes survive between pipeline
 runs. Lamplit's Dagger module mounts locked, project/toolchain-qualified
 package-manager stores and installed-dependency caches:
 
-- Bun downloads and the dsh-mail project-root `node_modules` use
-  `lamplit-dsh-mail-bun-downloads-bun-1.3.13-linux-amd64-v1` and
-  `lamplit-dsh-mail-node-modules-bun-1.3.13-linux-amd64-v1`.
 - dsh-keet's pnpm 11 content-addressed store and root `node_modules/.pnpm`
   virtual store use separate `lamplit-dsh-keet-*` caches qualified by pnpm
   11.22.0, Node 24.20.0, and Linux amd64.
@@ -143,11 +146,13 @@ package-manager stores and installed-dependency caches:
 - The shared npm download cache is
   `lamplit-npm-downloads-node-24.20.0-linux-amd64-v1`.
 
-The installed trees are Dagger-owned and are never taken from the host:
+The published `@lamplitisles/dsh-mail@0.1.2` package is resolved by the image's
+DSH profile sync and has no Dagger source-build or installed-tree cache. The
+two source-built installed trees are Dagger-owned and are never taken from the host:
 `node_modules` remains excluded at the source boundary. Each frozen install
 remains authoritative, and pnpm recreates workspace links around its cached
-root virtual store. The three installed trees are not shared between
-dsh-mail, dsh-keet, and guionai/web. These caches contain no source trees,
+root virtual store. The two installed trees are not shared between dsh-keet and
+guionai/web. These caches contain no source trees,
 build outputs, registry auth, or secrets. The workflow does not create a
 second engine or cache layer, and the module caches are useful across runs only
 when the agent keeps the Dagger engine/cache persistent.

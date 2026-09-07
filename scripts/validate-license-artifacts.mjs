@@ -38,5 +38,9 @@ for (const [name, expectedLicense] of [["lamplit", "Elastic-2.0"], ["@lamplitisl
   const entry = packageByName.get(name);
   if (!entry || entry.licenseDeclared !== expectedLicense) throw new Error(`SBOM license mismatch for ${name}`);
 }
+const dshMail = packageByName.get("@lamplitisles/dsh-mail");
+if (!dshMail || dshMail.versionInfo !== "0.1.2" || !dshMail.downloadLocation.startsWith("https://registry.npmjs.org/")) {
+  throw new Error("SBOM must record published @lamplitisles/dsh-mail@0.1.2 provenance");
+}
 
 process.stdout.write(`license artifacts passed (${sbom.packages.length} SBOM packages)\n`);

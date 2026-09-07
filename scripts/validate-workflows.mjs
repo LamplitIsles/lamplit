@@ -39,6 +39,14 @@ const values = (condition, key) => {
 const hasCondition = (candidate, expected) => conditions(candidate).some((condition) =>
   Object.entries(expected).every(([key, value]) => values(condition, key).includes(value))
 );
+if (
+  conditions(workflow).length !== 3
+  || !hasCondition(workflow, { event: "pull_request" })
+  || !hasCondition(workflow, { event: "push", branch: "main" })
+  || !hasCondition(workflow, { event: "tag", ref: "refs/tags/v*.*.*" })
+) {
+  throw new Error("workflow must run only for pull requests, pushes to main, and stable version tags");
+}
 if (!hasCondition(check, { event: "pull_request" }) || !hasCondition(check, { event: "push", branch: "main" })) {
   throw new Error("check must run for pull requests and pushes to main");
 }

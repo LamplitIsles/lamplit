@@ -14,8 +14,8 @@ run("validate-license-artifacts.mjs");
 execFileSync("bash", ["-n", join(root, "docker/lamplit/entrypoint.sh")], { cwd: root, stdio: "inherit" });
 execFileSync("node", ["--check", join(root, "docker/lamplit/launcher.mjs")], { cwd: root, stdio: "inherit" });
 execFileSync("node", ["--check", join(root, "docker/lamplit/proxy.mjs")], { cwd: root, stdio: "inherit" });
-execFileSync("bun", [
-  "test",
+execFileSync(process.execPath, [
+  "--test",
   join(root, "tests/release-references.test.ts"),
   join(root, "tests/memory-images.test.mjs"),
 ], { cwd: root, stdio: "inherit" });

@@ -1,43 +1,26 @@
 # Lamplit
 
-Lamplit is an independent community distribution for a
-self-hosted one-to-one AI Partner. It is powered by DSH and Guion packages,
-but it is not an official DeepSeek product. The first release targets Linux
-amd64 and is published as Core and Full variants of one GHCR package.
+**A self-hosted home for one AI Partner.**
 
-> Your companion, your model keys, your memories — self-host it or let Lamplit run it for you.
+One person. One Partner. A workspace, a voice, and memory that lasts across
+sessions.
 
-Lamplit's source and Core/Full images are publicly available and free for
-compliant self-hosting under the Elastic License 2.0 (`Elastic-2.0`). Lamplit
-is source-available and does not claim OSI open-source status. You can choose
-the public self-hosted path documented here or official managed hosting from
-Lamplit when offered; hosted control-plane terms and availability are outside
-this repository. Bring your own provider keys (BYOK) to keep provider choice
-and model-token costs with you. Lamplit Points cover only Lamplit-provided
-hosted resources and value; they do not turn third-party model usage into a
-Lamplit license or promise a portable hosted account.
+Lamplit brings DSH Companion, research, speech, email, and optional Keet
+messaging into a Linux distribution you can run on your own machine. Lamplit
+Full adds graph-backed long-term memory and image generation.
 
-The Lamplit license applies to Lamplit-owned code and image assembly. Bundled
-upstream components retain their own terms: upstream Hindsight 0.9.2 is MIT,
-and `@lamplitisles/kepos-hindsight` is Apache-2.0. See
-[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), the preserved texts under
-[`licenses/`](licenses/), and the machine-readable
-[`sbom/lamplit.spdx.json`](sbom/lamplit.spdx.json) before redistributing an
-image.
+> Your companion, your model keys, your memories.
 
-## Core: one container
+## Try Lamplit Core
 
-Core is the small trial path. It includes the DSH Web and Companion surfaces,
-Guion Web research, Kepos Speech, dsh-mail, and the optional dsh-keet
-integration. It does not start Hindsight or ImageGen and it does not require a
-provider, mailbox, or Keet runtime to serve its UI.
+Core is the smallest way in: one container, no model key required just to open
+the UI, and no mailbox or Keet runtime required to start.
 
-Create test-owned persistence locations, then start the newest stable Core:
-
-```sh
+```bash
 docker volume create lamplit-core-state
 docker volume create lamplit-core-workspace
 docker volume create lamplit-core-keet
+
 docker run -d --name lamplit-core \
   --user 1000:1000 \
   --read-only --cap-drop ALL --security-opt no-new-privileges:true \
@@ -50,28 +33,127 @@ docker run -d --name lamplit-core \
   ghcr.io/lamplitisles/lamplit:latest
 ```
 
-Read the one-time tokenized stock DSH URL from the container logs, then open
-that URL (the launcher prints it with the published `127.0.0.1:3080` port):
+Read the one-time tokenized DSH Web URL from the logs, then open it in your
+browser:
 
-```sh
+```bash
 docker logs lamplit-core --tail=20
 ```
 
-The Companion surface is directly available at
-<http://127.0.0.1:3080/companion/>. `latest` is a rolling tag; use a versioned
-tag when you need a reproducible upgrade. The first start
-copies the image-owned seed profile only when the DSH state volume is empty.
-Stopping and restarting preserves that state and never copies over user
-files. The workspace is a separate volume so Partner files and DSH internals
-do not share a backup boundary.
+The Companion is also available directly at
+<http://127.0.0.1:3080/companion/>.
 
-### Core configuration
+`latest` is a rolling Core tag. Use a versioned tag when you need reproducible
+upgrades and rollback. On first start, Lamplit copies its seed profile only
+when the DSH state volume is empty. Restarting does not overwrite user files.
 
-The image includes example files at `/opt/lamplit/settings.example.yaml` and
-`/opt/lamplit/profile.patch.example.yml`. To use your own files, mount them
-read-only and opt in explicitly:
+## Why Lamplit
 
-```sh
+Most AI products give you another assistant inside another account. Lamplit is
+for a different kind of relationship: one persistent AI Partner with a place
+to live, tools to act through, and continuity across sessions.
+
+The important boundaries stay visible:
+
+- **Your model access:** bring your own provider keys and keep model-token
+  costs with your chosen provider.
+- **Your persistence:** DSH state, the Partner workspace, Keet identity,
+  graph-backed long-term memory, and bridge credentials live in separate
+  mounts.
+- **Your choice:** run the public images yourself or choose official Lamplit
+  hosting when it is offered.
+- **Honest portability:** the current release documents what can be backed up
+  and restored without pretending every identity can already move
+  automatically.
+
+Lamplit is an independent community distribution powered by DSH and Guion
+packages. It is not an official DeepSeek product.
+
+## Choose Core or Full
+
+Both variants come from the same GHCR package lineage and target Linux amd64.
+
+| Capability | Core | Full |
+| --- | --- | --- |
+| DSH Web and Companion | yes | yes |
+| Guion Web research | yes | yes |
+| Kepos Speech | yes | yes |
+| Agent mailbox integration | yes | yes |
+| Optional Keet identity | yes | yes |
+| Hindsight long-term memory | no | yes |
+| ImageGen | no | yes |
+| PostgreSQL memory store | no | yes |
+| Kepos Codex Bridge | no | yes |
+
+Core is the lightweight path for running a Partner without graph-backed
+long-term memory or image generation. Full gives the Partner a longer memory
+and starts four services:
+
+```text
+lamplit              Full DSH/Companion application (3080)
+hindsight            Hindsight 0.9.2 with local multilingual embeddings (8888/9999)
+hindsight-postgres   PostgreSQL 18 + PGroonga 4.0.8 + pgvector 0.8.6
+codex-bridge         Kepos Codex Bridge with operator-owned ChatGPT OAuth
+```
+
+The database has no host port. User-facing and control-plane ports bind to host
+loopback by default.
+
+## Run Lamplit Full
+
+From a repository checkout, choose a private database password and start the
+Compose stack:
+
+```bash
+export HINDSIGHT_POSTGRES_PASSWORD='replace-with-a-long-private-value'
+mkdir -p keet-runtime
+docker compose up -d
+```
+
+The empty `keet-runtime` directory lets Full start without Keet. To enable
+Keet, prepare the supported runtime outside this repository and point
+`KEET_RUNTIME_PATH` at it before running Compose; see
+[Give your Partner a Keet identity](#give-your-partner-a-keet-identity).
+
+The Codex Bridge image contains no credentials. Log in with an operator-owned
+auth file, then restart only that service:
+
+```bash
+docker compose run --rm --entrypoint /usr/local/bin/kepos-codex-bridge \
+  codex-bridge login \
+  --auth-file /var/lib/kepos-codex-bridge/auth.json
+
+docker compose restart codex-bridge
+```
+
+The login is a human action and may open a browser. Never commit the bridge
+`auth.json` or copy it into Lamplit.
+
+Inspect the rendered topology without starting anything:
+
+```bash
+docker compose config
+# or
+pnpm run test:compose
+```
+
+The default application image in `compose.yaml` is a versioned Full release.
+The memory services and Codex Bridge are independently versioned and pinned by
+their published registry digests. Set `LAMPLIT_IMAGE` to upgrade Lamplit; only
+override the other service images after verifying their new digests.
+
+## Configure your Partner
+
+The image contains example configuration files at:
+
+```text
+/opt/lamplit/settings.example.yaml
+/opt/lamplit/profile.patch.example.yml
+```
+
+Mount your own files read-only and opt in explicitly:
+
+```bash
 docker run ... \
   --volume "$PWD/settings.yaml:/etc/lamplit/settings.override.yaml:ro" \
   --env LAMPLIT_SETTINGS_OVERRIDE=/etc/lamplit/settings.override.yaml \
@@ -80,214 +162,143 @@ docker run ... \
   ghcr.io/lamplitisles/lamplit:1.0.0
 ```
 
-Settings are copied only into a new state volume; a non-empty volume is
-refused with an actionable message. A profile file is passed as a final DSH
-patch layer and is never silently installed into state. Provider API keys and
-OAuth grants belong in DSH Settings/credential storage or runtime secrets,
-never in an image or committed example.
+Settings are copied only into a new state volume. Lamplit refuses to overwrite
+a non-empty one. A profile patch is applied as the final DSH patch layer and
+is not silently installed into state.
 
-### Optional integrations
+Provider API keys and OAuth grants belong in DSH credential storage or runtime
+secrets, never in the image or committed examples.
 
-Keet is an integration, not a redistributed runtime. Obtain the supported
-Linux x86-64 Keet 4.21.0 runtime yourself and mount its prepared directory
-read-only at `/opt/keet-runtime`. The dsh-keet package expects the supported
-runtime tuple under `DSH_HOME/runtimes/keet/4.21.0-linux-x64`; the launcher
-creates that state-local symlink to the mount. Keep the Partner identity in the
-separate writable Keet volume mounted at both `/var/lib/lamplit/keet` and
-`/workspace/.dsh/dsh-keet`. If the mount is absent, empty, or incompatible,
-the plugin reports its disconnected/setup state while DSH and Companion remain
-available.
+## Give your Partner a Keet identity
 
-dsh-mail is shipped without a mailbox address, OAuth grant, or Guion-domain
-provisioning. Configure its existing settings against a compatible mailbox
-MCP and OAuth issuer that you operate; complete the OAuth flow at the
-loopback callback shown by the plugin. An unconfigured mailbox is inert and
-does not prevent startup.
+Keet support is optional. Lamplit includes the integration, but it does not
+redistribute Keet's proprietary executable, worker bundle, or native addons.
 
-## Full: Compose topology
+Follow the
+[Keet runtime preparation guide](https://github.com/lamplitisles/keet-for-agent/blob/main/docs/runtime-extraction.md)
+to download the supported official Keet 4.21.0 Linux x86-64 release, verify its
+checksum, and extract the runtime. Use the resulting
+`4.21.0-linux-x64` directory as the read-only runtime mount.
 
-Full adds the Hindsight memory adapter and ImageGen to the same application
-image lineage. The supplied Compose file starts exactly four application
-services:
+For Core, add this line to the `docker run` command:
 
-```text
-lamplit       Full DSH/Companion application (port 3080)
-hindsight     Hindsight 0.9.2, local multilingual embeddings (8888/9999)
-hindsight-postgres  PostgreSQL 18 + PGroonga 4.0.8 + pgvector 0.8.6
-codex-bridge  Kepos Codex Bridge (operator-owned ChatGPT OAuth)
+```bash
+--volume "/absolute/path/to/4.21.0-linux-x64:/opt/keet-runtime:ro" \
 ```
 
-The database is on the `hindsight-internal` network and has no host port.
-Hindsight waits for its database health check, while Lamplit has no dependency
-gate and therefore remains startable when an optional service or credential is
-missing. API/control-plane ports, when exposed, bind to host loopback only.
-There is no Redis or Valkey service.
+For Full, point Compose at the same directory:
 
-Before the first start, choose a private database password and prepare the
-operator-owned bridge login:
-
-```sh
-export HINDSIGHT_POSTGRES_PASSWORD='replace-with-a-long-private-value'
-mkdir -p keet-runtime
-# Put the supported Keet runtime in keet-runtime/ when you have one.
+```bash
+export KEET_RUNTIME_PATH=/absolute/path/to/4.21.0-linux-x64
 docker compose up -d
-
-# The bridge image has no credentials by design. Log in using a test-owned
-# auth file and then restart only the bridge service:
-docker compose run --rm --entrypoint /usr/local/bin/kepos-codex-bridge \
-  codex-bridge login --auth-file /var/lib/kepos-codex-bridge/auth.json
-docker compose restart codex-bridge
 ```
 
-The bridge login is a human/operator action and may open a browser. Do not
-commit the `codex_bridge_auth` volume or copy its `auth.json` into Lamplit.
-Start Full with:
+The Partner's Keet identity stays in its separate writable volume; it is not
+part of the runtime directory. If the runtime is absent or incompatible,
+dsh-keet reports a disconnected or setup state while the rest of Lamplit
+keeps running.
 
-```sh
-HINDSIGHT_POSTGRES_PASSWORD='replace-with-a-long-private-value' \
-  docker compose up -d
-```
+## Connect an agent mailbox
 
-The default Full image is the versioned `0.1.0-full` example in `compose.yaml`.
-The Hindsight and PostgreSQL defaults are independently published `0.1.1`
-service images pinned by their public registry manifest digests, and the bridge
-is pinned by its published digest. Set `LAMPLIT_IMAGE` when upgrading the
-application; only override the service references when you have verified a new
-service digest. Inspect the rendered model without starting anything with
-`docker compose config` (or the repository's `bun run test:compose`).
+The dsh-mail integration ships without an email address, OAuth grant, or
+Guion-domain provisioning. Configure it in DSH against a compatible mailbox
+MCP and OAuth issuer that you operate. An unconfigured mailbox stays inert and
+does not block startup.
 
-The memory service uses the baked
-`sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2` model offline on
-CPU with 384-dimensional vectors, PGroonga text search, pgvector search, and
-RRF reranking. Its only durable volume is PostgreSQL's
-`lamplit-hindsight-postgres` volume. Back it up with a PostgreSQL custom-format
-dump before upgrades; do not treat the Hindsight container filesystem or
-Hugging Face cache as data.
+## What stays yours
 
-## Persistence and security contract
+Lamplit keeps durable state outside its images and separates data with
+different privacy and backup needs.
 
-| Boundary | Default location | Owner | Backup separately |
-| --- | --- | --- | --- |
-| DSH state, sessions, settings, profile | `lamplit-dsh-state` → `/home/lamplit/.local/state/dsh` | uid/gid 1000 | yes |
-| Partner workspace and Companion relationship state | `lamplit-partner-workspace` → `/workspace` | uid/gid 1000 | yes |
-| Keet runtime | operator bind → `/opt/keet-runtime:ro` | operator | obtain again, do not back up into this repo |
-| Partner Keet identity | `lamplit-keet-identity` → writable identity paths | uid/gid 1000 | yes, privately |
-| Hindsight memory | `lamplit-hindsight-postgres` → PostgreSQL data | uid/gid 999 | PostgreSQL dump |
-| Codex Bridge OAuth | `lamplit-codex-bridge-auth` | uid/gid 10001 | yes, as a secret |
+| Data | Default persistence | How to back it up |
+| --- | --- | --- |
+| Core DSH state and sessions | `lamplit-core-state` | copy or archive the stopped volume |
+| Full DSH state and sessions | `lamplit-dsh-state` | copy or archive the stopped volume |
+| Partner workspace and Companion state | Core or Full workspace volume | back up separately from DSH state |
+| Keet runtime | operator read-only bind mount | obtain it again; do not put it in this repository |
+| Partner Keet identity | Core or Full Keet identity volume | back up privately |
+| Hindsight long-term memory | `lamplit-hindsight-postgres` | PostgreSQL custom-format dump |
+| Codex Bridge OAuth | `lamplit-codex-bridge-auth` | back up as a secret |
 
-Examples use a fixed non-root uid, drop all Linux capabilities, enable
-no-new-privileges, and make the root filesystem read-only with tmpfs for
-transient paths. Public ingress, TLS, authentication proxies, and network
-policy remain operator-owned. Keep the Compose ports loopback-bound unless a
-reviewed proxy is in front of them.
+Do not treat the Hindsight container filesystem or model cache as durable
+data. This release also does not claim automatic migration of a hosted
+account, Keet identity, or mailbox data.
 
-## Choice and portability boundaries
+For backup, restore, upgrades, and troubleshooting, see
+[`docs/container-operations.md`](docs/container-operations.md).
 
-The current release makes these persistence boundaries observable and
-backup-friendly: DSH state, the Partner workspace, the Keet identity,
-Hindsight PostgreSQL data, and Codex Bridge OAuth are separate mounts. A
-PostgreSQL custom-format dump is the documented Hindsight memory backup and
-restore unit. This release does not claim full portability of a hosted account
-or automatic migration of Keet identity or mailbox data; those remain explicit
-future work (see [ADR 0005](docs/adr/0005-portability-boundaries.md)).
+## Security defaults
 
-## Tags and packages
+The supplied examples:
 
-For a stable `vX.Y.Z` release, the public Dagger module publishes only the
-application images:
+- run with fixed non-root users;
+- use read-only root filesystems;
+- drop all Linux capabilities and enable `no-new-privileges`;
+- use tmpfs for transient paths;
+- bind exposed ports to host loopback;
+- keep PostgreSQL on an internal network; and
+- keep credentials and writable identities outside the images.
 
-| Artifact | Immutable tag | Rolling tag |
+Public ingress, TLS, authentication proxies, and network policy remain the
+operator's responsibility. Do not expose the loopback-bound services directly
+without a reviewed proxy in front of them.
+
+## Images and upgrades
+
+For a stable `vX.Y.Z` release, Lamplit publishes these application images:
+
+| Variant | Immutable tag | Rolling tag |
 | --- | --- | --- |
 | Core | `ghcr.io/lamplitisles/lamplit:X.Y.Z` | `latest` |
 | Full | `ghcr.io/lamplitisles/lamplit:X.Y.Z-full` | `full` |
 
-The prebuilt memory images are a separate operator publication from local
-artifacts, currently `ghcr.io/lamplitisles/lamplit-hindsight:0.1.1` and
-`ghcr.io/lamplitisles/lamplit-hindsight-postgres:0.1.1`. Their independent
-versions, source `localDigest` values, and public registry `publishedDigest`
-values are recorded in [`config/memory-images.json`](config/memory-images.json);
-Compose pins the latter. Their private build recipes are not part of this
-repository. Kepos Codex Bridge is likewise consumed from its independently
-published digest. There is deliberately no `full-latest` tag.
+There is no `full-latest` tag. Immutable tags are the upgrade and rollback
+unit; rolling tags are convenience pointers only. Hindsight, PostgreSQL, and
+Kepos Codex Bridge have independent versions and immutable references in
+`compose.yaml`.
 
-There is deliberately no `full-latest` tag. Immutable tags are the upgrade
-and rollback unit; rolling tags are convenience pointers only.
+## Build from source
 
-## Build and verify
+Lamplit uses Node 24 and pnpm 11.22.0 for repository checks. The TypeScript
+Dagger module is the Linux amd64 image build and verification interface.
 
-The TypeScript Dagger module is the release interface. It obtains dsh-mail and
-dsh-keet from their public repositories at the pinned commits declared in
-`dagger/src/index.ts`, builds their package tarballs, and installs those
-artifacts without vendoring source or Keet runtime bytes.
-
-```sh
-# Fast repository checks (no image builds)
-bun install
-bun run check
-
-# End-to-end Linux amd64 application build, metadata inspection, capability
-# checks, DSH Web preset sync/doctor, and Compose validation. This builds only
-# Core and Full; it never builds Hindsight or PostgreSQL.
+```bash
+pnpm install --frozen-lockfile
+pnpm run check
 dagger call -m dagger check --source .
-
-# Optional local memory-service image verification before a service publication.
-just verify-memory-images
-
-# Local application fallback: the current checkout must be the commit named by
-# the stable tag. Copy .env.example to .env and fill in GHCR_USERNAME/GHCR_TOKEN.
-just publish-app-images vX.Y.Z
-
-# Explicit operator action: authenticate and push only the unchanged verified
-# images. Copy .env.example to .env and fill in GHCR_USERNAME/GHCR_TOKEN first.
-just publish-memory-images
 ```
 
-The Dagger check uses disposable build containers and validates non-root users,
-entrypoints, the Core/Full capability roster, state-safety files, and the
-absence of Keet runtime assets. The opt-in memory-image verification uses
-network-disabled disposable containers to load the already-built multilingual
-model offline and create PostgreSQL extensions; it does not rebuild either
-image or read live state. `just publish-memory-images` verifies each source
-image against its `localDigest` before authenticating to GHCR, reads credentials
-only from the ignored `.env`, never prints the token, and calls the existing
-push helper without building either service image. After pushing, the helper
-pulls each public tag through the authenticated runtime and compares its remote
-`RepoDigest` with the recorded `publishedDigest`; a stale local digest cannot
-make publication pass. Do not run that publication recipe until the operator
-has supplied valid credentials. For a running Core smoke using only test-owned
-directories and a disposable loopback port:
+The checks use disposable, test-owned state. They do not call a paid model,
+read a real DSH home, or use operator credentials.
 
-```sh
-LAMPLIT_CORE_IMAGE=ghcr.io/lamplitisles/lamplit:latest \
-  node scripts/test-core-smoke.mjs
-```
+Maintainers can find the image publication, mirror, and Woodpecker checklist
+in [`docs/release.md`](docs/release.md). Those steps are not required to run
+Lamplit.
 
-No check calls a paid model, reads a real DSH home, or uses operator
-credentials. Dagger caching has two layers: the trusted Woodpecker agent keeps
-the Dagger engine/cache persistent between runs, while the Lamplit module keeps
-package-manager stores plus isolated installed-dependency caches for the three
-external plugin builds. The dsh-mail cache covers its project-root
-`node_modules`; dsh-keet and guionai/web each have a separate cache for their
-root `node_modules/.pnpm` virtual store, while frozen installs recreate their
-workspace links. Host `node_modules` remains excluded from source input. These
-cache identities are project/toolchain/runtime/platform-specific and do not
-contain source trees, build outputs, registry auth, or secrets.
+## Self-hosting and license
 
-## Release and mirror prerequisites
+Lamplit source and Core/Full images are publicly available under the Elastic
+License 2.0 (`Elastic-2.0`). Lamplit is source-available and does not claim OSI
+open-source status. Compliant self-hosting remains a real path; the license
+does not permit a third party to offer a managed service that exposes a
+substantial set of Lamplit features.
 
-Forgejo `LamplitIsles/lamplit` is canonical. Configure the Forgejo-to-GitHub
-mirror and set the GitHub repository's GHCR package visibility to public for the
-promised public image path; the repository cannot create or verify those
-external settings. GitHub is a passive mirror and does not run Lamplit checks
-or publication.
+Official managed hosting is outside this repository and is not available yet.
+If Lamplit Points are offered with hosted resources, they cover only
+Lamplit-provided hosting and value, not third-party model usage or a portable
+provider account.
 
-Enable the repository in Woodpecker, create `ghcr_username` and `ghcr_token`
-repository secrets, and assign it to a trusted agent that provides the
-persistent-cache Dagger runner/socket used by the other business repositories.
-The workflow exposes those secrets only to stable `vX.Y.Z` tag publication. It
-does not provision runner state or a cache volume. The local fallback is
-`just publish-app-images vX.Y.Z`; it reads the ignored `.env`, requires the tag
-to identify the current checkout commit, and publishes the same Core/Full
-references. See [docs/release.md](docs/release.md) for the operator checklist
-and [docs/container-operations.md](docs/container-operations.md) for backup and
-troubleshooting procedures.
+Bundled upstream components keep their own licenses. In particular, upstream
+Hindsight 0.9.2 is MIT and `@lamplitisles/kepos-hindsight` is Apache-2.0. Review
+[`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), [`licenses/`](licenses/),
+and [`sbom/lamplit.spdx.json`](sbom/lamplit.spdx.json) before redistributing an
+image.
+
+## Status
+
+Lamplit is early. There is no promise yet of one-click public ingress,
+automatic account portability, or support beyond the documented runtime
+tuples.
+
+What exists now is the self-hosted path: one Partner, one workspace, and a
+small island you can inspect, back up, and run yourself.

@@ -30,8 +30,9 @@ their upstream package licenses and immutable inputs:
 - `@lamplitisles/dsh-companion@0.2.3` — Apache-2.0.
 - `@lamplitisles/kepos-speech@0.2.4` — Apache-2.0.
 - `@lamplitisles/dsh-imagegen@0.4.0` — Apache-2.0 (Full only).
-- `@lamplitisles/dsh-mail@0.1.0` — Apache-2.0, built from commit
-  `008c76fcbca764457678e8f63438b206ee9490f0`.
+- `@lamplitisles/dsh-mail@0.1.2` — Apache-2.0, resolved from its public npm
+  package with npm provenance. Published tarball integrity is
+  `sha512-pXEpQv6g2LM6rtKej5KemXlO1wc8zFDkzuycEJXNXo8ItAZzHPAMJG4jSbV51OyyCNfftkaTBhHvtbDv7sDwdA==`.
 - `@lamplitisles/dsh-keet@0.1.0` — Apache-2.0, built from commit
   `1741c5e7ada7919db4a6b241db23ceefa39d875d`.
 

@@ -5,6 +5,13 @@ clone:
       partial: false
       depth: 0
 
+when:
+  - event: pull_request
+  - event: push
+    branch: main
+  - event: tag
+    ref: "refs/tags/v*.*.*"
+
 steps:
   - name: check
     image: ghcr.io/tta-lab/dagger-cli:0.21.7

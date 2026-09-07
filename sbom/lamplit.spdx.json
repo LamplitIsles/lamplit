@@ -5426,10 +5426,10 @@
       "homepage": "https://github.com/lamplitisles/keet-for-agent/tree/1741c5e7ada7919db4a6b241db23ceefa39d875d"
     },
     {
-      "SPDXID": "SPDXRef--lamplitisles-dsh-mail-0.1.0",
+      "SPDXID": "SPDXRef--lamplitisles-dsh-mail-0.1.2",
       "name": "@lamplitisles/dsh-mail",
-      "versionInfo": "0.1.0",
-      "downloadLocation": "https://github.com/LamplitIsles/dsh-mail/tree/008c76fcbca764457678e8f63438b206ee9490f0",
+      "versionInfo": "0.1.2",
+      "downloadLocation": "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.2.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -5438,10 +5438,16 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-mail@0.1.0"
+          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-mail@0.1.2"
         }
       ],
-      "homepage": "https://github.com/LamplitIsles/dsh-mail/tree/008c76fcbca764457678e8f63438b206ee9490f0"
+      "homepage": "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.2",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a5712942fea0d8b33aaed29e8f929e99794ed7073ccc50e4ceec9c1095cd5e8f08b406731cf00c246e2349b579d4ecb208d7dfb646930611efb5b0efeec0f074"
+        }
+      ]
     },
     {
       "SPDXID": "SPDXRef--lamplitisles-kepos-hindsight-0.2.0",
@@ -11665,7 +11671,7 @@
     {
       "spdxElementId": "SPDXRef-lamplit-0.1.0-source",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-mail-0.1.0"
+      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-mail-0.1.2"
     },
     {
       "spdxElementId": "SPDXRef-lamplit-0.1.0-source",

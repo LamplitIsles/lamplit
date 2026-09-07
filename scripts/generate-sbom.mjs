@@ -27,7 +27,7 @@ const purl = (name, versionInfo) => {
 const expression = (value) => (typeof value === "string" && value.length > 0 ? value : "NOASSERTION");
 
 const packages = new Map();
-const addPackage = ({ name, versionInfo, license, downloadLocation, source }) => {
+const addPackage = ({ name, versionInfo, license, downloadLocation, source, checksums }) => {
   const key = `${name}@${versionInfo}`;
   if (packages.has(key)) return;
   const entry = {
@@ -48,6 +48,7 @@ const addPackage = ({ name, versionInfo, license, downloadLocation, source }) =>
     ],
   };
   if (source) entry.homepage = source;
+  if (checksums) entry.checksums = checksums;
   packages.set(key, entry);
 };
 
@@ -71,16 +72,23 @@ for (const [location, metadata] of Object.entries(lock.packages ?? {})) {
 }
 
 const direct = [
-  ["@guionai/dsh-web", "0.6.2", "Apache-2.0", "https://github.com/GuionAI/web"],
-  ["@lamplitisles/dsh-companion", "0.2.3", "Apache-2.0", "https://github.com/LamplitIsles/dsh-companion"],
-  ["@lamplitisles/kepos-speech", "0.2.4", "Apache-2.0", "https://github.com/LamplitIsles/kepos-speech"],
-  ["@lamplitisles/dsh-mail", "0.1.0", "Apache-2.0", "https://github.com/LamplitIsles/dsh-mail/tree/008c76fcbca764457678e8f63438b206ee9490f0"],
-  ["@lamplitisles/dsh-keet", "0.1.0", "Apache-2.0", "https://github.com/lamplitisles/keet-for-agent/tree/1741c5e7ada7919db4a6b241db23ceefa39d875d"],
-  ["@lamplitisles/kepos-hindsight", "0.2.0", "Apache-2.0", "https://github.com/LamplitIsles/kepos-hindsight"],
-  ["@lamplitisles/dsh-imagegen", "0.4.0", "Apache-2.0", "https://github.com/LamplitIsles/kepos-imagegen"],
+  { name: "@guionai/dsh-web", versionInfo: "0.6.2", license: "Apache-2.0", source: "https://github.com/GuionAI/web" },
+  { name: "@lamplitisles/dsh-companion", versionInfo: "0.2.3", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-companion" },
+  { name: "@lamplitisles/kepos-speech", versionInfo: "0.2.4", license: "Apache-2.0", source: "https://github.com/LamplitIsles/kepos-speech" },
+  {
+    name: "@lamplitisles/dsh-mail",
+    versionInfo: "0.1.2",
+    license: "Apache-2.0",
+    downloadLocation: "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.2.tgz",
+    source: "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.2",
+    checksums: [{ algorithm: "SHA512", checksumValue: "a5712942fea0d8b33aaed29e8f929e99794ed7073ccc50e4ceec9c1095cd5e8f08b406731cf00c246e2349b579d4ecb208d7dfb646930611efb5b0efeec0f074" }],
+  },
+  { name: "@lamplitisles/dsh-keet", versionInfo: "0.1.0", license: "Apache-2.0", source: "https://github.com/lamplitisles/keet-for-agent/tree/1741c5e7ada7919db4a6b241db23ceefa39d875d" },
+  { name: "@lamplitisles/kepos-hindsight", versionInfo: "0.2.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/kepos-hindsight" },
+  { name: "@lamplitisles/dsh-imagegen", versionInfo: "0.4.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/kepos-imagegen" },
 ];
-for (const [name, versionInfo, license, source] of direct) {
-  addPackage({ name, versionInfo, license, downloadLocation: source, source });
+for (const entry of direct) {
+  addPackage({ downloadLocation: entry.source, ...entry });
 }
 
 const sortedPackages = [...packages.values()].sort((left, right) =>

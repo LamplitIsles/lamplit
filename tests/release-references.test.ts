@@ -5,7 +5,7 @@ import { dirname, join } from "node:path"
 import { tmpdir } from "node:os"
 import { fileURLToPath } from "node:url"
 import assert from "node:assert/strict"
-import { test } from "bun:test"
+import { test } from "node:test"
 import {
   parseSourceRevision,
   parseStableReleaseTag,

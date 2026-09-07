@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
-import { test } from "bun:test";
+import { test } from "node:test";
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const manifest = JSON.parse(readFileSync(join(root, "config/memory-images.json"), "utf8"));

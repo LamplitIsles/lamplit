@@ -19,11 +19,6 @@ import {
 
 const NODE_IMAGE =
   "node:24.20.0-bookworm-slim@sha256:6642ef280aebc09c4541bee0b15c9f89f0f3f3c247ddee79ae1d37eddfdcbbaa"
-const BUN_IMAGE =
-  "oven/bun:1.3.13@sha256:bb35eafd10b2e969809384850ff0474ba36a491239d715864bc87787b4cdf0a4"
-const DSH_MAIL_REPOSITORY = "https://github.com/LamplitIsles/dsh-mail.git"
-const DSH_MAIL_COMMIT = "008c76fcbca764457678e8f63438b206ee9490f0"
-const DSH_MAIL_ARCHIVE_SHA256 = "dcd4bc760f0601744165810cca0fdff0090d220473afc82c85dc70d2d5cdc3c6"
 const DSH_KEET_REPOSITORY = "https://github.com/lamplitisles/keet-for-agent.git"
 const DSH_KEET_COMMIT = "1741c5e7ada7919db4a6b241db23ceefa39d875d"
 const DSH_KEET_ARCHIVE_SHA256 = "6cd313f74b3c0ffcf85be30e9816159906fb1b0972b46766c849cf849449fa2e"
@@ -37,9 +32,7 @@ const LAMPLIT_SOURCE = "https://github.com/LamplitIsles/lamplit"
 const LAMPLIT_LICENSE = "Elastic-2.0"
 const DEFAULT_VERSION = "0.1.0"
 const LINUX_AMD64 = "linux/amd64" as Platform
-const BUN_DOWNLOAD_CACHE = "lamplit-dsh-mail-bun-downloads-bun-1.3.13-linux-amd64-v1"
 const NPM_DOWNLOAD_CACHE = "lamplit-npm-downloads-node-24.20.0-linux-amd64-v1"
-const DSH_MAIL_NODE_MODULES_CACHE = "lamplit-dsh-mail-node-modules-bun-1.3.13-linux-amd64-v1"
 const DSH_KEET_PNPM_STORE_CACHE = "lamplit-dsh-keet-pnpm-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
 const DSH_KEET_VIRTUAL_STORE_CACHE = "lamplit-dsh-keet-pnpm-virtual-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
 const GUION_WEB_PNPM_STORE_CACHE = "lamplit-guionai-web-pnpm-store-pnpm-10.26.2-node-24.20.0-linux-amd64-v1"
@@ -223,6 +216,9 @@ export class Lamplit {
       container.label("org.opencontainers.image.licenses"),
     ])
     if (capabilities.variant !== variant) throw new Error(`capability manifest variant mismatch: ${capabilities.variant}`)
+    if (!capabilities.plugins.includes("@lamplitisles/dsh-mail@0.1.2")) {
+      throw new Error("application image is missing the published dsh-mail 0.1.2 plugin contract")
+    }
     if (user !== "1000:1000" && user !== "1000") throw new Error(`application image is not non-root: ${user}`)
     if (platform !== "linux/amd64") throw new Error(`unexpected application platform: ${platform}`)
     if (!noKeetRuntime || !noCredentialStore) throw new Error("application image contains forbidden runtime state")
@@ -234,37 +230,14 @@ export class Lamplit {
   }
 
   private async pluginArtifacts(): Promise<Directory> {
-    const [mail, keet, guionWeb] = await Promise.all([
-      this.buildMailTarball(),
+    const [keet, guionWeb] = await Promise.all([
       this.buildKeetTarball(),
       this.buildGuionWebTarball(),
     ])
     return dag
       .directory()
-      .withFile("lamplitisles-dsh-mail.tgz", mail)
       .withFile("lamplitisles-dsh-keet.tgz", keet)
       .withFile("guionai-web.tgz", guionWeb)
-  }
-
-  private async buildMailTarball() {
-    const source = this.repositoryArchive(DSH_MAIL_REPOSITORY, DSH_MAIL_COMMIT, DSH_MAIL_ARCHIVE_SHA256)
-    const result = dag
-      .container()
-      .from(BUN_IMAGE)
-      .withMountedCache("/root/.bun/install/cache", dag.cacheVolume(BUN_DOWNLOAD_CACHE), LOCKED_CACHE)
-      .withMountedCache("/tmp/lamplit-source/node_modules", dag.cacheVolume(DSH_MAIL_NODE_MODULES_CACHE), LOCKED_CACHE)
-      .withMountedFile("/tmp/source.tar.gz", source)
-      .withExec(["mkdir", "-p", "/tmp/lamplit-source"])
-      .withExec(["tar", "-xzf", "/tmp/source.tar.gz", "--strip-components=1", "-C", "/tmp/lamplit-source"])
-      .withWorkdir("/tmp/lamplit-source")
-      .withExec(["bun", "install", "--frozen-lockfile"])
-      .withExec(["bun", "run", "build"])
-      .withExec(["mkdir", "-p", "/out"])
-      .withExec(["bun", "pm", "pack", "--destination", "/out"])
-    const files = await result.directory("/out").entries()
-    const filename = files.find((file) => file.endsWith(".tgz"))
-    if (!filename) throw new Error("dsh-mail build did not produce a package tarball")
-    return result.directory("/out").file(filename)
   }
 
   private async buildKeetTarball() {

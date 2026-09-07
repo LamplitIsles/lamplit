@@ -90,17 +90,21 @@ host and network policy.
 
 ## Safe validation
 
-`bun run check` only parses and validates repository-owned artifacts. The
+`pnpm run check` only parses and validates repository-owned artifacts. The
 end-to-end `dagger call -m dagger check --source .` builds only disposable
 Linux amd64 Core and Full application containers, verifies their capabilities
 and metadata, and does not use credentials or paid model calls. Run
-`bun run verify:memory-images` separately before publishing the prebuilt Kosmos
+`pnpm run verify:memory-images` separately before publishing the prebuilt Kosmos
 service images; it does not build them and checks the local source `localDigest`
 values. The publication helper records and checks the separate public registry
 `publishedDigest` values after an authenticated pull, so a stale local
 `RepoDigest` cannot validate a failed publication. For a running Core smoke, use
 `node scripts/test-core-smoke.mjs` with a test-owned image and temporary
 directories; it never points at the operator's DSH home.
+
+Application images use the pinned Node 24.20.0 base. Their profile sync
+resolves the published `@lamplitisles/dsh-mail@0.1.2` package from npm; Dagger
+builds only the dsh-keet and Guion Web source tarballs.
 
 When exporting or redistributing an application image, retain
 `/usr/share/doc/lamplit/` with its SPDX SBOM, `THIRD_PARTY_NOTICES.md`, and

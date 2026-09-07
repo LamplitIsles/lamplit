@@ -9,7 +9,7 @@ default:
 
 # Run fast repository-owned checks without building images.
 check:
-    @bun run check
+    @pnpm run check
 
 # Build and inspect only the Core and Full application images.
 dagger-check:
@@ -26,7 +26,7 @@ publish-app-images release_tag:
 
     # Validate the stable tag, credentials, and tag/current-commit relationship
     # before Dagger starts. The helper never contacts GHCR or prints a secret.
-    revision="$(GHCR_USERNAME="$username" GHCR_TOKEN="$token" bun run scripts/validate-app-publication.ts "$release_tag")"
+    revision="$(GHCR_USERNAME="$username" GHCR_TOKEN="$token" node scripts/validate-app-publication.ts "$release_tag")"
 
     # Dagger reads the token as a Secret through env:GHCR_TOKEN; it is never a
     # command-line argument, build argument, or value persisted in the cache.
@@ -40,7 +40,7 @@ publish-app-images release_tag:
 
 # Verify the existing local memory-service images without building or pushing.
 verify-memory-images:
-    @bun run verify:memory-images
+    @pnpm run verify:memory-images
 
 # Authenticate and publish the unchanged, already verified service images.
 # Requires GHCR_USERNAME and GHCR_TOKEN in the ignored .env file.
@@ -67,7 +67,7 @@ publish-memory-images:
     # Do not pass GHCR credentials into the local-image verification or push
     # helper. The token is used only as docker/podman login stdin below.
     unset GHCR_USERNAME GHCR_TOKEN
-    bun run verify:memory-images
+    pnpm run verify:memory-images
 
     auth_dir="$(mktemp -d)"
     cleanup() {
@@ -79,4 +79,4 @@ publish-memory-images:
     mkdir -p "$DOCKER_CONFIG"
     runtime="${CONTAINER_RUNTIME:-docker}"
     printf '%s' "$token" | "$runtime" login ghcr.io --username "$username" --password-stdin >/dev/null
-    bun run publish:memory-images
+    pnpm run publish:memory-images

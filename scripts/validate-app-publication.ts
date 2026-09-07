@@ -1,5 +1,7 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 import { execFileSync } from "node:child_process"
+import { resolve } from "node:path"
+import { fileURLToPath } from "node:url"
 import { parseSourceRevision, parseStableReleaseTag } from "../dagger/src/release.ts"
 
 export interface PublicationValidationInput {
@@ -83,7 +85,10 @@ function main(): void {
   process.stdout.write(`${validated.revision}\n`)
 }
 
-if (import.meta.main) {
+const isDirectExecution = process.argv[1] !== undefined
+  && fileURLToPath(import.meta.url) === resolve(process.argv[1])
+
+if (isDirectExecution) {
   try {
     main()
   } catch (error) {
