@@ -1,0 +1,29 @@
+{
+  "source": "Kosmos local image set",
+  "verifiedAt": "2026-09-07",
+  "images": {
+    "hindsight": {
+      "local": "localhost/kosmos/hindsight:0.1.1",
+      "localDigest": "sha256:496e6d12f209eb827781c06ca99354d68890a938b0e776dae1042d21e4332e80",
+      "published": "ghcr.io/lamplitisles/lamplit-hindsight:0.1.1",
+      "publishedDigest": "sha256:69462bc7a30d0b280843eaf0cea674e45b9d07f6d8d53f9bfc158127a06e8386",
+      "hindsight": "0.9.2",
+      "embeddingModel": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+      "embeddingDimensions": 384
+    },
+    "postgres": {
+      "local": "localhost/kosmos/hindsight-postgres:0.1.1",
+      "localDigest": "sha256:c9f320182cb43bc523aa6a96f2429facab20c8001982604ac7f63afcbf42447e",
+      "published": "ghcr.io/lamplitisles/lamplit-hindsight-postgres:0.1.1",
+      "publishedDigest": "sha256:23f06f49ad9683bd601ac8fb4ed478d6361ad066b2d6c2777cb8f3f91b343a77",
+      "postgres": "18",
+      "pgroonga": "4.0.8",
+      "pgvector": "0.8.6"
+    },
+    "codexBridge": {
+      "published": "ghcr.io/lamplitisles/kepos-codex-bridge:sha-11ca46c291fec14c2b3e88148a93786b8598c066",
+      "sourceTag": "sha-11ca46c291fec14c2b3e88148a93786b8598c066",
+      "digest": "sha256:784e9e83424ad5a385739bcbd9e9428304d22d12c86c487b19b564c51c824408"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+.scratch/
+.env
+node_modules/
+dagger/node_modules/
+dagger/sdk/
+.build/plugins/*
+!.build/plugins/.keep

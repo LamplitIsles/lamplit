@@ -1,0 +1,179 @@
+name: lamplit
+
+services:
+  lamplit:
+    image: ${LAMPLIT_IMAGE:-ghcr.io/lamplitisles/lamplit:0.1.0-full}
+    user: "1000:1000"
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=256m,mode=1777
+      - /run:rw,noexec,nosuid,size=16m
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${LAMPLIT_PORT:-3080}:3080"
+    environment:
+      LAMPLIT_VARIANT: full
+      LAMPLIT_HOST: 0.0.0.0
+      LAMPLIT_PORT: 3080
+      DSH_HOME: /home/lamplit/.local/state/dsh
+      HINDSIGHT_CONFIG: /opt/lamplit/hindsight.json
+      HINDSIGHT_API_URL: http://hindsight:8888
+      # The plugin reads this non-secret endpoint from its normal config file.
+      # Credentials stay in DSH credential storage and are never interpolated.
+    volumes:
+      - dsh_state:/home/lamplit/.local/state/dsh
+      - partner_workspace:/workspace
+      # These files are opt-in overlays. Mounting them does not replace state;
+      # set the corresponding LAMPLIT_*_OVERRIDE variable to activate one.
+      - ./config/settings.yaml:/etc/lamplit/settings.override.yaml:ro
+      - ./config/profile.patch.yml:/etc/lamplit/profile.override.yml:ro
+      # Keet bytes are operator supplied and read-only. A missing/empty path is
+      # an actionable disconnected state, not a reason for Lamplit to crash.
+      - ${KEET_RUNTIME_PATH:-./keet-runtime}:/opt/keet-runtime:ro
+      - keet_identity:/var/lib/lamplit/keet
+      # dsh-keet owns this fixed workspace-relative path. The same named
+      # volume makes identity persistence independent from Partner files.
+      - keet_identity:/workspace/.dsh/dsh-keet
+    networks:
+      - lamplit
+      - hindsight-internal
+
+  hindsight:
+    # Published from the unchanged Kosmos 0.1.1 image; the digest is the
+    # registry-returned manifest digest, not a Lamplit application version.
+    image: ${HINDSIGHT_IMAGE:-ghcr.io/lamplitisles/lamplit-hindsight:0.1.1@sha256:69462bc7a30d0b280843eaf0cea674e45b9d07f6d8d53f9bfc158127a06e8386}
+    user: "1000:1000"
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=1g,mode=1777
+      - /dev/shm:rw,nosuid,size=1g
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${HINDSIGHT_API_PORT:-8888}:8888"
+      - "127.0.0.1:${HINDSIGHT_UI_PORT:-9999}:9999"
+    environment:
+      HINDSIGHT_API_DATABASE_URL: postgresql://hindsight:${HINDSIGHT_POSTGRES_PASSWORD:-change-me-before-use}@hindsight-postgres:5432/hindsight
+      HINDSIGHT_API_EMBEDDINGS_PROVIDER: local
+      HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: /opt/hindsight-models/paraphrase-multilingual-MiniLM-L12-v2
+      HINDSIGHT_API_EMBEDDINGS_LOCAL_FORCE_CPU: "1"
+      HINDSIGHT_API_RERANKER_PROVIDER: rrf
+      HINDSIGHT_API_VECTOR_EXTENSION: pgvector
+      HINDSIGHT_API_TEXT_SEARCH_EXTENSION: pgroonga
+      HINDSIGHT_API_LLM_PROVIDER: openai-responses
+      HINDSIGHT_API_LLM_BASE_URL: http://codex-bridge:8787/codex/buffered/responses
+      HINDSIGHT_API_LLM_MODEL: ${HINDSIGHT_LLM_MODEL:-gpt-5.6-luna}
+      HINDSIGHT_API_LLM_REASONING_EFFORT: ${HINDSIGHT_LLM_REASONING_EFFORT:-high}
+      HINDSIGHT_API_LLM_API_KEY: bridge-managed-oauth
+      HINDSIGHT_API_LLM_TIMEOUT: "300"
+      HINDSIGHT_API_WORKER_ID: hindsight
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+      HF_HOME: /home/hindsight/.cache/huggingface
+      TRANSFORMERS_CACHE: /home/hindsight/.cache/huggingface
+      CUDA_VISIBLE_DEVICES: ""
+    depends_on:
+      hindsight-postgres:
+        condition: service_healthy
+    networks:
+      - lamplit
+      - hindsight-internal
+    healthcheck:
+      test: [CMD-SHELL, "python -c 'import urllib.request; urllib.request.urlopen(\"http://127.0.0.1:8888/health\", timeout=3)'" ]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  hindsight-postgres:
+    # Published from the unchanged Kosmos 0.1.1 image; the digest is the
+    # registry-returned manifest digest, not a Lamplit application version.
+    image: ${HINDSIGHT_POSTGRES_IMAGE:-ghcr.io/lamplitisles/lamplit-hindsight-postgres:0.1.1@sha256:23f06f49ad9683bd601ac8fb4ed478d6361ad066b2d6c2777cb8f3f91b343a77}
+    user: "999:999"
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m,mode=1777
+      - /run:rw,noexec,nosuid,size=16m
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: hindsight
+      POSTGRES_DB: hindsight
+      POSTGRES_PASSWORD: ${HINDSIGHT_POSTGRES_PASSWORD:-change-me-before-use}
+      PGPASSWORD: ${HINDSIGHT_POSTGRES_PASSWORD:-change-me-before-use}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - hindsight_postgres_data:/var/lib/postgresql/data
+    networks:
+      - hindsight-internal
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          pg_isready -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" &&
+          test "$$(psql -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -Atqc
+          "SELECT extversion FROM pg_extension WHERE extname = 'pgroonga'")" = "4.0.8" &&
+          test "$$(psql -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -Atqc
+          "SELECT extversion FROM pg_extension WHERE extname = 'vector'")" = "0.8.6"
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 15s
+
+  codex-bridge:
+    # Kepos Codex Bridge is consumed from its independently published digest.
+    image: ${CODEX_BRIDGE_IMAGE:-ghcr.io/lamplitisles/kepos-codex-bridge:sha-11ca46c291fec14c2b3e88148a93786b8598c066@sha256:784e9e83424ad5a385739bcbd9e9428304d22d12c86c487b19b564c51c824408}
+    user: "10001:10001"
+    init: true
+    read_only: true
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m,mode=1777
+      - /run:rw,noexec,nosuid,size=16m
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${CODEX_BRIDGE_PORT:-8787}:8787"
+    environment:
+      KEPOS_CODEX_AUTH_FILE: /var/lib/kepos-codex-bridge/auth.json
+    volumes:
+      - codex_bridge_auth:/var/lib/kepos-codex-bridge
+    networks:
+      - lamplit
+      - hindsight-internal
+    command:
+      - serve
+      - --auth-file
+      - /var/lib/kepos-codex-bridge/auth.json
+      - --port
+      - "8787"
+
+volumes:
+  dsh_state:
+    name: lamplit-dsh-state
+  partner_workspace:
+    name: lamplit-partner-workspace
+  hindsight_postgres_data:
+    name: lamplit-hindsight-postgres
+  keet_identity:
+    name: lamplit-keet-identity
+  codex_bridge_auth:
+    name: lamplit-codex-bridge-auth
+
+networks:
+  lamplit:
+    name: lamplit
+  hindsight-internal:
+    name: lamplit-hindsight-internal
+    internal: true

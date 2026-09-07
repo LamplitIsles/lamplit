@@ -1,0 +1,7 @@
+{
+  "harnesses": {
+    "dsh": {
+      "apiUrl": "http://hindsight:8888"
+    }
+  }
+}

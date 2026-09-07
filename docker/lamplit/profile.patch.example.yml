@@ -1,0 +1,4 @@
+# Optional DSH patch overlay. Mount read-only and opt in with:
+#   -e LAMPLIT_PROFILE_OVERRIDE=/etc/lamplit/profile.override.yml
+# It is passed as a final --patch layer and is never copied into user state.
+[]

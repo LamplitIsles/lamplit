@@ -1,0 +1,6 @@
+.git
+.scratch
+node_modules
+dagger/sdk
+**/.DS_Store
+*.log

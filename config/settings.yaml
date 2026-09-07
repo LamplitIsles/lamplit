@@ -1,0 +1,3 @@
+# Intentionally empty: credentials are entered through DSH Settings or runtime
+# secret injection. Copy this file to a private override only when needed.
+{}

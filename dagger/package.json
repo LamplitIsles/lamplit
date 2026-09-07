@@ -1,0 +1,11 @@
+{
+  "name": "lamplit-dagger-module",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "typescript": "6.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0"
+  }
+}

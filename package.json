@@ -1,0 +1,19 @@
+{
+  "name": "lamplit-container-distribution",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.3.13",
+  "scripts": {
+    "check": "bun run scripts/check.mjs",
+    "test": "bun test",
+    "test:compose": "node scripts/validate-compose.mjs",
+    "test:release": "bun test tests/release-references.test.ts",
+    "test:core-smoke": "node scripts/test-core-smoke.mjs",
+    "verify:memory-images": "node scripts/verify-memory-images.mjs",
+    "publish:memory-images": "node scripts/publish-memory-images.mjs --push"
+  },
+  "dependencies": {
+    "yaml": "2.9.0"
+  }
+}

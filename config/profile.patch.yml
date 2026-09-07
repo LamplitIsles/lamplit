@@ -1,0 +1,4 @@
+# Optional user-owned DSH patch layer. This file is mounted read-only by the
+# Full Compose example but is not activated unless LAMPLIT_PROFILE_OVERRIDE is
+# explicitly set in the environment.
+[]

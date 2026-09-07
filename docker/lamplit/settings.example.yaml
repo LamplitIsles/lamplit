@@ -1,0 +1,5 @@
+# Optional settings override. Mount this file read-only and opt in with:
+#   -e LAMPLIT_SETTINGS_OVERRIDE=/etc/lamplit/settings.override.yaml
+# The entrypoint copies it only into a new, empty DSH state volume. It never
+# replaces settings in an existing volume.
+{}

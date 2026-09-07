@@ -1,0 +1,18 @@
+{
+  "variant": "core",
+  "platform": "linux/amd64",
+  "dsh": "0.1.2-rc.1",
+  "plugins": [
+    "@guionai/dsh-web@0.6.2",
+    "@lamplitisles/dsh-companion@0.2.3",
+    "@lamplitisles/kepos-speech@0.2.4",
+    "@lamplitisles/dsh-mail",
+    "@lamplitisles/dsh-keet"
+  ],
+  "optional": {
+    "hindsight": false,
+    "imagegen": false,
+    "keetRuntime": true,
+    "mailbox": true
+  }
+}
