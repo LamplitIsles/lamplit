@@ -2,7 +2,7 @@ name: lamplit
 
 services:
   lamplit:
-    image: ${LAMPLIT_IMAGE:-ghcr.io/lamplitisles/lamplit:0.1.0-full}
+    image: ${LAMPLIT_IMAGE:-ghcr.io/lamplitisles/lamplit:0.1.3-full}
     user: "1000:1000"
     init: true
     read_only: true
