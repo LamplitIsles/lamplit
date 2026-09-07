@@ -18,7 +18,7 @@
     "web:dev": "pnpm --filter @lamplitisles/lamplit-web dev",
     "web:build": "pnpm --filter @lamplitisles/lamplit-web build",
     "web:check": "pnpm --filter @lamplitisles/lamplit-web verify",
-    "web:deploy": "pnpm --filter @lamplitisles/lamplit-web deploy",
+    "web:deploy": "pnpm --filter @lamplitisles/lamplit-web run deploy",
     "web:deploy:dry-run": "pnpm --filter @lamplitisles/lamplit-web deploy:dry-run"
   },
   "dependencies": {
