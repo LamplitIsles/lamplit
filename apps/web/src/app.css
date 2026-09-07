@@ -80,19 +80,9 @@ h1 em { font-style: normal; color: #efc88e; }
 .feature-copy .detail { font-size: 12px !important; }
 .feature-copy .text-link { margin-top: 28px; }
 .phone-figure { padding: 30px 0; background: radial-gradient(ellipse, #72502f1f, transparent 70%); }
-.screenshot-slot { overflow: hidden; border: 1px solid #70543b; background: #18140f; }
-.screenshot-slot.phone { width: min(268px, 90%); aspect-ratio: 9 / 18.5; border-radius: 32px; margin-inline: auto; padding: 10px; box-shadow: 0 26px 55px #0004; }
-.screenshot-slot.phone img { border-radius: 23px; }
-.screenshot-slot img { display: block; width: 100%; height: 100%; object-fit: contain; }
-.capture-placeholder { width: 100%; height: 100%; min-height: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; color: #d6c2a6; font-size: 12px; letter-spacing: .05em; background: radial-gradient(ellipse at 50% 44%, #77513116, transparent 70%); }
-.phone .capture-placeholder { border: 1px solid #352c21; border-radius: 23px; }
-.capture-placeholder small { font-size: 10px; color: #aa9982; margin-top: 8px; letter-spacing: .02em; }
-.capture-symbol { font-size: 30px; font-family: Georgia, serif; color: #c89e6c; margin-bottom: 18px; }
-.capture-corners { position: absolute; inset: 18px; border: 1px solid #d3ab7620; clip-path: polygon(0 0, 18px 0, 18px 1px, 1px 1px, 1px 18px, 0 18px, 0 0, 100% 0, 100% 18px, calc(100% - 1px) 18px, calc(100% - 1px) 1px, calc(100% - 18px) 1px, calc(100% - 18px) 0, 100% 0, 100% 100%, calc(100% - 18px) 100%, calc(100% - 18px) calc(100% - 1px), calc(100% - 1px) calc(100% - 1px), calc(100% - 1px) calc(100% - 18px), 100% calc(100% - 18px), 100% 100%, 0 100%, 0 calc(100% - 18px), 1px calc(100% - 18px), 1px calc(100% - 1px), 18px calc(100% - 1px), 18px 100%, 0 100%); }
 figcaption { text-align: center; color: #b7a58d; font-size: 10px; letter-spacing: .09em; margin-top: 23px; }
 .memory-section { border-block: 1px solid var(--line); background: #17130f; padding-block: 95px; }
 .memory-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8%; align-items: center; }
-.screenshot-slot.graph { aspect-ratio: 16 / 10; border-radius: 5px; background: #100f0c; border-color: #5a4531; box-shadow: 0 25px 60px #0003; }
 .home-section { padding-block: 110px; display: grid; grid-template-columns: 1fr 1fr; gap: 12%; }
 .home-principles > div { position: relative; padding: 26px 0 26px 48px; border-top: 1px solid var(--line); }
 .home-principles h3 { font: 20px var(--serif); margin-bottom: 15px; }
@@ -177,9 +167,9 @@ details > p { padding: 0 30px 24px 0; font-size: 13px; }
   .opening { padding-block: 75px; }.opening p:last-child { font-size: 13px; text-align: left; }
   h2 { font-size: 29px; line-height: 1.65; }.eyebrow { margin-bottom: 19px; }
   .feature { grid-template-columns: 1fr; gap: 30px; padding-top: 0; padding-bottom: 70px; }
-  .together .feature-copy { grid-row: 1; }.phone-figure { padding-block: 10px; }.screenshot-slot.phone { width: 245px; }
+  .together .feature-copy { grid-row: 1; }.phone-figure { padding-block: 10px; }
   .feature-copy > p:not(.eyebrow) { font-size: 13px; margin-top: 20px; }.feature-copy .detail { font-size: 11px !important; }
-  .memory-section { padding-block: 65px; }.screenshot-slot.graph { aspect-ratio: 4 / 3; }
+  .memory-section { padding-block: 65px; }
   .home-section { padding-block: 65px; grid-template-columns: 1fr; gap: 30px; }.home-principles > div { padding-block: 24px; }
   .start-section { padding-block: 65px; }.start-section h2 { font-size: 28px; }.variants { grid-template-columns: 1fr; gap: 18px; margin-top: 30px; }
   .variants article { padding: 27px; }.faq-section { padding-block: 5px 65px; }.faq-section h2 { font-size: 23px; }

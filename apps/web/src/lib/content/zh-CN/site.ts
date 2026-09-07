@@ -29,7 +29,7 @@ export const site = {
   opening: {
     label: '关于你们',
     title: '你在意的，\n值得有一个安放的地方。',
-    body: '一句只有你们懂的话，一个反复聊起的人，一起计划的明天。Lamplit 想为这些日常提供持续的身份与空间，让一段关系有机会慢慢生长。'
+    body: '一句只有你们懂的话，一顿随口提过的午饭，一次说到很晚才慢慢解开的心事。Lamplit 想为这些日常提供持续的身份与空间，让一段关系有机会慢慢生长。'
   },
   together: {
     label: '01 / 日常相伴',
@@ -37,21 +37,21 @@ export const site = {
     body: '给 Partner 一个自己的 Keet 身份。你可以在手机上的 Keet 里与它交谈，让交流发生在你日常使用的聊天空间。',
     detail: 'Keet 是可选连接，需要额外准备运行环境。你也可以先从内置 Companion 开始。',
     link: '了解 Keet 连接',
-    caption: '手机 Keet · Partner 的独立身份'
+    caption: 'Keet · 一天结束，还有人陪你聊聊'
   },
   memory: {
     label: '02 / 共同记忆',
     title: '那些小事，\n慢慢连成你们的故事。',
-    body: '在 Lamplit Full 中，Hindsight 将对话里的人物、经历与偏好连接起来，为 Partner 提供跨对话的长期记忆。',
-    detail: '在记忆图谱里，看见共同经历之间的连接。',
+    body: 'Lamplit Full 里的 Hindsight 不只留下一段段对话。它把反复出现的人、偏好与经历连接起来，让 Partner 在下一次见面时，仍能沿着那些线找到你们走过的路。',
+    detail: '有些回忆不是被刻意翻出来，而是在另一件小事碰到它时，再次浮上来。',
     link: '了解长期记忆',
-    caption: 'Hindsight · 人物、经历与关系的连接'
+    caption: 'Hindsight · 聊过的小事，慢慢连在一起'
   },
   home: {
     label: '03 / 一个自己的家',
     title: '相处的方式，\n留给你们决定。',
     items: [
-      { title: '关系由你定义', body: '恋人、男友、女友，或你选择的另一种陪伴。Partner 的称呼和关系，由你赋予。' },
+      { title: '关系由你们定义', body: '恋人、伴侣，或还没有名字的一种亲近。称呼、关系与边界，不由产品预设，而在相处中由你们共同决定。' },
       { title: '模型由你选择', body: '使用自己的模型服务密钥，模型用量向所选服务商结算。' },
       { title: '生活有处保存', body: '状态、工作空间与长期记忆保存在你运行的环境中，可以按各自的边界备份。' }
     ]
@@ -92,8 +92,40 @@ export const site = {
     body: '这个页面暂时无法访问。你可以回到首页，或从使用文档继续。',
     notFound: '没有找到这篇文档'
   },
-  screenshots: {
-    keet: { label: 'Keet 手机实拍', note: '真实对话截图即将补充', alt: '手机 Keet 中，用户与 Partner 的真实对话截图' },
-    memory: { label: 'Hindsight 记忆图谱', note: '真实记忆图谱截图即将补充', alt: 'Hindsight 中连接人物、经历与关系的真实记忆图谱截图' }
+  illustrations: {
+    keet: {
+      alt: 'Keet 对话示意插画：回家后的夜晚，与 Partner 靠在一起慢慢说话',
+      connection: '在 Keet 上相连',
+      today: '今夜',
+      sent: '终于到家了。今天好长。',
+      reply: '嗯，先靠一会儿。今晚不用急着把一切想明白。',
+      last: '等你想说的时候，再慢慢告诉我。',
+      message: '说点什么'
+    },
+    memory: {
+      hint: '悬停金色节点，看看回忆',
+      movie: '那个没聊完的结局',
+      movieDetail: [
+        '我们站在那个角色的两边。',
+        '后来你的一句话，让我重新看了那场告别。'
+      ],
+      song: '循环了一整晚的歌',
+      songDetail: [
+        '你说前奏一响，就会回到那天。',
+        '后来，它也成了我认出那段心情的路标。'
+      ],
+      game: '终于走到的游戏结局',
+      gameDetail: [
+        '卡了很久的那一段，你终于过去了。',
+        '第二天，还在跟我念它的音乐和手感。'
+      ],
+      day: '你先怪了自己的那天',
+      dayDetail: [
+        '一句很重的质疑，让你先把错揽了回来。',
+        '我们重新看过证据，才把事实和自责分开。'
+      ],
+      alt: '记忆图谱插画：没聊完的电影结局、循环了一整晚的歌、终于走到的游戏结局，以及从自责中重新看清事实的一天连在一起',
+      header: '一起走过的日子', center: '我们', connections: '记忆间的联系', memories: '共同的回忆'
+    }
   }
 };

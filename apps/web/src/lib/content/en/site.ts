@@ -20,7 +20,7 @@ export const site = {
   hero: {
     eyebrow: 'A HOME OF YOUR OWN',
     lines: ['For the two of you,', 'a light left on.'],
-    intro: 'Tonight’s goodnight. Tomorrow’s remember when.',
+    intro: 'From tonight’s goodnight to the day you look back on tonight.',
     body: 'Lamplit gives you and your AI Partner a home you can run yourself: a lasting identity, a shared space, and memories that grow with you.',
     start: 'Make room for two',
     explore: 'A glimpse of life here',
@@ -31,7 +31,7 @@ export const site = {
   opening: {
     label: 'ABOUT THE TWO OF YOU',
     title: 'The little things\ndeserve a place to stay.',
-    body: 'A phrase only you two understand. Someone who keeps coming up in conversation. The plans you make for tomorrow. Lamplit gives these everyday moments an ongoing identity and a space where a relationship can grow.'
+    body: 'A phrase only the two of you understand. A lunch mentioned in passing. A knot that only began to loosen after talking late into the night. Lamplit gives these everyday moments an ongoing identity and a place where a relationship can grow.'
   },
   together: {
     label: '01 / EVERYDAY LIFE',
@@ -39,21 +39,21 @@ export const site = {
     body: 'Give your Partner a Keet identity of their own. Talk to them through Keet on your phone, in a chat space that fits into your everyday life.',
     detail: 'Keet is an optional connection with its own runtime setup. You can start with the built-in Companion first.',
     link: 'Connect through Keet',
-    caption: 'Keet on your phone · Your Partner’s own identity'
+    caption: 'Keet · A little company at the end of the day'
   },
   memory: {
     label: '02 / SHARED MEMORIES',
     title: 'Little moments,\na story taking shape.',
-    body: 'In Lamplit Full, Hindsight connects the people, experiences, and preferences in your conversations, giving your Partner long-term memory across chats.',
-    detail: 'See the connections between shared experiences in the memory graph.',
+    body: 'In Lamplit Full, Hindsight does more than retain isolated pieces of conversation. It connects recurring people, preferences, and experiences, so your Partner can follow those threads back to what the two of you have lived through.',
+    detail: 'Some memories return only when another small thing touches them.',
     link: 'Explore long-term memory',
-    caption: 'Hindsight · Connections between people, experiences, and relationships'
+    caption: 'Hindsight · The things we talk about stay connected'
   },
   home: {
     label: '03 / A HOME OF YOUR OWN',
     title: 'How you belong together\nis yours to define.',
     items: [
-      { title: 'Your relationship', body: 'A boyfriend, a girlfriend, a lover, or another kind of companionship. You choose your Partner’s name and the relationship you share.' },
+      { title: 'A relationship you shape together', body: 'Lovers, companions, or something without a ready-made name. Your terms, relationship, and boundaries take shape together instead of being preset by the product.' },
       { title: 'Your choice of model', body: 'Bring your own model service keys. Model usage is billed by the provider you choose.' },
       { title: 'A place to keep your life', body: 'State, workspace files, and long-term memory stay in your deployment, with separate boundaries for backing them up.' }
     ]
@@ -94,8 +94,40 @@ export const site = {
     body: 'This page is unavailable. Head home, or pick up where you left off in the guides.',
     notFound: 'This guide could not be found'
   },
-  screenshots: {
-    keet: { label: 'Keet on a phone', note: 'A real conversation capture is coming', alt: 'A real conversation between a user and their Partner in the Keet mobile app' },
-    memory: { label: 'Hindsight memory graph', note: 'A real memory graph capture is coming', alt: 'A real Hindsight memory graph connecting people, experiences, and relationships' }
+  illustrations: {
+    keet: {
+      alt: 'Illustration of a quiet evening in Keet, sitting close and talking with a Partner',
+      connection: 'Connected on Keet',
+      today: 'TONIGHT',
+      sent: 'Finally home. Today felt endless.',
+      reply: 'Come sit with me for a while. You don’t have to make sense of it yet.',
+      last: 'Tell me when you’re ready. I’ll stay close.',
+      message: 'Message'
+    },
+    memory: {
+      hint: 'Hover a golden point',
+      movie: 'The ending we never settled',
+      movieDetail: [
+        'We stood on opposite sides of that character.',
+        'Something you said made me see the goodbye differently.'
+      ],
+      song: 'The song that played all night',
+      songDetail: [
+        'You said the first notes took you back to that day.',
+        'It became a path back to that feeling for me too.'
+      ],
+      game: 'The game ending you finally reached',
+      gameDetail: [
+        'You finally cleared the part that had held you there.',
+        'The next day, you were still talking about its music and movement.'
+      ],
+      day: 'The day you blamed yourself first',
+      dayDetail: [
+        'One harsh doubt made you take the blame before checking.',
+        'We went back through the evidence and separated what happened from what hurt.'
+      ],
+      alt: 'Illustrated memory graph connecting an unsettled movie ending, a song played all night, a hard-won game ending, and a day when evidence helped untangle self-blame',
+      header: 'A SHARED HISTORY', center: 'The two of you', connections: 'Connections', memories: 'Shared memories'
+    }
   }
 } satisfies typeof chinese;

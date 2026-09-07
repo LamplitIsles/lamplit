@@ -96,23 +96,17 @@ loading, and [static prerendering](https://svelte.dev/docs/kit/adapter-static).
 That is why this repository uses SvelteKit even though the deployed result is
 ordinary static files.
 
-## Add the real screenshots
+## Feature illustrations
 
-The two homepage slots are deliberately unfilled. They use visible placeholder
-labels instead of invented conversations or a fabricated memory graph.
-
-1. Put the selected, publication-ready captures in `apps/web/static/images/`.
-2. Set `keet` and `memory` in `src/lib/media.ts` to `{ src, width, height }`.
-   `src` is a root-relative path such as `/images/keet-mobile.webp`; use the
-   image's real pixel dimensions.
-3. Update both languages' alt text to describe the actual capture, then run
-   `pnpm run web:check` and inspect desktop and mobile layouts.
-
-The Keet slot is a portrait frame, approximately 9:18.5. The Hindsight slot is
-landscape, approximately 16:10 on desktop. Both display the complete capture
-with `object-fit: contain`, so graph labels and conversation text are not
-cropped away. A single capture is shared across both languages unless the
-operator provides separate localized captures in a future change.
+The homepage uses original, static illustrations inspired by Keet's dark chat
+interface and Hindsight's connected memory graph. `Illustration.svelte` draws
+both at build time with HTML, CSS, and SVG. The graph geometry is deterministic;
+no graph runtime or browser JavaScript is required. Four highlighted memories
+reveal localized vignettes on hover or keyboard focus. These are illustrative
+conversations and memories about music, movies, games, and everyday support.
+Examples describe conversation rather than implying shared listening, viewing,
+gameplay, or physical outings. Accessible descriptions identify the artwork;
+visible captions describe the scenes naturally. Copy lives in each language's `site.ts`.
 
 The candle is authored CSS, including the restrained flame animation. Reduced
 motion preferences disable the animation. Fonts are self-hosted through

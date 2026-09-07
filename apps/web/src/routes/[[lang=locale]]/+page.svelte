@@ -4,7 +4,7 @@
   let { data }: { data: PageData } = $props();
   const site = $derived(data.site);
   const path = (href: string) => localize(href, data.locale);
-  import Screenshot from '$lib/components/Screenshot.svelte';
+  import Illustration from '$lib/components/Illustration.svelte';
 </script>
 
 <svelte:head>
@@ -40,13 +40,13 @@
   </section>
 
   <section class="feature section-wrap together" id="together" aria-labelledby="together-title">
-    <figure class="phone-figure"><Screenshot kind="keet" copy={site.screenshots.keet} /><figcaption>{site.together.caption}</figcaption></figure>
+    <figure class="phone-figure"><Illustration kind="keet" copy={site.illustrations} /><figcaption>{site.together.caption}</figcaption></figure>
     <div class="feature-copy"><p class="eyebrow">{site.together.label}</p><h2 id="together-title">{site.together.title}</h2><p>{site.together.body}</p><p class="detail">{site.together.detail}</p><a class="text-link" href={path('/docs/keet/')}>{site.together.link}<span aria-hidden="true"> ↗</span></a></div>
   </section>
 
   <section class="memory-section" id="memory" aria-labelledby="memory-title">
     <div class="section-wrap memory-inner"><div class="feature-copy"><p class="eyebrow">{site.memory.label}</p><h2 id="memory-title">{site.memory.title}</h2><p>{site.memory.body}</p><p class="detail">{site.memory.detail}</p><a class="text-link" href={path('/docs/memory/')}>{site.memory.link}<span aria-hidden="true"> ↗</span></a></div>
-    <figure><Screenshot kind="memory" copy={site.screenshots.memory} /><figcaption>{site.memory.caption}</figcaption></figure></div>
+    <figure><Illustration kind="memory" copy={site.illustrations} /><figcaption>{site.memory.caption}</figcaption></figure></div>
   </section>
 
   <section class="home-section section-wrap" aria-labelledby="home-title">
