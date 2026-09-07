@@ -1,6 +1,7 @@
 .git
 .scratch
 node_modules
+apps/web
 dagger/sdk
 **/.DS_Store
 *.log

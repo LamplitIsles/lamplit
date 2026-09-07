@@ -13,6 +13,15 @@ when:
     ref: "refs/tags/v*.*.*"
 
 steps:
+  - name: website
+    image: ghcr.io/tta-lab/dagger-cli:0.21.7
+    commands:
+      - dagger call -m dagger website --source=. entries
+    when:
+      - event: pull_request
+      - event: push
+        branch: main
+
   - name: check
     image: ghcr.io/tta-lab/dagger-cli:0.21.7
     commands:

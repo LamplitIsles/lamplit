@@ -4,11 +4,11 @@ Lamplit is a self-hosted, one-to-one AI partner that maintains continuity and ow
 
 ## Language
 
-**Partner**:
+**Partner（伴侣）**:
 The persistent AI identity in one person's Lamplit deployment. A Partner may be understood as a boyfriend, girlfriend, or companion according to the relationship its owner chooses.
 _Avoid_: bot, assistant, character
 
-**Graph memory**:
+**Graph memory（图谱记忆）**:
 The Partner's durable, connected recollection of people, events, preferences, and relationships across conversations.
 _Avoid_: chat history, prompt context
 

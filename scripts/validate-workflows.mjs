@@ -21,6 +21,7 @@ const steps = Array.isArray(workflow.steps) ? workflow.steps : [];
 const step = (name) => steps.find((candidate) => candidate?.name === name);
 const check = step("check");
 const publish = step("publish");
+const website = step("website");
 if (!check || !publish) throw new Error("Woodpecker workflow must define check and publish steps");
 
 const daggerConfig = JSON.parse(readFileSync(join(root, "dagger/dagger.json"), "utf8"));
@@ -29,6 +30,9 @@ if (!daggerVersion) throw new Error("dagger/dagger.json must declare an engine v
 const daggerImage = `ghcr.io/tta-lab/dagger-cli:${daggerVersion}`;
 if (check.image !== daggerImage || publish.image !== daggerImage) {
   throw new Error(`check and publish must use the pinned ${daggerImage} image`);
+}
+if (!website || website.image !== daggerImage) {
+  throw new Error("website must use the pinned Dagger runner");
 }
 
 const conditions = (candidate) => Array.isArray(candidate?.when) ? candidate.when : [];
@@ -62,6 +66,15 @@ const commands = (candidate) => Array.isArray(candidate?.commands)
   : String(candidate?.commands ?? "");
 if (!commands(check).includes("dagger call -m dagger check --source=.")) {
   throw new Error("check must invoke the repository Dagger check");
+}
+if (
+  !commands(website).includes("dagger call -m dagger website --source=. entries")
+  || conditions(website).length !== 2
+  || !hasCondition(website, { event: "pull_request" })
+  || !hasCondition(website, { event: "push", branch: "main" })
+  || Object.keys(website.environment ?? {}).length
+) {
+  throw new Error("website must build static files for PRs and main pushes without credentials");
 }
 const publishCommands = commands(publish);
 if (!publishCommands.includes("dagger call -m dagger publish")) throw new Error("publish must invoke Dagger publish");

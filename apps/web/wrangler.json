@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "lamplit-web",
+  "account_id": "4a7d2cc3b61181986870b57848eff910",
+  "compatibility_date": "2026-09-07",
+  "assets": {
+    "directory": "./build",
+    "html_handling": "force-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "lamplit.guion.io", "custom_domain": true }
+  ]
+}

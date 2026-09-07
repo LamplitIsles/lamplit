@@ -43,6 +43,12 @@ const SOURCE_IGNORE = [
   ".git",
   ".scratch",
   "node_modules",
+  "**/node_modules",
+  "apps/web/.svelte-kit",
+  "apps/web/build",
+  "apps/web/static/licenses.txt",
+  "apps/web/.wrangler",
+  ".env",
   "dagger/sdk",
   "**/.DS_Store",
 ]
@@ -56,6 +62,27 @@ const SOURCE_IGNORE = [
  */
 @object()
 export class Lamplit {
+  /** Build and verify the bilingual static website; no serving runtime is needed. */
+  @func()
+  async website(
+    @argument({ ignore: SOURCE_IGNORE }) source: Directory,
+  ): Promise<Directory> {
+    const build = dag
+      .container({ platform: LINUX_AMD64 })
+      .from(NODE_IMAGE)
+      .withWorkdir("/src")
+      .withFile("package.json", source.file("package.json"))
+      .withFile("pnpm-lock.yaml", source.file("pnpm-lock.yaml"))
+      .withFile("pnpm-workspace.yaml", source.file("pnpm-workspace.yaml"))
+      .withFile("apps/web/package.json", source.file("apps/web/package.json"))
+      .withExec(["npm", "install", "--global", "--no-audit", "--no-fund", "pnpm@11.22.0"])
+      .withExec(["pnpm", "install", "--frozen-lockfile"])
+      .withDirectory("/src/apps/web", source.directory("apps/web"))
+      .withFile("LICENSE", source.file("LICENSE"))
+      .withExec(["pnpm", "run", "web:check"])
+    return build.directory("/src/apps/web/build")
+  }
+
   /** Build the lightweight Linux amd64 Lamplit Core image. */
   @func()
   async core(

@@ -1,6 +1,10 @@
 .scratch/
 .env
 node_modules/
+apps/web/.svelte-kit/
+apps/web/build/
+apps/web/static/licenses.txt
+apps/web/.wrangler/
 dagger/node_modules/
 dagger/sdk/
 .build/plugins/*

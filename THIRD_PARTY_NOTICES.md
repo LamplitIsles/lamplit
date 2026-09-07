@@ -46,6 +46,16 @@ of their notices is recorded in
 The application SBOM intentionally does not represent these external
 service-image components as npm packages.
 
+## Public website
+
+The separately built static website uses Svelte/SvelteKit, Tailwind CSS, and
+daisyUI under their MIT licenses. Its self-hosted Noto Sans SC, Noto Serif SC,
+Newsreader, and IBM Plex Sans fonts retain SIL Open Font License 1.1 terms.
+`apps/web/scripts/generate-notices.mjs` preserves those package license texts
+alongside Lamplit's Elastic License in the website artifact's `licenses.txt`.
+Website dependency versions are locked in the root `pnpm-lock.yaml`; the
+container SBOM above describes the application images, not the separate site.
+
 ## Distribution rule
 
 Lamplit releases keep [`NOTICE`](NOTICE), this notice file,
