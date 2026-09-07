@@ -1,4 +1,5 @@
 import {
+  CacheSharingMode,
   Container,
   Directory,
   Secret,
@@ -9,6 +10,7 @@ import {
 } from "@dagger.io/dagger"
 import type { Platform } from "@dagger.io/dagger"
 import {
+  publishPlan,
   publishReferences,
   registryHost,
   referencesForVersion,
@@ -35,6 +37,14 @@ const LAMPLIT_SOURCE = "https://github.com/LamplitIsles/lamplit"
 const LAMPLIT_LICENSE = "Elastic-2.0"
 const DEFAULT_VERSION = "0.1.0"
 const LINUX_AMD64 = "linux/amd64" as Platform
+const BUN_DOWNLOAD_CACHE = "lamplit-dsh-mail-bun-downloads-bun-1.3.13-linux-amd64-v1"
+const NPM_DOWNLOAD_CACHE = "lamplit-npm-downloads-node-24.20.0-linux-amd64-v1"
+const DSH_MAIL_NODE_MODULES_CACHE = "lamplit-dsh-mail-node-modules-bun-1.3.13-linux-amd64-v1"
+const DSH_KEET_PNPM_STORE_CACHE = "lamplit-dsh-keet-pnpm-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
+const DSH_KEET_VIRTUAL_STORE_CACHE = "lamplit-dsh-keet-pnpm-virtual-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
+const GUION_WEB_PNPM_STORE_CACHE = "lamplit-guionai-web-pnpm-store-pnpm-10.26.2-node-24.20.0-linux-amd64-v1"
+const GUION_WEB_VIRTUAL_STORE_CACHE = "lamplit-guionai-web-pnpm-virtual-store-pnpm-10.26.2-node-24.20.0-linux-amd64-v1"
+const LOCKED_CACHE = { sharing: CacheSharingMode.Locked } as const
 
 const SOURCE_IGNORE = [
   ".git",
@@ -106,32 +116,38 @@ export class Lamplit {
   async publish(
     @argument({ ignore: SOURCE_IGNORE }) source: Directory,
     releaseTag: string,
+    revision: string,
     registryUsername: string,
     registryPassword: Secret,
   ): Promise<string> {
-    const parsed = publishReferences(releaseTag)
-    const revision = process.env.GITHUB_SHA ?? "unknown"
-    const core = await this.application(source, "core", parsed.core.split(":").pop() ?? DEFAULT_VERSION, revision)
+    const plan = publishPlan(releaseTag, revision)
+    const core = await this.application(source, "core", plan.version, plan.revision)
     await core.sync()
-    const full = await this.application(source, "full", parsed.full.split(":").pop()?.replace(/-full$/, "") ?? DEFAULT_VERSION, revision)
+    const full = await this.application(source, "full", plan.version, plan.revision)
     await full.sync()
     const inspection = await this.inspectApplications(source, core, full)
-    const host = registryHost(parsed.core)
-    const publishOne = async (image: Container, references: readonly string[]): Promise<string[]> => {
+    const host = registryHost(plan.core)
+    const publishImmutable = async (image: Container, reference: string) => {
       const authenticated = image.withRegistryAuth(host, registryUsername, registryPassword)
-      return Promise.all(references.map((reference) => authenticated.publish(reference)))
+      return { authenticated, reference: await authenticated.publish(reference) }
     }
-    const [coreRefs, fullRefs] = await Promise.all([
-      publishOne(core, [parsed.core, parsed.rollingCore]),
-      publishOne(full, [parsed.full, parsed.rollingFull]),
+    const [corePublication, fullPublication] = await Promise.all([
+      publishImmutable(core, plan.core),
+      publishImmutable(full, plan.full),
     ])
+    const [coreRollingReference, fullRollingReference] = await Promise.all([
+      corePublication.authenticated.publish(plan.rollingCore),
+      fullPublication.authenticated.publish(plan.rollingFull),
+    ])
+    const coreRefs = [corePublication.reference, coreRollingReference]
+    const fullRefs = [fullPublication.reference, fullRollingReference]
     return JSON.stringify(
       {
         ok: true,
         platform: "linux/amd64",
         images: [inspection.core, inspection.full],
         compose: inspection.compose,
-        tag: parsed,
+        tag: { tag: plan.tag, version: plan.version },
         published: {
           core: coreRefs,
           full: fullRefs,
@@ -153,6 +169,7 @@ export class Lamplit {
       dag
         .container()
         .from(NODE_IMAGE)
+        .withMountedCache("/root/.npm", dag.cacheVolume(NPM_DOWNLOAD_CACHE), LOCKED_CACHE)
         .withMountedDirectory("/src", source)
         .withWorkdir("/src")
         .withExec(["npm", "install", "--no-save", "--ignore-scripts", "--no-audit", "--no-fund", "yaml@2.9.0"])
@@ -234,6 +251,8 @@ export class Lamplit {
     const result = dag
       .container()
       .from(BUN_IMAGE)
+      .withMountedCache("/root/.bun/install/cache", dag.cacheVolume(BUN_DOWNLOAD_CACHE), LOCKED_CACHE)
+      .withMountedCache("/tmp/lamplit-source/node_modules", dag.cacheVolume(DSH_MAIL_NODE_MODULES_CACHE), LOCKED_CACHE)
       .withMountedFile("/tmp/source.tar.gz", source)
       .withExec(["mkdir", "-p", "/tmp/lamplit-source"])
       .withExec(["tar", "-xzf", "/tmp/source.tar.gz", "--strip-components=1", "-C", "/tmp/lamplit-source"])
@@ -253,11 +272,19 @@ export class Lamplit {
     const result = dag
       .container()
       .from(NODE_IMAGE)
+      .withMountedCache("/root/.npm", dag.cacheVolume(NPM_DOWNLOAD_CACHE), LOCKED_CACHE)
+      .withMountedCache("/root/.cache/pnpm", dag.cacheVolume(DSH_KEET_PNPM_STORE_CACHE), LOCKED_CACHE)
+      .withMountedCache(
+        "/tmp/lamplit-source/node_modules/.pnpm",
+        dag.cacheVolume(DSH_KEET_VIRTUAL_STORE_CACHE),
+        LOCKED_CACHE,
+      )
       .withMountedFile("/tmp/source.tar.gz", source)
       .withExec(["mkdir", "-p", "/tmp/lamplit-source"])
       .withExec(["tar", "-xzf", "/tmp/source.tar.gz", "--strip-components=1", "-C", "/tmp/lamplit-source"])
       .withWorkdir("/tmp/lamplit-source")
       .withExec(["npm", "install", "--global", "--no-audit", "--no-fund", "pnpm@11.22.0"])
+      .withExec(["pnpm", "config", "set", "store-dir", "/root/.cache/pnpm"])
       .withExec(["pnpm", "install", "--frozen-lockfile"])
       .withExec(["pnpm", "--filter", "@lamplitisles/dsh-keet", "build"])
       .withExec(["mkdir", "-p", "/out"])
@@ -273,11 +300,19 @@ export class Lamplit {
     const result = dag
       .container()
       .from(NODE_IMAGE)
+      .withMountedCache("/root/.npm", dag.cacheVolume(NPM_DOWNLOAD_CACHE), LOCKED_CACHE)
+      .withMountedCache("/root/.cache/pnpm", dag.cacheVolume(GUION_WEB_PNPM_STORE_CACHE), LOCKED_CACHE)
+      .withMountedCache(
+        "/tmp/lamplit-source/node_modules/.pnpm",
+        dag.cacheVolume(GUION_WEB_VIRTUAL_STORE_CACHE),
+        LOCKED_CACHE,
+      )
       .withMountedFile("/tmp/source.tar.gz", source)
       .withExec(["mkdir", "-p", "/tmp/lamplit-source"])
       .withExec(["tar", "-xzf", "/tmp/source.tar.gz", "--strip-components=1", "-C", "/tmp/lamplit-source"])
       .withWorkdir("/tmp/lamplit-source")
       .withExec(["npm", "install", "--global", "--no-audit", "--no-fund", "pnpm@10.26.2"])
+      .withExec(["pnpm", "config", "set", "store-dir", "/root/.cache/pnpm"])
       .withExec(["pnpm", "install", "--frozen-lockfile"])
       .withExec(["pnpm", "--filter", "@guionai/web", "build"])
       .withExec(["mkdir", "-p", "/out"])

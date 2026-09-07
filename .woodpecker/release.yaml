@@ -1,0 +1,36 @@
+clone:
+  git:
+    image: docker.io/woodpeckerci/plugin-git:2.9.2
+    settings:
+      partial: false
+      depth: 0
+
+steps:
+  - name: check
+    image: ghcr.io/tta-lab/dagger-cli:0.21.7
+    commands:
+      - dagger call -m dagger check --source=.
+    when:
+      - event: pull_request
+      - event: push
+        branch: main
+
+  - name: publish
+    image: ghcr.io/tta-lab/dagger-cli:0.21.7
+    environment:
+      GHCR_USERNAME:
+        from_secret: ghcr_username
+      GHCR_TOKEN:
+        from_secret: ghcr_token
+    commands:
+      - |
+        set -eu
+        dagger call -m dagger publish \
+          --source=. \
+          --release-tag="$${CI_COMMIT_TAG}" \
+          --revision="$${CI_COMMIT_SHA}" \
+          --registry-username="$${GHCR_USERNAME}" \
+          --registry-password=env:GHCR_TOKEN
+    when:
+      - event: tag
+        ref: "refs/tags/v*.*.*"

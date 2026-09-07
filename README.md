@@ -149,8 +149,8 @@ HINDSIGHT_POSTGRES_PASSWORD='replace-with-a-long-private-value' \
 ```
 
 The default Full image is the versioned `0.1.0-full` example in `compose.yaml`.
-The Hindsight and PostgreSQL defaults are the independently published Kosmos
-`0.1.1` images pinned by their public registry manifest digests, and the bridge
+The Hindsight and PostgreSQL defaults are independently published `0.1.1`
+service images pinned by their public registry manifest digests, and the bridge
 is pinned by its published digest. Set `LAMPLIT_IMAGE` when upgrading the
 application; only override the service references when you have verified a new
 service digest. Inspect the rendered model without starting anything with
@@ -201,8 +201,8 @@ application images:
 | Core | `ghcr.io/lamplitisles/lamplit:X.Y.Z` | `latest` |
 | Full | `ghcr.io/lamplitisles/lamplit:X.Y.Z-full` | `full` |
 
-The prebuilt memory images are a separate operator publication from the local
-Kosmos artifacts, currently `ghcr.io/lamplitisles/lamplit-hindsight:0.1.1` and
+The prebuilt memory images are a separate operator publication from local
+artifacts, currently `ghcr.io/lamplitisles/lamplit-hindsight:0.1.1` and
 `ghcr.io/lamplitisles/lamplit-hindsight-postgres:0.1.1`. Their independent
 versions, source `localDigest` values, and public registry `publishedDigest`
 values are recorded in [`config/memory-images.json`](config/memory-images.json);
@@ -230,8 +230,12 @@ bun run check
 # Core and Full; it never builds Hindsight or PostgreSQL.
 dagger call -m dagger check --source .
 
-# Optional local Kosmos image verification before a service publication.
+# Optional local memory-service image verification before a service publication.
 just verify-memory-images
+
+# Local application fallback: the current checkout must be the commit named by
+# the stable tag. Copy .env.example to .env and fill in GHCR_USERNAME/GHCR_TOKEN.
+just publish-app-images vX.Y.Z
 
 # Explicit operator action: authenticate and push only the unchanged verified
 # images. Copy .env.example to .env and fill in GHCR_USERNAME/GHCR_TOKEN first.
@@ -259,21 +263,31 @@ LAMPLIT_CORE_IMAGE=ghcr.io/lamplitisles/lamplit:latest \
 ```
 
 No check calls a paid model, reads a real DSH home, or uses operator
-credentials.
+credentials. Dagger caching has two layers: the trusted Woodpecker agent keeps
+the Dagger engine/cache persistent between runs, while the Lamplit module keeps
+package-manager stores plus isolated installed-dependency caches for the three
+external plugin builds. The dsh-mail cache covers its project-root
+`node_modules`; dsh-keet and guionai/web each have a separate cache for their
+root `node_modules/.pnpm` virtual store, while frozen installs recreate their
+workspace links. Host `node_modules` remains excluded from source input. These
+cache identities are project/toolchain/runtime/platform-specific and do not
+contain source trees, build outputs, registry auth, or secrets.
 
 ## Release and mirror prerequisites
 
-Forgejo `LamplitIsles/lamplit` is canonical. An operator must configure the
-Forgejo-to-GitHub mirror and set the GitHub repository's GHCR package visibility
-to public for the promised public image path. The repository cannot create or
-verify those external settings.
-The GitHub mirror workflow runs the Dagger check on pull requests
-and the default branch; a validated stable `vX.Y.Z` tag publishes with the
-workflow-provided `GITHUB_TOKEN` only. It does not deploy Lamplit.
+Forgejo `LamplitIsles/lamplit` is canonical. Configure the Forgejo-to-GitHub
+mirror and set the GitHub repository's GHCR package visibility to public for the
+promised public image path; the repository cannot create or verify those
+external settings. GitHub is a passive mirror and does not run Lamplit checks
+or publication.
 
-The release job needs `contents: read` and `packages: write` permissions on the
-GitHub repository. Keep the mirror checkout and package source metadata pointed
-at `https://github.com/LamplitIsles/lamplit` so GHCR can associate packages
-with this repository. See [docs/release.md](docs/release.md) for the operator
-checklist and [docs/container-operations.md](docs/container-operations.md) for
-backup and troubleshooting procedures.
+Enable the repository in Woodpecker, create `ghcr_username` and `ghcr_token`
+repository secrets, and assign it to a trusted agent that provides the
+persistent-cache Dagger runner/socket used by the other business repositories.
+The workflow exposes those secrets only to stable `vX.Y.Z` tag publication. It
+does not provision runner state or a cache volume. The local fallback is
+`just publish-app-images vX.Y.Z`; it reads the ignored `.env`, requires the tag
+to identify the current checkout commit, and publishes the same Core/Full
+references. See [docs/release.md](docs/release.md) for the operator checklist
+and [docs/container-operations.md](docs/container-operations.md) for backup and
+troubleshooting procedures.

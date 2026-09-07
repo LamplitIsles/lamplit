@@ -10,8 +10,15 @@ export interface ReleaseVersion {
   readonly version: string
 }
 
+export interface PublishPlan extends ImageReferenceSet {
+  readonly tag: string
+  readonly version: string
+  readonly revision: string
+}
+
 const STABLE_TAG = /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/
 const VERSION = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/
+const COMMIT_SHA = /^[0-9a-f]{40}$/i
 
 /** Parse only stable release tags; prereleases never publish released images. */
 export function parseStableReleaseTag(value: string): ReleaseVersion {
@@ -28,6 +35,15 @@ export function parseVersion(value: string): string {
   return version
 }
 
+/** Require the immutable full commit SHA used for published image metadata. */
+export function parseSourceRevision(value: string): string {
+  const revision = value.trim()
+  if (!COMMIT_SHA.test(revision)) {
+    throw new Error(`source revision must be a full commit SHA (received ${value})`)
+  }
+  return revision
+}
+
 /** Generate every immutable and rolling GHCR reference for one stable tag. */
 export function publishReferences(
   releaseTag: string,
@@ -35,6 +51,21 @@ export function publishReferences(
 ): ImageReferenceSet {
   const { version } = parseStableReleaseTag(releaseTag)
   return referencesForVersion(version, registry)
+}
+
+/** Build the complete, immutable publication input for one stable release. */
+export function publishPlan(
+  releaseTag: string,
+  revisionInput: string,
+  registry = "ghcr.io/lamplitisles",
+): PublishPlan {
+  const parsed = parseStableReleaseTag(releaseTag)
+  return {
+    ...referencesForVersion(parsed.version, registry),
+    tag: parsed.tag,
+    version: parsed.version,
+    revision: parseSourceRevision(revisionInput),
+  }
 }
 
 /** Generate references for Dagger callers that already hold X.Y.Z. */

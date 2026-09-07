@@ -15,7 +15,30 @@ check:
 dagger-check:
     @DAGGER_NO_NAG=1 dagger -q call -m dagger check --source .
 
-# Verify the existing local Kosmos service images without building or pushing.
+# Publish Core and Full from the current checkout's matching stable tag.
+# Requires GHCR_USERNAME and GHCR_TOKEN in the ignored .env file.
+[script("bash")]
+publish-app-images release_tag:
+    set -euo pipefail
+    username="${GHCR_USERNAME:-}"
+    token="${GHCR_TOKEN:-}"
+    release_tag="{{ release_tag }}"
+
+    # Validate the stable tag, credentials, and tag/current-commit relationship
+    # before Dagger starts. The helper never contacts GHCR or prints a secret.
+    revision="$(GHCR_USERNAME="$username" GHCR_TOKEN="$token" bun run scripts/validate-app-publication.ts "$release_tag")"
+
+    # Dagger reads the token as a Secret through env:GHCR_TOKEN; it is never a
+    # command-line argument, build argument, or value persisted in the cache.
+    export GHCR_TOKEN="$token"
+    DAGGER_NO_NAG=1 dagger -q call -m dagger publish \
+      --source . \
+      --release-tag "$release_tag" \
+      --revision "$revision" \
+      --registry-username "$username" \
+      --registry-password env:GHCR_TOKEN
+
+# Verify the existing local memory-service images without building or pushing.
 verify-memory-images:
     @bun run verify:memory-images
 
