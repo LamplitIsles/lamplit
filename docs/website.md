@@ -66,21 +66,21 @@ The deploy command uploads the complete verified static build. It also applies
 the configured custom domain, so the operator needs access to the Guion account
 and its DNS zone. Woodpecker verifies the website but does not deploy it or
 receive Cloudflare credentials. After publishing, check both `/docs/start/`
-and `/en/docs/start/`, their language switch, and an unknown URL's HTTP 404.
+and `/zh/docs/start/`, their language switch, and an unknown URL's HTTP 404.
 
 ## Two languages, one set of templates
 
-Chinese is served at `/` and `/docs/`; English at `/en/` and `/en/docs/`.
-SvelteKit's optional `[[lang=locale]]` route matches the English prefix, while
-unprefixed routes render Chinese. Other language prefixes are not published.
+English is served at `/` and `/docs/`; Chinese at `/zh/` and `/zh/docs/`.
+SvelteKit's optional `[[lang=locale]]` route matches the Chinese prefix, while
+unprefixed routes render English. Other language prefixes are not published.
 
 `src/lib/content/zh-CN/` and `src/lib/content/en/` contain short site copy,
 the guide registry, and the Markdown guides. English copy satisfies the
 Chinese content shape in TypeScript. Templates receive the selected content
 from layout data; they never read mutable global language state.
 
-The language switch points to the equivalent page. A visit to an English
-URL always renders English, regardless of cookies or browser preferences.
+The language switch points to the equivalent page. A visit to a Chinese
+URL always renders Chinese, regardless of cookies or browser preferences.
 Navigation and Markdown links beginning with `/` are language-neutral in
 source; the renderer adds the active language prefix. External URLs remain
 unchanged. Each static document carries its language and alternate links.

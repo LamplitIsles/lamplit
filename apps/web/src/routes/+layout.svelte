@@ -13,7 +13,7 @@
   <link rel="canonical" href={siteOrigin + localize(data.path, data.locale)} />
   <link rel="alternate" hreflang="zh-CN" href={siteOrigin + localize(data.path, 'zh-CN')} />
   <link rel="alternate" hreflang="en" href={siteOrigin + localize(data.path, 'en')} />
-  <link rel="alternate" hreflang="x-default" href={siteOrigin + localize(data.path, 'zh-CN')} />
+  <link rel="alternate" hreflang="x-default" href={siteOrigin + localize(data.path, 'en')} />
   <meta property="og:url" content={siteOrigin + localize(data.path, data.locale)} />
 </svelte:head>
 <a class="skip-link" href="#main">{site.skip}</a>

@@ -11,7 +11,7 @@ const build = resolve(dirname(fileURLToPath(import.meta.url)), '../build');
 const origin = `https://${deployment.routes[0].pattern}`;
 const routes = ['/', '/docs/', ...['start', 'full', 'keet', 'memory', 'care'].map((slug) => `/docs/${slug}/`)];
 const pages = new Map();
-for (const prefix of ['', '/en']) {
+for (const prefix of ['', '/zh']) {
   for (const route of routes) {
     const path = prefix + route;
     const file = resolve(build, `.${path}index.html`);
@@ -21,7 +21,7 @@ for (const prefix of ['', '/en']) {
 
 for (const [path, document] of pages) {
   test(`${path} is a complete static page in its requested language`, () => {
-    assert.equal(document.documentElement.lang, path.startsWith('/en/') ? 'en' : 'zh-CN');
+    assert.equal(document.documentElement.lang, path.startsWith('/zh/') ? 'zh-CN' : 'en');
     assert.equal(document.querySelectorAll('main').length, 1);
     assert.equal(document.querySelectorAll('h1').length, 1);
     assert.ok(document.querySelector('h1').textContent.trim());
@@ -34,10 +34,10 @@ for (const [path, document] of pages) {
 
   test(`${path} links to the same page in the other language`, () => {
     const switcher = document.querySelector('a[hreflang]');
-    const english = path.startsWith('/en/');
-    const expected = english ? path.slice(3) : `/en${path}`;
+    const chinese = path.startsWith('/zh/');
+    const expected = chinese ? path.slice(3) : `/zh${path}`;
     assert.equal(switcher.getAttribute('href'), expected);
-    assert.equal(switcher.getAttribute('lang'), english ? 'zh-CN' : 'en');
+    assert.equal(switcher.getAttribute('lang'), chinese ? 'en' : 'zh-CN');
     assert.ok(pages.has(expected));
     const alternates = [...document.querySelectorAll('link[rel="alternate"][hreflang]')];
     assert.equal(alternates.length, 3);
@@ -47,7 +47,7 @@ for (const [path, document] of pages) {
       const target = pages.get(targetUrl.pathname);
       assert.ok(target);
       const language = alternate.getAttribute('hreflang');
-      assert.equal(target.documentElement.lang, language === 'x-default' ? 'zh-CN' : language);
+      assert.equal(target.documentElement.lang, language === 'x-default' ? 'en' : language);
     }
   });
 
@@ -78,6 +78,21 @@ for (const [path, document] of pages) {
   });
 }
 
+test('the root share preview is English without client-side rendering', () => {
+  const document = pages.get('/');
+  assert.equal(document.querySelector('meta[property="og:locale"]').content, 'en_US');
+  for (const field of ['title', 'description']) {
+    const preview = document.querySelector(`meta[property="og:${field}"]`).content;
+    const visible = field === 'title'
+      ? document.querySelector('title').textContent
+      : document.querySelector('meta[name="description"]').content;
+    assert.equal(preview, visible);
+    assert.match(preview, /[A-Za-z]/);
+    assert.doesNotMatch(preview, /\p{Script=Han}/u);
+  }
+  assert.equal(document.querySelector('meta[property="og:url"]').content, `${origin}/`);
+});
+
 test('documentation identifies the current guide in both languages', () => {
   for (const [path, document] of pages) {
     if (!/\/docs\/[^/]+\/$/.test(path)) continue;
@@ -88,7 +103,7 @@ test('documentation identifies the current guide in both languages', () => {
 });
 
 test('unpublished languages and unknown documents are not emitted as fallback pages', () => {
-  for (const path of ['fr/index.html', 'zh-CN/index.html', 'en/docs/missing/index.html']) {
+  for (const path of ['fr/index.html', 'zh-CN/index.html', 'en/index.html', 'docs/missing/index.html', 'zh/docs/missing/index.html']) {
     assert.equal(existsSync(resolve(build, path)), false);
   }
 });
