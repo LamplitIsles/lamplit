@@ -36,11 +36,14 @@ their upstream package licenses and immutable inputs:
 - `@lamplitisles/dsh-keet@0.1.0` — Apache-2.0, built from commit
   `1741c5e7ada7919db4a6b241db23ceefa39d875d`.
 
-The independently published Kosmos service images retain the licenses and
-notices supplied by their upstream bases: PostgreSQL 18 with PGroonga 4.0.8
-and pgvector 0.8.6, and the Hindsight base image. Their source, version, and
-published-digest inputs are recorded in `config/memory-images.json`; Lamplit
-does not rebuild those images in this repository. The publisher-side review
+The independently published memory images retain their upstream licenses and
+notices. PostgreSQL 18 with PGroonga 4.0.8 and pgvector 0.8.6 remains an external
+artifact. The default ONNX Hindsight image is built from
+`docker/hindsight/Dockerfile`; its
+model card, upstream licenses, assembly notice, and Python package inventory
+are carried in `/usr/share/doc/lamplit-hindsight/`. See
+[`docs/hindsight-onnx.md`](docs/hindsight-onnx.md). Version and published-digest
+inputs are recorded in `config/memory-images.json`. The publisher-side review
 of their notices is recorded in
 [`docs/service-image-license-inventory.md`](docs/service-image-license-inventory.md).
 The application SBOM intentionally does not represent these external

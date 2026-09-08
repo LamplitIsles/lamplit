@@ -91,7 +91,7 @@ and starts four services:
 
 ```text
 lamplit              Full DSH/Companion application (3080)
-hindsight            Hindsight 0.9.2 with local multilingual embeddings (8888/9999)
+hindsight            Hindsight 0.9.2 with ONNX INT8 multilingual embeddings (8888/9999)
 hindsight-postgres   PostgreSQL 18 + PGroonga 4.0.8 + pgvector 0.8.6
 codex-bridge         Kepos Codex Bridge with operator-owned ChatGPT OAuth
 ```
@@ -100,6 +100,10 @@ The database has no host port. User-facing and control-plane ports bind to host
 loopback by default.
 
 ## Run Lamplit Full
+
+Full requires an amd64 CPU with AVX2. Hindsight uses the published ONNX INT8
+image by default, with a four-CPU quota and four inference threads. See
+[`docs/hindsight-onnx.md`](docs/hindsight-onnx.md) for measurements and tuning.
 
 From a repository checkout, choose a private database password and start the
 Compose stack:
@@ -256,6 +260,11 @@ There is no `full-latest` tag. Immutable tags are the upgrade and rollback
 unit; rolling tags are convenience pointers only. Hindsight, PostgreSQL, and
 Kepos Codex Bridge have independent versions and immutable references in
 `compose.yaml`.
+
+Hindsight 0.1.2 replaces the FP32 image in the supplied Compose configuration.
+Existing installations switch when the operator pulls and recreates the
+service; updating the repository alone does not change running containers.
+Keep the existing PostgreSQL volume and document vectors when upgrading.
 
 ## Build from source
 

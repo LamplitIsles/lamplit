@@ -9,9 +9,12 @@ distinct from DeepSeek ownership and keep the Partner domain terms in
 - The only image/release interface is the TypeScript Dagger module in
   `dagger/`. Run `dagger call -m dagger check --source .` from the repository root; it
   builds only the Core and Full application images for Linux amd64 and
-  validates `compose.yaml`. Hindsight and PostgreSQL are prebuilt external
-  artifacts; this public repository must not grow their Dockerfiles or Dagger
-  build paths.
+  validates `compose.yaml`. The default ONNX INT8 Hindsight image is owned by
+  `docker/hindsight/Dockerfile`; use the separate `hindsight` and
+  `hindsight-check` targets when changing it, and `hindsight-publish` for its
+  independent releases; see `docs/hindsight-onnx.md`. PostgreSQL remains a
+  prebuilt external artifact. Application
+  checks/releases do not build memory-service images.
 - The repository baseline is Node 24 with pnpm 11.22.0. Run
   `pnpm install --frozen-lockfile`, then `pnpm run check` for fast syntax,
   schema, Compose, release-reference, shell, and Keet-asset checks. It does
@@ -21,12 +24,9 @@ distinct from DeepSeek ownership and keep the Partner domain terms in
 - `just` lists the operator recipes. `just publish-app-images vX.Y.Z` is the
   local credential-gated Core/Full fallback; it requires the stable tag to name
   the current checkout commit and passes its full SHA explicitly to Dagger.
-  `just verify-memory-images` only probes the existing local memory-service
-  images; `just publish-memory-images`
-  is the explicit credential-gated path that loads `GHCR_USERNAME` and
-  `GHCR_TOKEN` from the ignored `.env`, verifies first, and calls the existing
-  push helper without building either image. Never invoke publication without
-  operator credentials.
+  `just verify-memory-images` probes the pulled, digest-pinned Hindsight and
+  PostgreSQL images in disposable containers. Hindsight publication goes
+  through Dagger with operator credentials supplied as a `Secret`.
 - Dagger has two cache layers: Woodpecker's trusted agent owns the persistent
   engine/cache backing, while `dagger/src/index.ts` owns narrowly named
   package-manager stores and installed-dependency caches for the two external
@@ -61,10 +61,10 @@ distinct from DeepSeek ownership and keep the Partner domain terms in
   ports loopback-bound by default.
 - Stable tags are supplied as `vX.Y.Z`; Dagger publishes Core `X.Y.Z` and Full
   `X.Y.Z-full`, with rolling Core `latest` and rolling Full `full`. The
-  independently published memory images have their own `0.1.1` version and
-  are consumed by Compose at their public `publishedDigest` values. The
-  manifest also records each local source `localDigest` for pre-publication
-  verification; these values may differ. There is no `full-latest` tag.
+  memory images have independent versions recorded in
+  `config/memory-images.json`; Compose consumes their public `publishedDigest`
+  values. Keep the manifest, Compose pins, and service notice inventory in
+  sync. There is no `full-latest` tag.
 - Forgejo remains canonical and GitHub is a passive mirror. Woodpecker owns
   automated checks and stable Core/Full publication; its `ghcr_username` and
   `ghcr_token` secrets plus the trusted agent's persistent-cache Dagger runner

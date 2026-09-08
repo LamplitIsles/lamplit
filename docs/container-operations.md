@@ -94,11 +94,12 @@ host and network policy.
 end-to-end `dagger call -m dagger check --source .` builds only disposable
 Linux amd64 Core and Full application containers, verifies their capabilities
 and metadata, and does not use credentials or paid model calls. Run
-`pnpm run verify:memory-images` separately before publishing the prebuilt Kosmos
-service images; it does not build them and checks the local source `localDigest`
-values. The publication helper records and checks the separate public registry
-`publishedDigest` values after an authenticated pull, so a stale local
-`RepoDigest` cannot validate a failed publication. For a running Core smoke, use
+`pnpm run verify:memory-images` separately after pulling the Compose memory
+images. It verifies the published digests, exercises ONNX inference with the
+Compose CPU/thread settings, and checks PostgreSQL extensions in disposable
+containers. Hindsight's independent Dagger publication verifies the exact
+release image before uploading it; see [hindsight-onnx.md](hindsight-onnx.md).
+For a running Core smoke, use
 `node scripts/test-core-smoke.mjs` with a test-owned image and temporary
 directories; it never points at the operator's DSH home.
 

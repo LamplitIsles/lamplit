@@ -12,6 +12,8 @@ import type { Platform } from "@dagger.io/dagger"
 import {
   publishPlan,
   publishReferences,
+  parseSourceRevision,
+  parseStableReleaseTag,
   registryHost,
   referencesForVersion,
   type ImageReferenceSet,
@@ -57,11 +59,104 @@ const SOURCE_IGNORE = [
  * Dagger build and release interface for the independent Lamplit distribution.
  * Every application image function is callable on its own; `check` composes
  * the same two functions used by publication and validates their observable
- * contracts. The independently published memory-stack images are deliberately
- * not build inputs to this public module.
+ * contracts. The default ONNX Hindsight image has its own build/check path;
+ * application releases continue to consume published memory-service digests.
  */
 @object()
 export class Lamplit {
+  /** Build the offline Linux amd64/AVX2 Hindsight ONNX INT8 image. */
+  @func()
+  async hindsight(
+    @argument({ ignore: SOURCE_IGNORE }) source: Directory,
+    revision = "dev",
+    version = "dev",
+  ): Promise<Container> {
+    const model = JSON.parse(await source.file("docker/hindsight/model.json").contents()) as {
+      repository: string
+      revision: string
+      files: Array<{ path: string; name: string; sha256: string }>
+    }
+    let artifacts = dag.directory()
+    for (const file of model.files) {
+      artifacts = artifacts.withFile(file.name, dag.http(
+        `https://huggingface.co/${model.repository}/resolve/${model.revision}/${file.path}`,
+        { name: file.name, checksum: `sha256:${file.sha256}` },
+      ))
+    }
+    const context = dag.directory()
+      .withDirectory("docker/hindsight", source.directory("docker/hindsight"))
+      .withDirectory(".build/hindsight/model", artifacts)
+      .withFile("LICENSE", source.file("LICENSE"))
+      .withFile("licenses/hindsight-0.9.2-MIT.txt", source.file("licenses/hindsight-0.9.2-MIT.txt"))
+      .withFile("licenses/kepos-hindsight-0.2.0-Apache-2.0.txt", source.file("licenses/kepos-hindsight-0.2.0-Apache-2.0.txt"))
+    return context.dockerBuild({
+      dockerfile: "docker/hindsight/Dockerfile",
+      platform: LINUX_AMD64,
+      buildArgs: [
+        { name: "EMBEDDING_MODEL", value: model.repository },
+        { name: "EMBEDDING_REVISION", value: model.revision },
+        { name: "LAMPLIT_REVISION", value: revision },
+        { name: "LAMPLIT_VERSION", value: version },
+      ],
+    })
+  }
+
+  /** Verify real ONNX inference, then API/UI startup against a disposable PG service. */
+  @func()
+  async hindsightCheck(
+    @argument({ ignore: SOURCE_IGNORE }) source: Directory,
+  ): Promise<string> {
+    const image = await this.hindsight(source)
+    return JSON.stringify(await this.inspectHindsight(source, image), null, 2)
+  }
+
+  /** Verify and publish one independently versioned Hindsight image, with no rolling tag. */
+  @func()
+  async hindsightPublish(
+    @argument({ ignore: SOURCE_IGNORE }) source: Directory,
+    releaseTag: string,
+    revision: string,
+    registryUsername: string,
+    registryPassword: Secret,
+  ): Promise<string> {
+    const { version } = parseStableReleaseTag(releaseTag)
+    const sourceRevision = parseSourceRevision(revision)
+    const image = await this.hindsight(source, sourceRevision, version)
+    const verification = await this.inspectHindsight(source, image)
+    const published = await image
+      .withRegistryAuth("ghcr.io", registryUsername, registryPassword)
+      .publish(`ghcr.io/lamplitisles/lamplit-hindsight:${version}`)
+    return JSON.stringify({ version, revision: sourceRevision, published, verification }, null, 2)
+  }
+
+  private async inspectHindsight(source: Directory, image: Container): Promise<Record<string, unknown>> {
+    const probe = image.withMountedFile("/tmp/hindsight-image.py", source.file("tests/hindsight-image.py"))
+    const embeddings = await probe.withExec(["python", "/tmp/hindsight-image.py", "embedding"]).stdout()
+    const manifest = JSON.parse(await source.file("config/memory-images.json").contents()) as {
+      images: { postgres: { published: string; publishedDigest: string } }
+    }
+    const postgres = manifest.images.postgres
+    const database = dag.container({ platform: LINUX_AMD64 })
+      .from(`${postgres.published}@${postgres.publishedDigest}`)
+      .withUser("999:999")
+      .withEnvVariable("POSTGRES_USER", "hindsight")
+      .withEnvVariable("POSTGRES_DB", "hindsight")
+      .withEnvVariable("POSTGRES_PASSWORD", "lamplit-onnx-test")
+      .withEnvVariable("PGDATA", "/tmp/lamplit-onnx-pgdata")
+      .withExposedPort(5432)
+      .asService()
+    const startup = await probe
+      .withServiceBinding("postgres", database)
+      .withEnvVariable("HINDSIGHT_API_DATABASE_URL", "postgresql://hindsight:lamplit-onnx-test@postgres:5432/hindsight")
+      .withEnvVariable("HINDSIGHT_API_LLM_PROVIDER", "mock")
+      .withEnvVariable("HINDSIGHT_API_LLM_MODEL", "mock-model")
+      .withEnvVariable("HINDSIGHT_API_VECTOR_EXTENSION", "pgvector")
+      .withEnvVariable("HINDSIGHT_API_TEXT_SEARCH_EXTENSION", "pgroonga")
+      .withExec(["python", "/tmp/hindsight-image.py", "startup"])
+      .stdout()
+    return { ok: true, embeddings: JSON.parse(embeddings), startup: JSON.parse(startup) }
+  }
+
   /** Build and verify the bilingual static website; no serving runtime is needed. */
   @func()
   async website(

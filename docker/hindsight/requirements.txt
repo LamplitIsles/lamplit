@@ -1,0 +1,4 @@
+# Additions to the digest-pinned Hindsight slim environment. Install with
+# --no-deps --require-hashes, then uv pip check against that environment.
+transformers==5.5.0 --hash=sha256:821a9ff0961abbb29eb1eb686d78df1c85929fdf213a3fe49dc6bd94f9efa944
+safetensors==0.8.0 --hash=sha256:fd6f3f93c9a0a7cc2788ee63fb763353d4bd2e89b0751bc78fcf7dda00bea774

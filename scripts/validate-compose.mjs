@@ -68,7 +68,9 @@ assert(memory.depends_on?.["hindsight-postgres"]?.condition === "service_healthy
 assert((memory.networks ?? []).includes("hindsight-internal"), "Hindsight must use the internal database network");
 assert((database.networks ?? []).includes("hindsight-internal"), "PostgreSQL must use the internal database network");
 assert(compose.networks?.["hindsight-internal"]?.internal === true, "Database network must be internal");
-assert(String(memory.environment?.HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL).includes("paraphrase-multilingual-MiniLM-L12-v2"), "Hindsight must use the pinned multilingual model");
+assert(memory.environment?.HINDSIGHT_API_EMBEDDINGS_PROVIDER === "onnx", "Hindsight must use ONNX embeddings");
+assert(memory.cpus === 4, "Hindsight must use the verified four-CPU budget");
+assert(Number(memory.environment?.HINDSIGHT_API_EMBEDDINGS_ONNX_INTRA_OP_THREADS) === memory.cpus, "Hindsight ORT threads must match its CPU budget");
 assert(memory.environment?.HINDSIGHT_API_RERANKER_PROVIDER === "rrf", "Hindsight must use RRF reranking");
 assert(memory.environment?.HINDSIGHT_API_VECTOR_EXTENSION === "pgvector", "Hindsight must use pgvector");
 assert(memory.environment?.HINDSIGHT_API_TEXT_SEARCH_EXTENSION === "pgroonga", "Hindsight must use PGroonga");

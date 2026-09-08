@@ -1,25 +1,26 @@
 # Memory service image license inventory
 
 This is Lamplit's publisher-side notice review for the two independently
-published memory-service images used by `compose.yaml`. It records the public
-manifest inspected on 2026-09-07. This inventory does not require publishing
-the private build definitions, which remain outside this repository.
+published memory-service images used by `compose.yaml`. Hindsight 0.1.2 was
+inspected on 2026-09-08; the unchanged PostgreSQL artifact was originally
+inspected on 2026-09-07.
 
 ## Hindsight
 
-- Image: `ghcr.io/lamplitisles/lamplit-hindsight:0.1.1`
+- Image: `ghcr.io/lamplitisles/lamplit-hindsight:0.1.2`
 - Published digest:
-  `sha256:69462bc7a30d0b280843eaf0cea674e45b9d07f6d8d53f9bfc158127a06e8386`
-- Upstream: Hindsight 0.9.2 (`vectorize-io/hindsight`)
-- License: MIT, declared in `/app/api/pyproject.toml`
-- Preserved text:
-  [`licenses/hindsight-0.9.2-MIT.txt`](../licenses/hindsight-0.9.2-MIT.txt)
+  `sha256:c95b8c604824c778c3ec63105c8382f23e3561c7a56b5334a60777efd8b809dd`
+- Upstream: Hindsight 0.9.2 (`vectorize-io/hindsight`), MIT
+- Model and tokenizer: multilingual MiniLM, Apache-2.0
+- Assembly: Lamplit, Elastic License 2.0
+- Image notice: [`docker/hindsight/NOTICE.md`](../docker/hindsight/NOTICE.md)
 
-The inspected image contains the license files shipped with its Python and
-system dependencies, but not the complete Hindsight MIT text. Lamplit's
-Compose distribution therefore supplies that text alongside the image pin.
-The next Hindsight image rebuild should also copy the text into the image so
-the service image is independently self-describing.
+The image contains the complete Hindsight MIT text, Apache-2.0 text, assembly
+license, model card, notice, and installed Python distribution inventory under
+`/usr/share/doc/lamplit-hindsight/`. Its Python and system dependencies also
+retain their package-level notices. The Core/Full npm SBOM is separate from
+this service's Python inventory. Reproducible model and dependency inputs are
+recorded in [hindsight-onnx.md](hindsight-onnx.md).
 
 ## PostgreSQL memory store
 

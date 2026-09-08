@@ -11,7 +11,7 @@ Core and Full are different sets of capabilities, rather than free and paid tier
 
 ## Prepare the deployment directory
 
-You need Linux amd64, Docker, and Docker Compose. Get a complete checkout of the [public repository](https://github.com/LamplitIsles/lamplit) and run the following commands at its root. Choose a published stable version for your deployment.
+You need Linux amd64 with an AVX2-capable CPU, Docker, and Docker Compose. Full uses CPU-based ONNX INT8 memory embeddings by default; Hindsight has a four-CPU quota. Get a complete checkout of the [public repository](https://github.com/LamplitIsles/lamplit) and run the following commands at its root. Choose a published stable version for your deployment.
 
 ```bash
 export HINDSIGHT_POSTGRES_PASSWORD='replace-with-a-long-private-value'
@@ -24,6 +24,8 @@ docker compose up -d
 The empty `keet-runtime` directory lets Full start without Keet. See [Stay close through Keet](/docs/keet/) when you are ready to connect it.
 
 The repository’s `compose.yaml` pins the application version and the independently versioned service images by digest. Use those references; the memory services do not need local builds.
+
+For existing installations, updating the checkout does not change running containers. Apply the new image during your planned upgrade, keeping the existing PostgreSQL volume and stored memory vectors.
 
 ## Sign in to Codex Bridge
 

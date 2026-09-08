@@ -53,24 +53,28 @@ Create a stable tag in Forgejo and let it mirror as `vX.Y.Z`:
 | Core application | `ghcr.io/lamplitisles/lamplit:X.Y.Z` | `latest` |
 | Full application | `ghcr.io/lamplitisles/lamplit:X.Y.Z-full` | `full` |
 
-The memory stack is independent of Lamplit application releases. Its
-independently published service images are published separately as
-`ghcr.io/lamplitisles/lamplit-hindsight:0.1.1` and
-`ghcr.io/lamplitisles/lamplit-hindsight-postgres:0.1.1`. For each image,
-`config/memory-images.json` records the source `localDigest` used before a
-publication and the public registry `publishedDigest` consumed by
-`compose.yaml`; the values can differ because registry manifests are the
-release artifact. The private build recipes stay outside this public repository.
-Copy `.env.example` to the ignored `.env`, fill in `GHCR_USERNAME` and
-`GHCR_TOKEN`, and run `just publish-memory-images`; the recipe verifies the
-existing local images before authenticating, never prints the token, and calls
-the existing helper without building either service image. After pushing, the
-helper pulls each published tag with the authenticated runtime and compares its
-remote `RepoDigest` with `publishedDigest`, rather than trusting stale local
-metadata. Run
-`just verify-memory-images` alone for the non-mutating verification path. The
-helper refuses to push unless its explicit `--push` script entry is used and
-fails if the remote digest differs from the recorded published manifest.
+The memory stack is independent of Lamplit application releases. Full Compose
+uses `ghcr.io/lamplitisles/lamplit-hindsight:0.1.2` with ONNX INT8 embeddings
+and `ghcr.io/lamplitisles/lamplit-hindsight-postgres:0.1.1`. Their public
+`publishedDigest` values are recorded in `config/memory-images.json` and
+consumed directly by `compose.yaml`.
+
+Hindsight is built and independently published through the Dagger
+`hindsight-publish` contract in [hindsight-onnx.md](hindsight-onnx.md). Supply
+a new image version and a full source commit SHA; it verifies the exact image
+before publication and creates no application release tag, rolling image, or
+deployment. PostgreSQL remains an independently supplied external artifact.
+
+To verify downloaded release images without touching live services:
+
+```sh
+docker compose pull hindsight hindsight-postgres
+just verify-memory-images
+```
+
+The verifier runs the digest-pinned images in disposable, network-disabled
+containers. A pull or repository update does not replace running containers;
+apply an upgrade during the operator's planned deployment window.
 
 Application publication has a separate local fallback. From the exact
 checkout commit identified by the stable tag, copy `.env.example` to the
@@ -106,12 +110,14 @@ packages declare `>=24`; the live DSH runtime is Node 24.19.0. A Node 22.19
 dsh-mail smoke can pass in practice, but Node 24 remains the supported
 intersection of the declared contracts.
 
-The public Dagger module builds and publishes only the Core and Full
-application roles, targets Linux amd64, checks image users/entrypoints/
+The Dagger application release path builds and publishes Core and Full,
+targets Linux amd64, checks image users/entrypoints/
 capability manifests and OCI metadata, and parses the Compose topology. Its
-`check` function does not build or inspect Hindsight or PostgreSQL. Before the
-independent memory-image publication,
-run `just verify-memory-images`; its disposable network-disabled probes
+`check` function does not build or inspect Hindsight or PostgreSQL. The
+independent `hindsight-check` target verifies the ONNX image using test-owned
+services; `hindsight-publish` repeats those checks on the exact release image.
+See [the ONNX build contract](hindsight-onnx.md). To verify pulled release
+images, run `just verify-memory-images`; its disposable network-disabled probes
 load the pinned 384-dimensional multilingual model and verify PGroonga 4.0.8
 plus pgvector 0.8.6 without reading live state. A Core runtime smoke may be
 run with test-owned mounts using the README command. Do not pass a real DSH
@@ -127,8 +133,9 @@ node scripts/validate-license-artifacts.mjs
 
 The same SBOM and notice bundle is installed in every published application
 image under `/usr/share/doc/lamplit/`. The independently published service
-images retain their upstream notices and are published separately; Lamplit does
-not rebuild them here.
+images retain their upstream notices and are published separately. The
+PostgreSQL 0.1.1 artifact remains external; the ONNX Hindsight build installs
+its own model notices and Python inventory as documented above.
 
 ## Dagger cache ownership
 
@@ -171,9 +178,9 @@ cache ownership remain operator infrastructure prerequisites. The module-level
 package-manager caches described above are mounted inside the Dagger build,
 not by Woodpecker.
 
-The memory-image verification and publication helpers are separate, explicit
-operator actions and are not part of the public Dagger or Woodpecker release
-path.
+Memory-image verification remains a separate operator action. Hindsight has
+its own explicit Dagger publication function; neither operation is invoked
+by the Core/Full Woodpecker workflow.
 
 If a release fails, inspect the Dagger output and GHCR package permissions,
 correct the source commit or repository setting, and create a new stable tag.

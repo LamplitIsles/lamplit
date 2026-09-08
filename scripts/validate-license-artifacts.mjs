@@ -12,7 +12,7 @@ const dockerfile = read("Dockerfile");
 if (!dockerfile.includes("ARG LAMPLIT_LICENSE=Elastic-2.0")) throw new Error("Dockerfile must default its Lamplit license to Elastic-2.0");
 if (!dockerfile.includes('org.opencontainers.image.licenses="${LAMPLIT_LICENSE}"')) throw new Error("Dockerfile must carry the Lamplit OCI license label");
 if (!dockerfile.includes("/usr/share/doc/lamplit/LICENSE") || !dockerfile.includes("THIRD_PARTY_NOTICES.md") || !dockerfile.includes("sbom.spdx.json")) throw new Error("Dockerfile must install the Lamplit license, release notices, and its SBOM");
-for (const obsolete of [["docker", "hindsight", "Dockerfile"], ["docker", "postgres", "Dockerfile"]]) {
+for (const obsolete of [["docker", "postgres", "Dockerfile"]]) {
   const path = obsolete.join("/");
   if (existsSync(resolve(root, ...obsolete))) throw new Error(`${path} must not be present in the public repository`);
 }

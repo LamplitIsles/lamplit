@@ -38,45 +38,6 @@ publish-app-images release_tag:
       --registry-username "$username" \
       --registry-password env:GHCR_TOKEN
 
-# Verify the existing local memory-service images without building or pushing.
+# Verify the pulled, digest-pinned memory-service images in disposable containers.
 verify-memory-images:
     @pnpm run verify:memory-images
-
-# Authenticate and publish the unchanged, already verified service images.
-# Requires GHCR_USERNAME and GHCR_TOKEN in the ignored .env file.
-[script("bash")]
-publish-memory-images:
-    set -euo pipefail
-    username="${GHCR_USERNAME:-}"
-    token="${GHCR_TOKEN:-}"
-    if [[ -z "$username" ]]; then
-      echo "GHCR_USERNAME is required in .env (copy .env.example)" >&2
-      exit 64
-    fi
-    if [[ -z "$token" ]]; then
-      echo "GHCR_TOKEN is required in .env (copy .env.example)" >&2
-      exit 64
-    fi
-    case "$username" in
-      replace-with-*) echo "GHCR_USERNAME in .env is still a placeholder" >&2; exit 64 ;;
-    esac
-    case "$token" in
-      replace-with-*) echo "GHCR_TOKEN in .env is still a placeholder" >&2; exit 64 ;;
-    esac
-
-    # Do not pass GHCR credentials into the local-image verification or push
-    # helper. The token is used only as docker/podman login stdin below.
-    unset GHCR_USERNAME GHCR_TOKEN
-    pnpm run verify:memory-images
-
-    auth_dir="$(mktemp -d)"
-    cleanup() {
-      rm -rf -- "$auth_dir"
-    }
-    trap cleanup EXIT
-    export DOCKER_CONFIG="$auth_dir/docker"
-    export REGISTRY_AUTH_FILE="$auth_dir/auth.json"
-    mkdir -p "$DOCKER_CONFIG"
-    runtime="${CONTAINER_RUNTIME:-docker}"
-    printf '%s' "$token" | "$runtime" login ghcr.io --username "$username" --password-stdin >/dev/null
-    pnpm run publish:memory-images

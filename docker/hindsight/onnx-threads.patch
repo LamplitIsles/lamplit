@@ -1,0 +1,106 @@
+# Lamplit-local ORT thread configuration, applied after onnx-memory.patch.
+# Keep automatic pool sizing from oversubscribing a container CPU quota.
+--- a/hindsight_api/config.py
++++ b/hindsight_api/config.py
+@@ -400,6 +400,7 @@
+ ENV_EMBEDDINGS_ONNX_OUTPUT_NAME = "HINDSIGHT_API_EMBEDDINGS_ONNX_OUTPUT_NAME"
+ ENV_EMBEDDINGS_ONNX_BATCH_SIZE = "HINDSIGHT_API_EMBEDDINGS_ONNX_BATCH_SIZE"
+ ENV_EMBEDDINGS_ONNX_CPU_MEM_ARENA = "HINDSIGHT_API_EMBEDDINGS_ONNX_CPU_MEM_ARENA"
++ENV_EMBEDDINGS_ONNX_INTRA_OP_THREADS = "HINDSIGHT_API_EMBEDDINGS_ONNX_INTRA_OP_THREADS"
+ ENV_EMBEDDINGS_TEI_URL = "HINDSIGHT_API_EMBEDDINGS_TEI_URL"
+ ENV_EMBEDDINGS_OPENAI_API_KEY = "HINDSIGHT_API_EMBEDDINGS_OPENAI_API_KEY"
+ ENV_EMBEDDINGS_OPENAI_MODEL = "HINDSIGHT_API_EMBEDDINGS_OPENAI_MODEL"
+@@ -992,6 +993,7 @@
+ DEFAULT_EMBEDDINGS_ONNX_PASSAGE_PREFIX = "passage: "
+ DEFAULT_EMBEDDINGS_ONNX_BATCH_SIZE = 32
+ DEFAULT_EMBEDDINGS_ONNX_CPU_MEM_ARENA = False
++DEFAULT_EMBEDDINGS_ONNX_INTRA_OP_THREADS = 2
+ DEFAULT_EMBEDDINGS_OPENAI_MODEL = "text-embedding-3-small"
+ DEFAULT_EMBEDDINGS_OPENAI_BATCH_SIZE = 100
+ DEFAULT_EMBEDDINGS_GEMINI_MODEL = "gemini-embedding-001"
+@@ -2438,6 +2440,7 @@
+     embeddings_onnx_output_name: str | None
+     embeddings_onnx_batch_size: int
+     embeddings_onnx_cpu_mem_arena: bool
++    embeddings_onnx_intra_op_threads: int
+     embeddings_tei_url: str | None
+     embeddings_openai_base_url: str | None
+     embeddings_cohere_api_key: str | None
+@@ -3515,6 +3518,11 @@
+                 ENV_EMBEDDINGS_ONNX_CPU_MEM_ARENA, str(DEFAULT_EMBEDDINGS_ONNX_CPU_MEM_ARENA)
+             ).lower()
+             == "true",
++            embeddings_onnx_intra_op_threads=_parse_positive_int(
++                ENV_EMBEDDINGS_ONNX_INTRA_OP_THREADS,
++                os.getenv(ENV_EMBEDDINGS_ONNX_INTRA_OP_THREADS),
++                DEFAULT_EMBEDDINGS_ONNX_INTRA_OP_THREADS,
++            ),
+             embeddings_tei_url=os.getenv(ENV_EMBEDDINGS_TEI_URL),
+             embeddings_openai_base_url=os.getenv(ENV_EMBEDDINGS_OPENAI_BASE_URL) or None,
+             embeddings_openai_batch_size=_parse_positive_int(
+--- a/hindsight_api/engine/embeddings.py
++++ b/hindsight_api/engine/embeddings.py
+@@ -29,6 +29,7 @@
+     DEFAULT_EMBEDDINGS_LOCAL_MODEL,
+     DEFAULT_EMBEDDINGS_ONNX_BATCH_SIZE,
+     DEFAULT_EMBEDDINGS_ONNX_CPU_MEM_ARENA,
++    DEFAULT_EMBEDDINGS_ONNX_INTRA_OP_THREADS,
+     DEFAULT_EMBEDDINGS_OPENAI_MODEL,
+     DEFAULT_EMBEDDINGS_ZEROENTROPY_BATCH_SIZE,
+     DEFAULT_EMBEDDINGS_ZEROENTROPY_DIMENSIONS,
+@@ -331,6 +332,7 @@
+         output_name: str | None = None,
+         batch_size: int = DEFAULT_EMBEDDINGS_ONNX_BATCH_SIZE,
+         cpu_mem_arena: bool = DEFAULT_EMBEDDINGS_ONNX_CPU_MEM_ARENA,
++        intra_op_threads: int = DEFAULT_EMBEDDINGS_ONNX_INTRA_OP_THREADS,
+     ):
+         self.model_id = model_id
+         self.model_path = model_path
+@@ -356,6 +358,9 @@
+             raise ValueError("ONNX embeddings batch_size must be >= 1")
+         self.batch_size = batch_size
+         self.cpu_mem_arena = cpu_mem_arena
++        if intra_op_threads < 1:
++            raise ValueError("ONNX embeddings intra_op_threads must be >= 1")
++        self.intra_op_threads = intra_op_threads
+         self._session = None
+         self._tokenizer = None
+         self._dimension: int | None = dimensions
+@@ -407,23 +412,24 @@
+             model_path,
+         )
+         logger.info(
+-            "Embeddings: ONNX query_prefix=%r passage_prefix=%r pooling=%s normalize=%s batch_size=%s cpu_mem_arena=%s",
++            "Embeddings: ONNX query_prefix=%r passage_prefix=%r pooling=%s normalize=%s batch_size=%s cpu_mem_arena=%s intra_op_threads=%s",
+             self.query_prefix,
+             self.passage_prefix,
+             self.pooling,
+             self.normalize,
+             self.batch_size,
+             self.cpu_mem_arena,
++            self.intra_op_threads,
+         )
+         self._tokenizer = AutoTokenizer.from_pretrained(self.tokenizer_name_or_path)
+         # With the arena enabled (ORT's default) freed activation blocks are cached and
+         # never returned to the OS, so RSS ratchets up to the largest batch ever run and
+         # holds that plateau for the life of the process. The reranker disables it for
+         # the same reason (see FlashRankCrossEncoder).
+-        session_options = None
+-        if not self.cpu_mem_arena:
+-            session_options = ort.SessionOptions()
+-            session_options.enable_cpu_mem_arena = False
++        session_options = ort.SessionOptions()
++        session_options.enable_cpu_mem_arena = self.cpu_mem_arena
++        # ORT automatic pool sizing can exceed a container CPU quota.
++        session_options.intra_op_num_threads = self.intra_op_threads
+         self._session = ort.InferenceSession(
+             model_path, sess_options=session_options, providers=["CPUExecutionProvider"]
+         )
+@@ -1762,6 +1768,7 @@
+             output_name=config.embeddings_onnx_output_name,
+             batch_size=config.embeddings_onnx_batch_size,
+             cpu_mem_arena=config.embeddings_onnx_cpu_mem_arena,
++            intra_op_threads=config.embeddings_onnx_intra_op_threads,
+         )
+     elif provider == "openai":
+         # Use dedicated embeddings API key, or fall back to LLM API key

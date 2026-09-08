@@ -43,9 +43,9 @@ services:
       - hindsight-internal
 
   hindsight:
-    # Published from the unchanged Kosmos 0.1.1 image; the digest is the
-    # registry-returned manifest digest, not a Lamplit application version.
-    image: ${HINDSIGHT_IMAGE:-ghcr.io/lamplitisles/lamplit-hindsight:0.1.1@sha256:69462bc7a30d0b280843eaf0cea674e45b9d07f6d8d53f9bfc158127a06e8386}
+    # Independently released ONNX INT8 image; the model requires amd64 with AVX2.
+    image: ${HINDSIGHT_IMAGE:-ghcr.io/lamplitisles/lamplit-hindsight:0.1.2@sha256:c95b8c604824c778c3ec63105c8382f23e3561c7a56b5334a60777efd8b809dd}
+    cpus: 4
     user: "1000:1000"
     init: true
     read_only: true
@@ -61,9 +61,9 @@ services:
       - "127.0.0.1:${HINDSIGHT_UI_PORT:-9999}:9999"
     environment:
       HINDSIGHT_API_DATABASE_URL: postgresql://hindsight:${HINDSIGHT_POSTGRES_PASSWORD:-change-me-before-use}@hindsight-postgres:5432/hindsight
-      HINDSIGHT_API_EMBEDDINGS_PROVIDER: local
-      HINDSIGHT_API_EMBEDDINGS_LOCAL_MODEL: /opt/hindsight-models/paraphrase-multilingual-MiniLM-L12-v2
-      HINDSIGHT_API_EMBEDDINGS_LOCAL_FORCE_CPU: "1"
+      # Model, pooling, batch cap, and offline settings are owned by the image.
+      HINDSIGHT_API_EMBEDDINGS_PROVIDER: onnx
+      HINDSIGHT_API_EMBEDDINGS_ONNX_INTRA_OP_THREADS: "4"
       HINDSIGHT_API_RERANKER_PROVIDER: rrf
       HINDSIGHT_API_VECTOR_EXTENSION: pgvector
       HINDSIGHT_API_TEXT_SEARCH_EXTENSION: pgroonga
@@ -74,11 +74,6 @@ services:
       HINDSIGHT_API_LLM_API_KEY: bridge-managed-oauth
       HINDSIGHT_API_LLM_TIMEOUT: "300"
       HINDSIGHT_API_WORKER_ID: hindsight
-      HF_HUB_OFFLINE: "1"
-      TRANSFORMERS_OFFLINE: "1"
-      HF_HOME: /home/hindsight/.cache/huggingface
-      TRANSFORMERS_CACHE: /home/hindsight/.cache/huggingface
-      CUDA_VISIBLE_DEVICES: ""
     depends_on:
       hindsight-postgres:
         condition: service_healthy

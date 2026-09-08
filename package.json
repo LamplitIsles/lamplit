@@ -14,7 +14,6 @@
     "test:release": "node --test tests/release-references.test.ts",
     "test:core-smoke": "node scripts/test-core-smoke.mjs",
     "verify:memory-images": "node scripts/verify-memory-images.mjs",
-    "publish:memory-images": "node scripts/publish-memory-images.mjs --push",
     "web:dev": "pnpm --filter @lamplitisles/lamplit-web dev",
     "web:build": "pnpm --filter @lamplitisles/lamplit-web build",
     "web:check": "pnpm --filter @lamplitisles/lamplit-web verify",
