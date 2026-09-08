@@ -4,6 +4,6 @@
   "type": "module",
   "dependencies": {
     "@deepseek-ai/dsh": "0.1.2-rc.1",
-    "@guionai/web": "0.6.2"
+    "@guionai/web": "0.7.0"
   }
 }

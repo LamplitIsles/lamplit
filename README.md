@@ -298,7 +298,7 @@ Lamplit-provided hosting and value, not third-party model usage or a portable
 provider account.
 
 Bundled upstream components keep their own licenses. In particular, upstream
-Hindsight 0.9.2 is MIT and `@lamplitisles/kepos-hindsight` is Apache-2.0. Review
+Hindsight 0.9.2 is MIT and `@lamplitisles/dsh-hindsight` is Apache-2.0. Review
 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md), [`licenses/`](licenses/),
 and [`sbom/lamplit.spdx.json`](sbom/lamplit.spdx.json) before redistributing an
 image.

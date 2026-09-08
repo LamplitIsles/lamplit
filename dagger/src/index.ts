@@ -22,14 +22,8 @@ import {
 const NODE_IMAGE =
   "node:24.20.0-bookworm-slim@sha256:6642ef280aebc09c4541bee0b15c9f89f0f3f3c247ddee79ae1d37eddfdcbbaa"
 const DSH_KEET_REPOSITORY = "https://github.com/lamplitisles/keet-for-agent.git"
-const DSH_KEET_COMMIT = "1741c5e7ada7919db4a6b241db23ceefa39d875d"
-const DSH_KEET_ARCHIVE_SHA256 = "6cd313f74b3c0ffcf85be30e9816159906fb1b0972b46766c849cf849449fa2e"
-const GUION_WEB_REPOSITORY = "https://github.com/GuionAI/web.git"
-// The released @guionai/web package predates the managed DSH preset command;
-// build that command from the public commit that introduced it while keeping
-// the published package as the runtime's compatibility dependency.
-const GUION_WEB_COMMIT = "7d4a228cc6d0519e30b8ac2da066fa3a7ef3b2e8"
-const GUION_WEB_ARCHIVE_SHA256 = "c43816294b97a7818e26d19c82b81f94bb9496ba84ee4b91d7658e913f315e80"
+const DSH_KEET_COMMIT = "bdaadd10c2ab989e165961370dcf3fbe0f4c6825"
+const DSH_KEET_ARCHIVE_SHA256 = "5cea529a7ca97974380245f416315736277f2c49c5481b8597fe755640bc86cc"
 const LAMPLIT_SOURCE = "https://github.com/LamplitIsles/lamplit"
 const LAMPLIT_LICENSE = "Elastic-2.0"
 const DEFAULT_VERSION = "0.1.0"
@@ -37,8 +31,6 @@ const LINUX_AMD64 = "linux/amd64" as Platform
 const NPM_DOWNLOAD_CACHE = "lamplit-npm-downloads-node-24.20.0-linux-amd64-v1"
 const DSH_KEET_PNPM_STORE_CACHE = "lamplit-dsh-keet-pnpm-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
 const DSH_KEET_VIRTUAL_STORE_CACHE = "lamplit-dsh-keet-pnpm-virtual-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
-const GUION_WEB_PNPM_STORE_CACHE = "lamplit-guionai-web-pnpm-store-pnpm-10.26.2-node-24.20.0-linux-amd64-v1"
-const GUION_WEB_VIRTUAL_STORE_CACHE = "lamplit-guionai-web-pnpm-virtual-store-pnpm-10.26.2-node-24.20.0-linux-amd64-v1"
 const LOCKED_CACHE = { sharing: CacheSharingMode.Locked } as const
 
 const SOURCE_IGNORE = [
@@ -338,28 +330,21 @@ export class Lamplit {
       container.label("org.opencontainers.image.licenses"),
     ])
     if (capabilities.variant !== variant) throw new Error(`capability manifest variant mismatch: ${capabilities.variant}`)
-    if (!capabilities.plugins.includes("@lamplitisles/dsh-mail@0.1.2")) {
-      throw new Error("application image is missing the published dsh-mail 0.1.2 plugin contract")
+    if (!capabilities.plugins.includes("@lamplitisles/dsh-mail@0.1.4")) {
+      throw new Error("application image is missing the published dsh-mail 0.1.4 plugin contract")
     }
     if (user !== "1000:1000" && user !== "1000") throw new Error(`application image is not non-root: ${user}`)
     if (platform !== "linux/amd64") throw new Error(`unexpected application platform: ${platform}`)
     if (!noKeetRuntime || !noCredentialStore) throw new Error("application image contains forbidden runtime state")
     if (!entrypoint.some((value) => value.includes("lamplit-entrypoint"))) throw new Error("application entrypoint is not Lamplit's state-safe launcher")
-    if (!notices.includes("Hindsight") || !notices.includes("kepos-hindsight")) throw new Error("application image is missing third-party notices")
+    if (!notices.includes("Hindsight") || !notices.includes("dsh-hindsight")) throw new Error("application image is missing third-party notices")
     if (!sbom.includes('"spdxVersion": "SPDX-2.3"')) throw new Error("application image is missing its SPDX SBOM")
     if (imageLicense !== LAMPLIT_LICENSE) throw new Error(`application image has unexpected license label: ${imageLicense}`)
     return { role: variant, user, platform, license: imageLicense, entrypoint, plugins: capabilities.plugins }
   }
 
   private async pluginArtifacts(): Promise<Directory> {
-    const [keet, guionWeb] = await Promise.all([
-      this.buildKeetTarball(),
-      this.buildGuionWebTarball(),
-    ])
-    return dag
-      .directory()
-      .withFile("lamplitisles-dsh-keet.tgz", keet)
-      .withFile("guionai-web.tgz", guionWeb)
+    return dag.directory().withFile("lamplitisles-dsh-keet.tgz", await this.buildKeetTarball())
   }
 
   private async buildKeetTarball() {
@@ -387,34 +372,6 @@ export class Lamplit {
     const files = await result.directory("/out").entries()
     const filename = files.find((file) => file.endsWith(".tgz"))
     if (!filename) throw new Error("dsh-keet build did not produce a package tarball")
-    return result.directory("/out").file(filename)
-  }
-
-  private async buildGuionWebTarball() {
-    const source = this.repositoryArchive(GUION_WEB_REPOSITORY, GUION_WEB_COMMIT, GUION_WEB_ARCHIVE_SHA256)
-    const result = dag
-      .container()
-      .from(NODE_IMAGE)
-      .withMountedCache("/root/.npm", dag.cacheVolume(NPM_DOWNLOAD_CACHE), LOCKED_CACHE)
-      .withMountedCache("/root/.cache/pnpm", dag.cacheVolume(GUION_WEB_PNPM_STORE_CACHE), LOCKED_CACHE)
-      .withMountedCache(
-        "/tmp/lamplit-source/node_modules/.pnpm",
-        dag.cacheVolume(GUION_WEB_VIRTUAL_STORE_CACHE),
-        LOCKED_CACHE,
-      )
-      .withMountedFile("/tmp/source.tar.gz", source)
-      .withExec(["mkdir", "-p", "/tmp/lamplit-source"])
-      .withExec(["tar", "-xzf", "/tmp/source.tar.gz", "--strip-components=1", "-C", "/tmp/lamplit-source"])
-      .withWorkdir("/tmp/lamplit-source")
-      .withExec(["npm", "install", "--global", "--no-audit", "--no-fund", "pnpm@10.26.2"])
-      .withExec(["pnpm", "config", "set", "store-dir", "/root/.cache/pnpm"])
-      .withExec(["pnpm", "install", "--frozen-lockfile"])
-      .withExec(["pnpm", "--filter", "@guionai/web", "build"])
-      .withExec(["mkdir", "-p", "/out"])
-      .withExec(["sh", "-ec", "cd packages/web && pnpm pack --pack-destination /out"])
-    const files = await result.directory("/out").entries()
-    const filename = files.find((file) => file.endsWith(".tgz"))
-    if (!filename) throw new Error("Guion Web build did not produce a package tarball")
     return result.directory("/out").file(filename)
   }
 

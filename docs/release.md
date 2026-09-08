@@ -40,7 +40,7 @@ offers it; that service is governed separately.
 No deployment, DNS, TLS, ingress, provider provisioning, or hosted control
 plane is performed by the Woodpecker workflow. Each Lamplit release keeps
 `LICENSE`, `THIRD_PARTY_NOTICES.md`, `licenses/`, and the SBOM together;
-upstream Hindsight 0.9.2 remains MIT and `@lamplitisles/kepos-hindsight`
+upstream Hindsight 0.9.2 remains MIT and `@lamplitisles/dsh-hindsight`
 remains Apache-2.0. The separately published memory-service images have their
 own publisher-side inventory in `docs/service-image-license-inventory.md`.
 
@@ -105,10 +105,9 @@ dagger call -m dagger check --source .
 ```
 
 Lamplit pins Node 24.20.0 in its application image. DSH core supports
-`^22.19.0 || >=24.0.0`, and the published dsh-mail 0.1.2 plus mcporter 0.13.10
-packages declare `>=24`; the live DSH runtime is Node 24.19.0. A Node 22.19
-dsh-mail smoke can pass in practice, but Node 24 remains the supported
-intersection of the declared contracts.
+`^22.19.0 || >=24.0.0`, and the published dsh-mail 0.1.4 plus mcporter 0.13.10
+packages declare `>=24`. Node 24 is the supported intersection of these
+declared contracts.
 
 The Dagger application release path builds and publishes Core and Full,
 targets Linux amd64, checks image users/entrypoints/
@@ -148,18 +147,16 @@ package-manager stores and installed-dependency caches:
 - dsh-keet's pnpm 11 content-addressed store and root `node_modules/.pnpm`
   virtual store use separate `lamplit-dsh-keet-*` caches qualified by pnpm
   11.22.0, Node 24.20.0, and Linux amd64.
-- guionai/web has separate `lamplit-guionai-web-*` pnpm 10 store and virtual
-  store caches qualified by pnpm 10.26.2, Node 24.20.0, and Linux amd64.
 - The shared npm download cache is
   `lamplit-npm-downloads-node-24.20.0-linux-amd64-v1`.
 
-The published `@lamplitisles/dsh-mail@0.1.2` package is resolved by the image's
+The published `@lamplitisles/dsh-mail@0.1.4` package is resolved by the image's
 DSH profile sync and has no Dagger source-build or installed-tree cache. The
-two source-built installed trees are Dagger-owned and are never taken from the host:
+source-built Keet installed tree is Dagger-owned and is never taken from the host:
 `node_modules` remains excluded at the source boundary. Each frozen install
 remains authoritative, and pnpm recreates workspace links around its cached
-root virtual store. The two installed trees are not shared between dsh-keet and
-guionai/web. These caches contain no source trees,
+root virtual store. Guion Web 0.7.0 is installed from npm under the runtime
+lockfile and needs no source build. These caches contain no source trees,
 build outputs, registry auth, or secrets. The workflow does not create a
 second engine or cache layer, and the module caches are useful across runs only
 when the agent keeps the Dagger engine/cache persistent.

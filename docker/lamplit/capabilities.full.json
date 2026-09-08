@@ -3,13 +3,13 @@
   "platform": "linux/amd64",
   "dsh": "0.1.2-rc.1",
   "plugins": [
-    "@guionai/dsh-web@0.6.2",
-    "@lamplitisles/dsh-companion@0.2.3",
-    "@lamplitisles/kepos-speech@0.2.4",
-    "@lamplitisles/dsh-mail@0.1.2",
+    "@guionai/dsh-web@0.7.0",
+    "@lamplitisles/dsh-companion@0.3.0",
+    "@lamplitisles/dsh-speech@0.1.1",
+    "@lamplitisles/dsh-mail@0.1.4",
     "@lamplitisles/dsh-keet",
-    "@lamplitisles/kepos-hindsight@0.2.0",
-    "@lamplitisles/dsh-imagegen@0.4.0"
+    "@lamplitisles/dsh-hindsight@0.1.1",
+    "@lamplitisles/dsh-imagegen@0.5.0"
   ],
   "optional": {
     "hindsight": true,

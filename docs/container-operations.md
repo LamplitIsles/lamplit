@@ -104,12 +104,13 @@ For a running Core smoke, use
 directories; it never points at the operator's DSH home.
 
 Application images use the pinned Node 24.20.0 base. Their profile sync
-resolves the published `@lamplitisles/dsh-mail@0.1.2` package from npm; Dagger
-builds only the dsh-keet and Guion Web source tarballs.
+resolves the published `@lamplitisles/dsh-mail@0.1.4` package from npm; Dagger
+builds only the dsh-keet source tarball. Guion Web 0.7.0 is installed from npm
+under the runtime lockfile.
 
 When exporting or redistributing an application image, retain
 `/usr/share/doc/lamplit/` with its SPDX SBOM, `THIRD_PARTY_NOTICES.md`, and
-separate Hindsight MIT and `kepos-hindsight` Apache-2.0 license texts. The
+separate Hindsight MIT and `dsh-hindsight` Apache-2.0 license texts. The
 PostgreSQL dump is the only tested Hindsight memory export/import unit in this
 release; Keet identity and mailbox data do not yet have a tested portable
 export path.

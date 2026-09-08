@@ -23,7 +23,7 @@ for (const required of [
   "Hindsight",
   "0.9.2",
   "MIT",
-  "@lamplitisles/kepos-hindsight",
+  "@lamplitisles/dsh-hindsight",
   "Apache-2.0",
   "sbom/lamplit.spdx.json",
 ]) {
@@ -34,13 +34,13 @@ const sbom = JSON.parse(read("sbom/lamplit.spdx.json"));
 if (sbom.spdxVersion !== "SPDX-2.3") throw new Error("SBOM must use SPDX-2.3");
 if (!Array.isArray(sbom.packages) || sbom.packages.length < 10) throw new Error("SBOM package inventory is unexpectedly small");
 const packageByName = new Map(sbom.packages.map((entry) => [entry.name, entry]));
-for (const [name, expectedLicense] of [["lamplit", "Elastic-2.0"], ["@lamplitisles/kepos-hindsight", "Apache-2.0"]]) {
+for (const [name, expectedLicense] of [["lamplit", "Elastic-2.0"], ["@lamplitisles/dsh-hindsight", "Apache-2.0"]]) {
   const entry = packageByName.get(name);
   if (!entry || entry.licenseDeclared !== expectedLicense) throw new Error(`SBOM license mismatch for ${name}`);
 }
 const dshMail = packageByName.get("@lamplitisles/dsh-mail");
-if (!dshMail || dshMail.versionInfo !== "0.1.2" || !dshMail.downloadLocation.startsWith("https://registry.npmjs.org/")) {
-  throw new Error("SBOM must record published @lamplitisles/dsh-mail@0.1.2 provenance");
+if (!dshMail || dshMail.versionInfo !== "0.1.4" || !dshMail.downloadLocation.startsWith("https://registry.npmjs.org/")) {
+  throw new Error("SBOM must record published @lamplitisles/dsh-mail@0.1.4 provenance");
 }
 
 process.stdout.write(`license artifacts passed (${sbom.packages.length} SBOM packages)\n`);

@@ -72,20 +72,20 @@ for (const [location, metadata] of Object.entries(lock.packages ?? {})) {
 }
 
 const direct = [
-  { name: "@guionai/dsh-web", versionInfo: "0.6.2", license: "Apache-2.0", source: "https://github.com/GuionAI/web" },
-  { name: "@lamplitisles/dsh-companion", versionInfo: "0.2.3", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-companion" },
-  { name: "@lamplitisles/kepos-speech", versionInfo: "0.2.4", license: "Apache-2.0", source: "https://github.com/LamplitIsles/kepos-speech" },
+  { name: "@guionai/dsh-web", versionInfo: "0.7.0", license: "Apache-2.0", source: "https://github.com/GuionAI/web" },
+  { name: "@lamplitisles/dsh-companion", versionInfo: "0.3.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-companion" },
+  { name: "@lamplitisles/dsh-speech", versionInfo: "0.1.1", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-speech" },
   {
     name: "@lamplitisles/dsh-mail",
-    versionInfo: "0.1.2",
+    versionInfo: "0.1.4",
     license: "Apache-2.0",
-    downloadLocation: "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.2.tgz",
-    source: "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.2",
-    checksums: [{ algorithm: "SHA512", checksumValue: "a5712942fea0d8b33aaed29e8f929e99794ed7073ccc50e4ceec9c1095cd5e8f08b406731cf00c246e2349b579d4ecb208d7dfb646930611efb5b0efeec0f074" }],
+    downloadLocation: "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.4.tgz",
+    source: "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.4",
+    checksums: [{ algorithm: "SHA512", checksumValue: "b7a3603793c87d9bece3861c767e41c4f067d4afcc5dd9b5470453a39c8a630f1d716ae5533cc78290b43093464b69d8d93b9fb1c30193f51e0e57fd932a4730" }],
   },
-  { name: "@lamplitisles/dsh-keet", versionInfo: "0.1.0", license: "Apache-2.0", source: "https://github.com/lamplitisles/keet-for-agent/tree/1741c5e7ada7919db4a6b241db23ceefa39d875d" },
-  { name: "@lamplitisles/kepos-hindsight", versionInfo: "0.2.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/kepos-hindsight" },
-  { name: "@lamplitisles/dsh-imagegen", versionInfo: "0.4.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/kepos-imagegen" },
+  { name: "@lamplitisles/dsh-keet", versionInfo: "0.1.0", license: "Apache-2.0", source: "https://github.com/lamplitisles/keet-for-agent/tree/bdaadd10c2ab989e165961370dcf3fbe0f4c6825" },
+  { name: "@lamplitisles/dsh-hindsight", versionInfo: "0.1.1", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-hindsight" },
+  { name: "@lamplitisles/dsh-imagegen", versionInfo: "0.5.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-imagegen" },
 ];
 for (const entry of direct) {
   addPackage({ downloadLocation: entry.source, ...entry });
