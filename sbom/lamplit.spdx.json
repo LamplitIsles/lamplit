@@ -2,17 +2,17 @@
   "spdxVersion": "SPDX-2.3",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "name": "Lamplit container distribution 0.1.4",
-  "documentNamespace": "https://lamplitisles.github.io/lamplit/sbom/0.1.4",
+  "name": "Lamplit container distribution 0.1.5",
+  "documentNamespace": "https://lamplitisles.github.io/lamplit/sbom/0.1.5",
   "creationInfo": {
-    "created": "2026-09-07T00:00:00Z",
+    "created": "2026-09-09T04:07:01.402Z",
     "creators": [
       "Organization: LamplitIsles"
     ],
     "licenseListVersion": "3.27"
   },
   "documentDescribes": [
-    "SPDXRef-lamplit-0.1.4"
+    "SPDXRef-lamplit-0.1.5"
   ],
   "packages": [
     {
@@ -4538,10 +4538,10 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef--guionai-dsh-web-0.7.0",
+      "SPDXID": "SPDXRef--guionai-dsh-web-0.7.1",
       "name": "@guionai/dsh-web",
-      "versionInfo": "0.7.0",
-      "downloadLocation": "https://github.com/GuionAI/web",
+      "versionInfo": "0.7.1",
+      "downloadLocation": "https://registry.npmjs.org/@guionai/dsh-web/-/dsh-web-0.7.1.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -4550,16 +4550,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40guionai/dsh-web@0.7.0"
+          "referenceLocator": "pkg:npm/%40guionai/dsh-web@0.7.1"
         }
       ],
-      "homepage": "https://github.com/GuionAI/web"
+      "homepage": "https://www.npmjs.com/package/@guionai/dsh-web/v/0.7.1",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "5233e489b49d5a66dd659f41d0e19e5f1d5eea96f390bfc2b700fe03087de71f6661f0d68810a561ca19c437ab923fad285fbbe75b6f647478f8e4c18ec01bb0"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef--guionai-web-0.7.0",
+      "SPDXID": "SPDXRef--guionai-web-0.7.1",
       "name": "@guionai/web",
-      "versionInfo": "0.7.0",
-      "downloadLocation": "https://registry.npmjs.org/@guionai/web/-/web-0.7.0.tgz",
+      "versionInfo": "0.7.1",
+      "downloadLocation": "https://registry.npmjs.org/@guionai/web/-/web-0.7.1.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -4568,7 +4574,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40guionai/web@0.7.0"
+          "referenceLocator": "pkg:npm/%40guionai/web@0.7.1"
         }
       ]
     },
@@ -5372,10 +5378,10 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef--lamplitisles-dsh-companion-0.3.0",
+      "SPDXID": "SPDXRef--lamplitisles-dsh-companion-0.3.2",
       "name": "@lamplitisles/dsh-companion",
-      "versionInfo": "0.3.0",
-      "downloadLocation": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-companion",
+      "versionInfo": "0.3.2",
+      "downloadLocation": "https://registry.npmjs.org/@lamplitisles/dsh-companion/-/dsh-companion-0.3.2.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -5384,16 +5390,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-companion@0.3.0"
+          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-companion@0.3.2"
         }
       ],
-      "homepage": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-companion"
+      "homepage": "https://www.npmjs.com/package/@lamplitisles/dsh-companion/v/0.3.2",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "f19be3a813211a4d0c3e43fa181c707e7fe35229922d389138491a4ba66aa880d999d24ea483ce3e9ed5c9222a53ccf548a24016f23c07235f874f9812da1f57"
+        }
+      ]
     },
     {
       "SPDXID": "SPDXRef--lamplitisles-dsh-hindsight-0.1.1",
       "name": "@lamplitisles/dsh-hindsight",
       "versionInfo": "0.1.1",
-      "downloadLocation": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-hindsight",
+      "downloadLocation": "https://registry.npmjs.org/@lamplitisles/dsh-hindsight/-/dsh-hindsight-0.1.1.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -5405,13 +5417,19 @@
           "referenceLocator": "pkg:npm/%40lamplitisles/dsh-hindsight@0.1.1"
         }
       ],
-      "homepage": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-hindsight"
+      "homepage": "https://www.npmjs.com/package/@lamplitisles/dsh-hindsight/v/0.1.1",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "58a9e4d8829b855f822549b85ffebe957ea02aa1fa237dec30ce0ead8dc8b96004e59de81a984c62a05fa3e4d970e4cdfd139e305344f34e5deed1abf053b950"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef--lamplitisles-dsh-imagegen-0.5.0",
+      "SPDXID": "SPDXRef--lamplitisles-dsh-imagegen-0.6.0",
       "name": "@lamplitisles/dsh-imagegen",
-      "versionInfo": "0.5.0",
-      "downloadLocation": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-imagegen",
+      "versionInfo": "0.6.0",
+      "downloadLocation": "https://registry.npmjs.org/@lamplitisles/dsh-imagegen/-/dsh-imagegen-0.6.0.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -5420,16 +5438,22 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-imagegen@0.5.0"
+          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-imagegen@0.6.0"
         }
       ],
-      "homepage": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-imagegen"
+      "homepage": "https://www.npmjs.com/package/@lamplitisles/dsh-imagegen/v/0.6.0",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "17c135f457ad88f394bd80daa5ecec6316363bbfe949b41534374b362a68001969168c7de0930dc1b9bfa795893b355d2f3cf158c58aeaf32372747d82d07fa2"
+        }
+      ]
     },
     {
       "SPDXID": "SPDXRef--lamplitisles-dsh-keet-0.1.0",
       "name": "@lamplitisles/dsh-keet",
       "versionInfo": "0.1.0",
-      "downloadLocation": "https://github.com/lamplitisles/keet-for-agent/tree/bdaadd10c2ab989e165961370dcf3fbe0f4c6825",
+      "downloadLocation": "https://github.com/lamplitisles/keet-for-agent/archive/e5e90c145b5dfd16b4e88d3154f672a310b35235.tar.gz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -5441,37 +5465,19 @@
           "referenceLocator": "pkg:npm/%40lamplitisles/dsh-keet@0.1.0"
         }
       ],
-      "homepage": "https://github.com/lamplitisles/keet-for-agent/tree/bdaadd10c2ab989e165961370dcf3fbe0f4c6825"
-    },
-    {
-      "SPDXID": "SPDXRef--lamplitisles-dsh-mail-0.1.4",
-      "name": "@lamplitisles/dsh-mail",
-      "versionInfo": "0.1.4",
-      "downloadLocation": "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.4.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-mail@0.1.4"
-        }
-      ],
-      "homepage": "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.4",
+      "homepage": "https://github.com/lamplitisles/keet-for-agent/tree/e5e90c145b5dfd16b4e88d3154f672a310b35235",
       "checksums": [
         {
-          "algorithm": "SHA512",
-          "checksumValue": "b7a3603793c87d9bece3861c767e41c4f067d4afcc5dd9b5470453a39c8a630f1d716ae5533cc78290b43093464b69d8d93b9fb1c30193f51e0e57fd932a4730"
+          "algorithm": "SHA256",
+          "checksumValue": "4979ebb0efac507683ecd23e809e743542d47c10dec421461ecfb9997d2dd34d"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef--lamplitisles-dsh-speech-0.1.1",
-      "name": "@lamplitisles/dsh-speech",
-      "versionInfo": "0.1.1",
-      "downloadLocation": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-speech",
+      "SPDXID": "SPDXRef--lamplitisles-dsh-mail-0.1.5",
+      "name": "@lamplitisles/dsh-mail",
+      "versionInfo": "0.1.5",
+      "downloadLocation": "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.5.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "Apache-2.0",
@@ -5480,10 +5486,40 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-speech@0.1.1"
+          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-mail@0.1.5"
         }
       ],
-      "homepage": "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-speech"
+      "homepage": "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.5",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a78ba0219ffad5b36d33abbf1cecc04d4321c471aa30472d932489fc63bf17830dd9f501e0faa40205a09353c6bd33614e565ecb22bc8a287029f2fadad06b8d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef--lamplitisles-dsh-speech-0.1.2",
+      "name": "@lamplitisles/dsh-speech",
+      "versionInfo": "0.1.2",
+      "downloadLocation": "https://registry.npmjs.org/@lamplitisles/dsh-speech/-/dsh-speech-0.1.2.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40lamplitisles/dsh-speech@0.1.2"
+        }
+      ],
+      "homepage": "https://www.npmjs.com/package/@lamplitisles/dsh-speech/v/0.1.2",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a7e2fdb9b51f841170df5e3aaa2f7802eac5f25b7994a8cab03278969a82cfd12327cdad4b10b0b03c75d3ace2488906ab849a791b1f1ae0650963b7fe0a8f85"
+        }
+      ]
     },
     {
       "SPDXID": "SPDXRef--lexical-clipboard-0.49.0",
@@ -8478,9 +8514,9 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-lamplit-0.1.4",
+      "SPDXID": "SPDXRef-lamplit-0.1.5",
       "name": "lamplit",
-      "versionInfo": "0.1.4",
+      "versionInfo": "0.1.5",
       "downloadLocation": "https://github.com/LamplitIsles/lamplit",
       "filesAnalyzed": false,
       "licenseConcluded": "Elastic-2.0",
@@ -8490,7 +8526,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lamplit@0.1.4"
+          "referenceLocator": "pkg:npm/lamplit@0.1.5"
         }
       ],
       "homepage": "https://github.com/LamplitIsles/lamplit"
@@ -10079,2959 +10115,2959 @@
   ],
   "relationships": [
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--agentclientprotocol-sdk-1.4.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--anthropic-ai-sdk-0.91.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-crypto-sha256-browser-5.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-crypto-sha256-js-5.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-crypto-supports-web-crypto-5.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-crypto-util-5.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-client-bedrock-runtime-3.1048.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-core-3.977.9"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-env-3.972.70"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-http-3.972.72"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-http-node-modules-smithy-node-http-handler-4.12.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-ini-3.973.15"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-login-3.972.77"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-node-3.972.82"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-process-3.972.70"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-sso-3.973.14"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-sso-node-modules-aws-sdk-token-providers-3.1116.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-credential-provider-web-identity-3.972.76"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-eventstream-handler-node-3.972.34"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-middleware-eventstream-3.972.29"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-middleware-websocket-3.972.52"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-nested-clients-3.997.44"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-nested-clients-node-modules-smithy-node-http-handler-4.12.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-signature-v4-multi-region-3.996.46"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-token-providers-3.1048.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-types-3.974.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-util-locate-window-3.965.10"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-sdk-xml-builder-3.972.40"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--aws-lambda-invoke-store-0.3.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--babel-code-frame-7.29.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--babel-helper-validator-identifier-7.29.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--babel-runtime-7.29.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-cordis-plugin-group-1.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-cordis-plugin-hmr-1.0.17"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-cordis-plugin-include-1.0.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-cordis-plugin-loader-1.0.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-cordis-plugin-timer-1.1.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-cordis-4.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-cosmokit-1.8.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-acp-app-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-acp-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-agent-default-model-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-agent-instructions-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-agent-loop-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-agent-presets-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-agent-tool-presentation-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-agent-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-anonymous-user-id-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-api-gateway-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-api-remotes-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-api-session-controller-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-api-settings-controller-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-api-workspace-controller-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-app-boot-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-atomic-write-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-attachment-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-attachment-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-authorization-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-base-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-bash-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-bash-sandbox-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-brand-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-connection-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-hmr-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-locale-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-modules-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-agent-preset-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-approval-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-attachment-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-brand-official-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-chat-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-commands-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-conversation-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-cordis-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-deliverables-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-directory-picker-browse-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-directory-picker-native-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-goal-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-input-trigger-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-jobs-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-layout-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-message-feedback-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-model-selection-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-permission-presets-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-plan-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-reference-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-renderer-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-schedule-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-session-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-settings-general-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-settings-models-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-settings-plugin-inventory-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-settings-plugins-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-settings-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-sidebar-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-skill-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-subagent-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-theme-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-tool-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-trajectory-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-trajectory-node-modules-tanstack-react-virtual-3.14.10"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-trajectory-node-modules-react-dom-19.2.8"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-trajectory-node-modules-react-19.2.8"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-user-questions-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-workflow-run-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-client-ui-workspace-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-cmdline-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-code-runtime-worker-thread-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-code-runtime-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-command-compact-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-command-feedback-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-command-goal-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-commands-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-compaction-basic-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-compaction-tool-result-pruner-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-compaction-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-cordis-client-runner-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-cordis-host-runner-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-credentials-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-credentials-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-deepseek-llm-api-extensions-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-deque-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-file-reference-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-file-reference-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-fs-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-fs-observation-policy-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-fs-sandbox-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-fs-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-goal-round-driver-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-goal-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-headless-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-home-paths-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-hook-protocol-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-hooks-claude-code-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-hooks-codex-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-host-directory-picker-auto-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-host-directory-picker-browse-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-host-directory-picker-native-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-host-directory-picker-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-host-frontend-static-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-host-plugin-inventory-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-host-webserver-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-invariants-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-jobs-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-jobs-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-launch-environment-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-llm-deepseek-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-llm-pi-ai-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-llm-retry-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-llm-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-mcp-client-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-message-feedback-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-native-command-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-output-retention-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-permission-presets-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-persona-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-plan-mode-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-plugin-package-inventory-deepseek-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-pwsh-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-pwsh-sandbox-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-repeat-tool-reminder-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sandbox-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sandbox-policy-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sandbox-windows-acl-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sandbox-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-schedule-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-scope-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sdk-app-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sdk-jsonrpc-server-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sdk-minimal-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-sdk-protocol-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-checkpoint-policy-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-log-deepseek-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-log-export-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-persistence-jsonl-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-persistence-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-projection-cache-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-projection-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-query-sqlite-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-query-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-reference-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-stats-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-telemetry-otel-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-telemetry-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-title-first-prompt-llm-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-title-llm-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-title-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-turn-outline-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-session-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-settings-file-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-settings-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-shell-env-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-shell-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-skill-badge-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-skill-filesystem-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-skill-filesystem-node-modules-chokidar-5.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-skill-filesystem-node-modules-readdirp-5.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-skill-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-spill-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-spill-policy-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-spill-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-storage-domain-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-storage-json-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-storage-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-subagent-fork-in-process-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-subagent-in-process-driver-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-subagent-spawn-in-process-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-subagent-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-subprocess-local-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-subprocess-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-system-prompt-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-terminal-bash-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-terminal-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-time-context-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-timeout-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tmux-context-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-token-meter-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-ask-user-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-bash-persistent-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-bash-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-call-timeout-policy-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-cordis-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-fs-search-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-fs-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-goal-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-jobs-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-pwsh-persistent-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-pwsh-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-ralph-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-skill-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-str-replace-editor-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-subagent-control-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-subagent-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-todo-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-web-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tool-workflow-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-tools-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-typert-loader-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-typert-protocol-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-typert-registry-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-user-approval-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-user-questions-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-util-crypto-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-util-time-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-util-values-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-util-workspace-path-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-web-app-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-web-fetch-http-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-web-frontend-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-web-search-deepseek-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-web-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-webhook-github-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-webhook-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-win32-process-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-workflow-worker-thread-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-workflow-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-workspace-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-dsh-0.1.2-rc.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-node-addon-landlock-run-linux-arm64-0.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-node-addon-landlock-run-linux-x64-0.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-node-addon-landlock-run-0.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--deepseek-ai-schemastery-3.18.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--earendil-works-pi-ai-0.84.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--earendil-works-pi-telemetry-0.84.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--emnapi-runtime-1.11.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--google-genai-1.52.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef--guionai-dsh-web-0.7.0"
+      "relatedSpdxElement": "SPDXRef--guionai-dsh-web-0.7.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef--guionai-web-0.7.0"
+      "relatedSpdxElement": "SPDXRef--guionai-web-0.7.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--hono-node-server-2.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-colour-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-darwin-arm64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-darwin-x64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-freebsd-wasm32-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-darwin-arm64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-darwin-x64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linux-arm-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linux-arm64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linux-ppc64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linux-riscv64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linux-s390x-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linux-x64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linuxmusl-arm64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-libvips-linuxmusl-x64-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linux-arm-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linux-arm64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linux-ppc64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linux-riscv64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linux-s390x-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linux-x64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linuxmusl-arm64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-linuxmusl-x64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-wasm32-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-webcontainers-wasm32-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-win32-arm64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-win32-ia32-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--img-sharp-win32-x64-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--joplin-turndown-plugin-gfm-1.0.67"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-android-arm64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-android-x64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-darwin-arm64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-darwin-x64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-freebsd-arm64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-freebsd-ia32-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-freebsd-x64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-linux-arm-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-linux-arm64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-linux-ia32-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-linux-loong64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-linux-riscv64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-linux-x64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-openbsd-ia32-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-openbsd-x64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-win32-arm64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-win32-ia32-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--koromix-koffi-win32-x64-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-companion-0.3.0"
+      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-companion-0.3.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-hindsight-0.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-imagegen-0.5.0"
+      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-imagegen-0.6.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-keet-0.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-mail-0.1.4"
+      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-mail-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
-      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-speech-0.1.1"
+      "relatedSpdxElement": "SPDXRef--lamplitisles-dsh-speech-0.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-clipboard-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-dragon-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-extension-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-history-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-html-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-internal-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-list-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-plain-text-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-selection-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-text-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--lexical-utils-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--mixmark-io-domino-2.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--modelcontextprotocol-sdk-1.30.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--octokit-openapi-types-29.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--octokit-openapi-webhooks-types-12.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--octokit-request-error-7.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--octokit-types-18.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--octokit-webhooks-methods-6.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--octokit-webhooks-14.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-api-logs-0.220.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-api-1.9.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-core-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-exporter-logs-otlp-http-0.220.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-otlp-exporter-base-0.220.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-otlp-transformer-0.220.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-otlp-transformer-node-modules-opentelemetry-resources-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-resources-2.11.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-resources-node-modules-opentelemetry-core-2.11.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-sdk-logs-0.220.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-sdk-logs-node-modules-opentelemetry-resources-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-sdk-metrics-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-sdk-metrics-node-modules-opentelemetry-resources-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-sdk-trace-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-sdk-trace-node-modules-opentelemetry-resources-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--opentelemetry-semantic-conventions-1.43.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--preact-signals-core-1.14.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-aspromise-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-base64-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-codegen-2.0.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-eventemitter-1.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-fetch-1.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-float-1.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-path-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-pool-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--protobufjs-utf8-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-core-3.33.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-credential-provider-imds-4.5.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-fetch-http-handler-5.8.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-is-array-buffer-2.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-node-http-handler-4.7.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-signature-v4-5.7.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-types-4.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-util-buffer-from-2.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--smithy-util-utf8-2.3.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--standard-schema-spec-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--tanstack-virtual-core-3.17.8"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--types-node-26.4.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--types-retry-0.12.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--types-trusted-types-2.0.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-darwin-arm64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-darwin-x64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-linux-arm-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-linux-arm64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-linux-ia32-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-linux-ppc64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-linux-riscv64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-linux-s390x-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-linux-x64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-win32-arm64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-win32-ia32-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-win32-x64-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--vscode-ripgrep-1.18.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef--xterm-headless-6.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-accepts-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-agent-base-7.1.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ajv-formats-3.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ajv-8.20.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-argparse-2.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-base64-js-1.5.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-bignumber.js-9.3.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-body-parser-2.3.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-body-parser-node-modules-content-type-2.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-body-parser-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-body-parser-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-bowser-2.14.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-buffer-equal-constant-time-1.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-bundle-name-4.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-bytes-3.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-call-bind-apply-helpers-1.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-call-bound-1.0.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-chokidar-4.0.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-clsx-2.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-commander-15.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-compressible-2.0.18"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-compression-1.8.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-compression-node-modules-negotiator-0.6.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-content-disposition-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-content-type-1.0.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-cookie-signature-1.2.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-cookie-0.7.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-cors-2.8.6"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-cross-spawn-7.0.6"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-data-uri-to-buffer-4.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-debug-2.6.9"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-default-browser-id-5.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-default-browser-5.5.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-define-lazy-prop-3.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-depd-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-detect-libc-2.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-diff-9.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-dunder-proto-1.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ecdsa-sig-formatter-1.0.11"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ee-first-1.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-encodeurl-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-es-define-property-1.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-es-errors-1.3.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-es-object-atoms-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-escape-html-1.0.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-etag-1.8.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-eventsource-parser-3.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-eventsource-3.0.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-express-rate-limit-8.7.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-express-rate-limit-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-express-rate-limit-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-express-5.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-express-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-express-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-extend-3.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-fast-deep-equal-3.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-fast-uri-3.1.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-fetch-blob-3.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-fflate-0.8.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-finalhandler-2.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-finalhandler-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-finalhandler-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-formdata-polyfill-4.0.10"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-forwarded-0.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-fresh-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-function-bind-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-gaxios-7.3.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-gcp-metadata-8.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-get-intrinsic-1.3.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-get-proto-1.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-google-auth-library-10.9.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-google-logging-utils-1.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-gopd-1.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-has-symbols-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-hasown-2.0.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-hono-4.13.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-http-errors-2.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-http-proxy-agent-7.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-http-proxy-agent-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-http-proxy-agent-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-https-proxy-agent-7.0.6"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-https-proxy-agent-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-https-proxy-agent-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-iconv-lite-0.7.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-inherits-2.0.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ip-address-10.7.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ipaddr.js-2.5.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-is-docker-3.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-is-in-ssh-1.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-is-inside-container-1.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-is-promise-4.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-is-wsl-3.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-isexe-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-jose-6.2.12"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-js-tokens-4.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-js-yaml-4.3.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-json-bigint-1.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-json-schema-to-ts-3.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-json-schema-traverse-1.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-json-schema-typed-8.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-jwa-2.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-jws-4.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-koffi-3.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-lexical-0.49.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-long-5.3.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-loose-envify-1.4.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-math-intrinsics-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-media-typer-1.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-merge-descriptors-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-mime-db-1.54.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-mime-types-3.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ms-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-negotiator-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-negotiator-node-modules-content-type-2.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-api-7.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-native-custom-loader-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-darwin-arm64-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-darwin-x64-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-linux-arm64-gnu-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-linux-x64-gnu-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-win32-arm64-msvc-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-win32-ia32-msvc-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-win32-x64-msvc-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-addon-require-builtin-0.1.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-domexception-1.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-fetch-3.3.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-node-pty-1.2.0-beta.15"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-object-assign-4.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-object-inspect-1.13.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-on-finished-2.4.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-on-headers-1.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-once-1.4.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-open-11.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-openai-6.40.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-p-retry-4.6.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-parseurl-1.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-partial-json-0.1.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-path-key-3.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-path-to-regexp-8.4.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-picocolors-1.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-picomatch-4.0.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-pkce-challenge-5.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-powershell-utils-0.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-protobufjs-7.6.6"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-proxy-addr-2.0.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-proxy-addr-node-modules-ipaddr.js-1.9.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-qs-6.16.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-range-parser-1.3.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-raw-body-3.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-react-18.3.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-readdirp-4.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-require-from-string-2.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-resolve.exports-2.0.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-retry-0.13.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-router-2.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-router-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-router-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-run-applescript-7.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-safe-buffer-5.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-safer-buffer-2.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-scheduler-0.27.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-semver-7.8.5"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-send-1.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-send-node-modules-debug-4.4.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-send-node-modules-ms-2.1.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-serve-static-2.2.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-setprototypeof-1.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-sharp-0.35.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-shebang-command-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-shebang-regex-3.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-side-channel-list-1.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-side-channel-map-1.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-side-channel-weakmap-1.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-side-channel-1.1.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-statuses-2.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-toidentifier-1.0.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ts-algebra-2.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-tslib-2.8.1"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-turndown-7.2.4"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-type-is-2.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-type-is-node-modules-content-type-2.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-typebox-1.3.7"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-undici-types-8.3.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-undici-8.10.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-unpipe-1.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-use-sync-external-store-1.2.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-vary-1.1.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-web-streams-polyfill-3.3.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-which-2.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-wrappy-1.0.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-ws-8.21.3"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-wsl-utils-1.0.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-wsl-utils-node-modules-powershell-utils-0.1.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-yaml-2.9.0"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-zod-to-json-schema-3.25.2"
     },
     {
-      "spdxElementId": "SPDXRef-lamplit-0.1.4",
+      "spdxElementId": "SPDXRef-lamplit-0.1.5",
       "relationshipType": "DEPENDS_ON",
       "relatedSpdxElement": "SPDXRef-zod-4.5.4"
     },
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-lamplit-0.1.4"
+      "relatedSpdxElement": "SPDXRef-lamplit-0.1.5"
     }
   ]
 }

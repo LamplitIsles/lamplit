@@ -1,9 +1,10 @@
-# Memory service image license inventory
+# External service image license inventory
 
 This is Lamplit's publisher-side notice review for the two independently
 published memory-service images used by `compose.yaml`. Hindsight 0.1.2 was
 inspected on 2026-09-08; the unchanged PostgreSQL artifact was originally
-inspected on 2026-09-07.
+inspected on 2026-09-07. The Codex Bridge section records its separately
+verified public registry metadata.
 
 ## Hindsight
 
@@ -53,3 +54,19 @@ The immutable public digests above are also the Compose defaults and the
 `publishedDigest` values in `config/memory-images.json`. A service-image update
 requires repeating this inspection for the new digest and updating this
 inventory, the configuration, and the Compose pin together.
+
+<!-- BEGIN BRIDGE INVENTORY -->
+## Codex Bridge
+
+Compose follows the bridge's `latest` tag. The update command verifies the
+matching source tag and records this immutable snapshot for reproducibility:
+
+- Image: `ghcr.io/lamplitisles/kepos-codex-bridge:sha-13ed2c6d195d04f7ef475eacc8a92644c2c4f0f5`
+- Digest: `sha256:06df8bb87934e3ee2414525a883852b4391bcc1dbf58604c7b0f6eac92555e60`
+- Source revision: `13ed2c6d195d04f7ef475eacc8a92644c2c4f0f5`
+- Declared image license: Apache-2.0
+- Registry metadata verified: 2026-09-09
+
+This records the published OCI metadata; it does not claim a package-level
+license audit of the bridge's operating-system layers.
+<!-- END BRIDGE INVENTORY -->

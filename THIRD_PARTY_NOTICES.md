@@ -13,7 +13,7 @@ images install both this file and the `licenses/` directory at
 | Component | Version or source | License | Preserved text |
 | --- | --- | --- | --- |
 | Hindsight | 0.9.2, `vectorize-io/hindsight` | MIT | [`licenses/hindsight-0.9.2-MIT.txt`](licenses/hindsight-0.9.2-MIT.txt) |
-| `@lamplitisles/dsh-hindsight` | 0.1.1 | Apache-2.0 | [`licenses/dsh-hindsight-0.1.1-Apache-2.0.txt`](licenses/dsh-hindsight-0.1.1-Apache-2.0.txt) |
+| `@lamplitisles/dsh-hindsight` | See inventory below | Apache-2.0 | [`licenses/dsh-hindsight-Apache-2.0.txt`](licenses/dsh-hindsight-Apache-2.0.txt) |
 
 Hindsight is retained as its own MIT-licensed upstream service. The
 `dsh-hindsight` adapter is retained as an Apache-2.0-licensed package in the
@@ -26,15 +26,21 @@ The DSH runtime and its transitive npm dependencies are resolved by
 package and its declared license. The directly assembled plugin packages use
 their upstream package licenses and immutable inputs:
 
-- `@guionai/dsh-web@0.7.0` — Apache-2.0.
-- `@lamplitisles/dsh-companion@0.3.0` — Apache-2.0.
-- `@lamplitisles/dsh-speech@0.1.1` — Apache-2.0.
-- `@lamplitisles/dsh-imagegen@0.5.0` — Apache-2.0 (Full only).
-- `@lamplitisles/dsh-mail@0.1.4` — Apache-2.0, resolved from its public npm
-  package with npm provenance. Published tarball integrity is
-  `sha512-t6NgN5PIfZvs44Ycdn5BxPBn1K/MXdm1RwRTo5yKYw8dcWrlUzzHgpC0MJNGS2nY2TufscMBk/UeDlf9kypHMA==`.
-- `@lamplitisles/dsh-keet@0.1.0` — Apache-2.0, built from commit
-  `bdaadd10c2ab989e165961370dcf3fbe0f4c6825`.
+<!-- BEGIN PLUGIN INVENTORY -->
+| Plugin | Version | License | Images |
+| --- | --- | --- | --- |
+| [`@guionai/dsh-web`](https://www.npmjs.com/package/@guionai/dsh-web/v/0.7.1) | 0.7.1 | Apache-2.0 | Core / Full |
+| [`@lamplitisles/dsh-companion`](https://www.npmjs.com/package/@lamplitisles/dsh-companion/v/0.3.2) | 0.3.2 | Apache-2.0 | Core / Full |
+| [`@lamplitisles/dsh-speech`](https://www.npmjs.com/package/@lamplitisles/dsh-speech/v/0.1.2) | 0.1.2 | Apache-2.0 | Core / Full |
+| [`@lamplitisles/dsh-mail`](https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.5) | 0.1.5 | Apache-2.0 | Core / Full |
+| [`@lamplitisles/dsh-hindsight`](https://www.npmjs.com/package/@lamplitisles/dsh-hindsight/v/0.1.1) | 0.1.1 | Apache-2.0 | Full |
+| [`@lamplitisles/dsh-imagegen`](https://www.npmjs.com/package/@lamplitisles/dsh-imagegen/v/0.6.0) | 0.6.0 | Apache-2.0 | Full |
+| `@lamplitisles/dsh-keet` | 0.1.0 | Apache-2.0 | Core / Full |
+
+Keet is built from [`e5e90c145b5dfd16b4e88d3154f672a310b35235`](https://github.com/lamplitisles/keet-for-agent/tree/e5e90c145b5dfd16b4e88d3154f672a310b35235).
+The npm tarball URLs and SHA-512 integrity values are recorded in
+[`config/plugin-inputs.json`](config/plugin-inputs.json) and the SPDX SBOM.
+<!-- END PLUGIN INVENTORY -->
 
 The independently published memory images retain their upstream licenses and
 notices. PostgreSQL 18 with PGroonga 4.0.8 and pgvector 0.8.6 remains an external

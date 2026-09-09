@@ -104,9 +104,16 @@ For a running Core smoke, use
 directories; it never points at the operator's DSH home.
 
 Application images use the pinned Node 24.20.0 base. Their profile sync
-resolves the published `@lamplitisles/dsh-mail@0.1.4` package from npm; Dagger
-builds only the dsh-keet source tarball. Guion Web 0.7.0 is installed from npm
-under the runtime lockfile.
+resolves published plugin versions from `config/plugin-inputs.json`; Dagger
+builds only the dsh-keet source tarball. Guion Web is installed from npm under
+the runtime lockfile. Use `pnpm deps:check` to discover updates and
+`pnpm deps:update --version X.Y.Z` to prepare a release's dependency artifacts.
+
+Compose defaults to application `:full` and Codex Bridge `:latest`. Pulling
+these rolling tags and recreating containers is an explicit operator action.
+Set `LAMPLIT_IMAGE` and `CODEX_BRIDGE_IMAGE` to immutable references when a
+fixed deployment is required; the verified Bridge snapshot is recorded in
+`config/memory-images.json`.
 
 When exporting or redistributing an application image, retain
 `/usr/share/doc/lamplit/` with its SPDX SBOM, `THIRD_PARTY_NOTICES.md`, and

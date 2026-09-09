@@ -27,6 +27,15 @@ test("Compose consumes the published memory manifest digests", () => {
   assert.equal(defaultImageReference(compose.services["hindsight-postgres"].image), expectedPostgres);
 });
 
+test("Compose follows Full and Bridge rolling tags while retaining an immutable Bridge snapshot", () => {
+  assert.equal(defaultImageReference(compose.services.lamplit.image), "ghcr.io/lamplitisles/lamplit:full");
+  assert.equal(defaultImageReference(compose.services["codex-bridge"].image), "ghcr.io/lamplitisles/kepos-codex-bridge:latest");
+  const bridge = manifest.images.codexBridge;
+  assert.match(bridge.digest, /^sha256:[0-9a-f]{64}$/);
+  assert.match(bridge.sourceTag, /^sha-[0-9a-f]{40}$/);
+  assert.equal(bridge.published, `ghcr.io/lamplitisles/kepos-codex-bridge:${bridge.sourceTag}`);
+});
+
 test("Full uses ONNX with an explicit CPU budget and the existing database volume", () => {
   const memory = compose.services.hindsight;
   const environment = memory.environment;

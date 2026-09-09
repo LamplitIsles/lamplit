@@ -1,0 +1,72 @@
+{
+  "npm": [
+    {
+      "name": "@guionai/dsh-web",
+      "version": "0.7.1",
+      "buildArg": "GUION_WEB_VERSION",
+      "fullOnly": false,
+      "license": "Apache-2.0",
+      "tarball": "https://registry.npmjs.org/@guionai/dsh-web/-/dsh-web-0.7.1.tgz",
+      "integrity": "sha512-UjPkibSdWmbdZZ9B0OGeXx1e6pbzkL/CtwD+Awh95x9mYfDWiBClYcoZxDerkj+tKF+751tvZHR4+OTBjsAbsA==",
+      "source": "https://www.npmjs.com/package/@guionai/dsh-web/v/0.7.1"
+    },
+    {
+      "name": "@lamplitisles/dsh-companion",
+      "version": "0.3.2",
+      "buildArg": "COMPANION_VERSION",
+      "fullOnly": false,
+      "license": "Apache-2.0",
+      "tarball": "https://registry.npmjs.org/@lamplitisles/dsh-companion/-/dsh-companion-0.3.2.tgz",
+      "integrity": "sha512-8ZvjqBMhGk0MPkP6GBxwfn/jUimSLTiROEkaS6ZqqIDZmdJOpIPOPp7VySIqU8z1SKJAFvI8ByNfh0+YEtofVw==",
+      "source": "https://www.npmjs.com/package/@lamplitisles/dsh-companion/v/0.3.2"
+    },
+    {
+      "name": "@lamplitisles/dsh-speech",
+      "version": "0.1.2",
+      "buildArg": "SPEECH_VERSION",
+      "fullOnly": false,
+      "license": "Apache-2.0",
+      "tarball": "https://registry.npmjs.org/@lamplitisles/dsh-speech/-/dsh-speech-0.1.2.tgz",
+      "integrity": "sha512-p+L9ubUfhBFw3146qi94AurF8lt5lKjKsDJ4lpqCz9EjJ82tSxCwsDx106ziSIkGq4SaeRsfGuBlCWO3/gqPhQ==",
+      "source": "https://www.npmjs.com/package/@lamplitisles/dsh-speech/v/0.1.2"
+    },
+    {
+      "name": "@lamplitisles/dsh-mail",
+      "version": "0.1.5",
+      "buildArg": "MAIL_VERSION",
+      "fullOnly": false,
+      "license": "Apache-2.0",
+      "tarball": "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.5.tgz",
+      "integrity": "sha512-p4ugIZ/61bNtM6u/HOzATUMhxHGqMEctkySJ/GO/F4MN2fUB4PqkAgWgk1PGvTNhTlZeyyK8iihwKfL62tBrjQ==",
+      "source": "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.5"
+    },
+    {
+      "name": "@lamplitisles/dsh-hindsight",
+      "version": "0.1.1",
+      "buildArg": "HINDSIGHT_VERSION",
+      "fullOnly": true,
+      "license": "Apache-2.0",
+      "tarball": "https://registry.npmjs.org/@lamplitisles/dsh-hindsight/-/dsh-hindsight-0.1.1.tgz",
+      "integrity": "sha512-WKnk2IKbhV+CJUm4X/6+lX6gKqH6I33sMM4OrY3IuWAE5Z3oGphMYqBfo+TZcOTN/ROeMFNE805d7tGr8FO5UA==",
+      "source": "https://www.npmjs.com/package/@lamplitisles/dsh-hindsight/v/0.1.1"
+    },
+    {
+      "name": "@lamplitisles/dsh-imagegen",
+      "version": "0.6.0",
+      "buildArg": "IMAGEGEN_VERSION",
+      "fullOnly": true,
+      "license": "Apache-2.0",
+      "tarball": "https://registry.npmjs.org/@lamplitisles/dsh-imagegen/-/dsh-imagegen-0.6.0.tgz",
+      "integrity": "sha512-F8E19FetiPOUvYDapezsYxY2O7/pSbQVNDdLNipoABlpFox94JMNwbm/p5WJOzVdLzzxWMWK6vMjcnR9gtB/og==",
+      "source": "https://www.npmjs.com/package/@lamplitisles/dsh-imagegen/v/0.6.0"
+    }
+  ],
+  "keet": {
+    "name": "@lamplitisles/dsh-keet",
+    "version": "0.1.0",
+    "repository": "https://github.com/lamplitisles/keet-for-agent.git",
+    "commit": "e5e90c145b5dfd16b4e88d3154f672a310b35235",
+    "archiveSha256": "4979ebb0efac507683ecd23e809e743542d47c10dec421461ecfb9997d2dd34d",
+    "license": "Apache-2.0"
+  }
+}

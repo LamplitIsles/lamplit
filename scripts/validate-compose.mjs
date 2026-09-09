@@ -79,13 +79,16 @@ assert((bridge.volumes ?? []).some((mount) => String(mount).includes("/var/lib/k
 assert(!app.depends_on, "Lamplit must remain independently startable when optional services fail");
 assertDigestReference(defaultImageReference(memory.image), "Hindsight must use an immutable registry digest");
 assertDigestReference(defaultImageReference(database.image), "Hindsight PostgreSQL must use an immutable registry digest");
-assertDigestReference(defaultImageReference(bridge.image), "Codex Bridge must use an immutable registry digest");
 const expectedHindsight = `${memoryImages.images.hindsight.published}@${memoryImages.images.hindsight.publishedDigest}`;
 const expectedPostgres = `${memoryImages.images.postgres.published}@${memoryImages.images.postgres.publishedDigest}`;
-const expectedBridge = `${memoryImages.images.codexBridge.published}@${memoryImages.images.codexBridge.digest}`;
+const bridgeSnapshot = memoryImages.images.codexBridge;
+const expectedBridge = `${bridgeSnapshot.published.slice(0, bridgeSnapshot.published.lastIndexOf(":"))}:latest`;
 assert(String(memory.image).includes(expectedHindsight), "Compose must consume the verified Hindsight artifact");
 assert(String(database.image).includes(expectedPostgres), "Compose must consume the verified Hindsight PostgreSQL artifact");
-assert(String(bridge.image).includes(expectedBridge), "Compose must consume the published Codex Bridge digest");
+assert(defaultImageReference(bridge.image) === expectedBridge, "Compose must follow the Codex Bridge rolling tag");
+assert(defaultImageReference(app.image) === "ghcr.io/lamplitisles/lamplit:full", "Compose must follow the Full application rolling tag");
+assertDigestReference(`${bridgeSnapshot.published}@${bridgeSnapshot.digest}`, "Bridge snapshot must record a verified digest");
+assert(/^sha-[0-9a-f]{40}$/.test(bridgeSnapshot.sourceTag), "Bridge snapshot must record its immutable source tag");
 
 const result = {
   ok: true,

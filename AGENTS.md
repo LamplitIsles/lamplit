@@ -21,6 +21,11 @@ distinct from DeepSeek ownership and keep the Partner domain terms in
   not replace the Dagger image check. The release validator is directly
   executable with `node scripts/validate-app-publication.ts` and remains
   importable under Node 24 without registry access.
+- `pnpm deps:check` discovers npm, Keet, and Codex Bridge updates;
+  `pnpm deps:update --version X.Y.Z` prepares their artifacts and release SBOM.
+  Plugin pins and Keet source inputs live in `config/plugin-inputs.json`;
+  Dagger consumes them directly. Keep generated capability manifests and
+  notices synchronized; `validate-dependency-artifacts.mjs` checks them offline.
 - `just` lists the operator recipes. `just publish-app-images vX.Y.Z` is the
   local credential-gated Core/Full fallback; it requires the stable tag to name
   the current checkout commit and passes its full SHA explicitly to Dagger.
@@ -65,6 +70,9 @@ distinct from DeepSeek ownership and keep the Partner domain terms in
   `config/memory-images.json`; Compose consumes their public `publishedDigest`
   values. Keep the manifest, Compose pins, and service notice inventory in
   sync. There is no `full-latest` tag.
+- Compose defaults to application `full` and Codex Bridge `latest`; operators
+  opt into new bytes by pulling and recreating containers. Keep the verified
+  Bridge source tag and digest in the service inventory for explicit pinning.
 - Forgejo remains canonical and GitHub is a passive mirror. Woodpecker owns
   automated checks and stable Core/Full publication; its `ghcr_username` and
   `ghcr_token` secrets plus the trusted agent's persistent-cache Dagger runner

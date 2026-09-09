@@ -2,7 +2,7 @@ name: lamplit
 
 services:
   lamplit:
-    image: ${LAMPLIT_IMAGE:-ghcr.io/lamplitisles/lamplit:0.1.3-full}
+    image: ${LAMPLIT_IMAGE:-ghcr.io/lamplitisles/lamplit:full}
     user: "1000:1000"
     init: true
     read_only: true
@@ -126,8 +126,9 @@ services:
       start_period: 15s
 
   codex-bridge:
-    # Kepos Codex Bridge is consumed from its independently published digest.
-    image: ${CODEX_BRIDGE_IMAGE:-ghcr.io/lamplitisles/kepos-codex-bridge:sha-11ca46c291fec14c2b3e88148a93786b8598c066@sha256:784e9e83424ad5a385739bcbd9e9428304d22d12c86c487b19b564c51c824408}
+    # Follow the independently published bridge; pin CODEX_BRIDGE_IMAGE to a
+    # recorded config/memory-images.json snapshot for a fixed deployment.
+    image: ${CODEX_BRIDGE_IMAGE:-ghcr.io/lamplitisles/kepos-codex-bridge:latest}
     user: "10001:10001"
     init: true
     read_only: true

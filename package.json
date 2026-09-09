@@ -9,7 +9,9 @@
   "packageManager": "pnpm@11.22.0",
   "scripts": {
     "check": "node scripts/check.mjs",
-    "test": "node --test tests/release-references.test.ts tests/memory-images.test.mjs",
+    "test": "node --test tests/release-references.test.ts tests/memory-images.test.mjs tests/dependency-updates.test.mjs",
+    "deps:check": "node scripts/update-dependencies.mjs",
+    "deps:update": "node scripts/update-dependencies.mjs --write",
     "test:compose": "node scripts/validate-compose.mjs",
     "test:release": "node --test tests/release-references.test.ts",
     "test:core-smoke": "node scripts/test-core-smoke.mjs",

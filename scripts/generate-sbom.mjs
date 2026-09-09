@@ -14,6 +14,7 @@ const lockfile = resolve(root, args.get("--lockfile") ?? "docker/lamplit/runtime
 const output = resolve(root, args.get("--output") ?? "sbom/lamplit.spdx.json");
 const version = args.get("--version") ?? "0.1.0-source";
 const lock = JSON.parse(readFileSync(lockfile, "utf8"));
+const inputs = JSON.parse(readFileSync(resolve(root, "config/plugin-inputs.json"), "utf8"));
 
 const packageId = (name, versionInfo) =>
   `SPDXRef-${name}-${versionInfo}`.replace(/[^A-Za-z0-9.-]+/g, "-");
@@ -71,25 +72,24 @@ for (const [location, metadata] of Object.entries(lock.packages ?? {})) {
   });
 }
 
-const direct = [
-  { name: "@guionai/dsh-web", versionInfo: "0.7.0", license: "Apache-2.0", source: "https://github.com/GuionAI/web" },
-  { name: "@lamplitisles/dsh-companion", versionInfo: "0.3.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-companion" },
-  { name: "@lamplitisles/dsh-speech", versionInfo: "0.1.1", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-speech" },
-  {
-    name: "@lamplitisles/dsh-mail",
-    versionInfo: "0.1.4",
-    license: "Apache-2.0",
-    downloadLocation: "https://registry.npmjs.org/@lamplitisles/dsh-mail/-/dsh-mail-0.1.4.tgz",
-    source: "https://www.npmjs.com/package/@lamplitisles/dsh-mail/v/0.1.4",
-    checksums: [{ algorithm: "SHA512", checksumValue: "b7a3603793c87d9bece3861c767e41c4f067d4afcc5dd9b5470453a39c8a630f1d716ae5533cc78290b43093464b69d8d93b9fb1c30193f51e0e57fd932a4730" }],
-  },
-  { name: "@lamplitisles/dsh-keet", versionInfo: "0.1.0", license: "Apache-2.0", source: "https://github.com/lamplitisles/keet-for-agent/tree/bdaadd10c2ab989e165961370dcf3fbe0f4c6825" },
-  { name: "@lamplitisles/dsh-hindsight", versionInfo: "0.1.1", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-hindsight" },
-  { name: "@lamplitisles/dsh-imagegen", versionInfo: "0.5.0", license: "Apache-2.0", source: "https://github.com/LamplitIsles/dsh-plugins/tree/main/packages/dsh-imagegen" },
-];
-for (const entry of direct) {
-  addPackage({ downloadLocation: entry.source, ...entry });
+for (const plugin of inputs.npm) {
+  addPackage({
+    name: plugin.name,
+    versionInfo: plugin.version,
+    license: plugin.license,
+    downloadLocation: plugin.tarball,
+    source: plugin.source,
+    checksums: [{ algorithm: "SHA512", checksumValue: Buffer.from(plugin.integrity.slice("sha512-".length), "base64").toString("hex") }],
+  });
 }
+addPackage({
+  name: inputs.keet.name,
+  versionInfo: inputs.keet.version,
+  license: inputs.keet.license,
+  downloadLocation: `${inputs.keet.repository.replace(/\.git$/, "")}/archive/${inputs.keet.commit}.tar.gz`,
+  source: `${inputs.keet.repository.replace(/\.git$/, "")}/tree/${inputs.keet.commit}`,
+  checksums: [{ algorithm: "SHA256", checksumValue: inputs.keet.archiveSha256 }],
+});
 
 const sortedPackages = [...packages.values()].sort((left, right) =>
   `${left.name}@${left.versionInfo}`.localeCompare(`${right.name}@${right.versionInfo}`),
@@ -115,7 +115,7 @@ const document = {
   name: `Lamplit container distribution ${version}`,
   documentNamespace: `https://lamplitisles.github.io/lamplit/sbom/${version}`,
   creationInfo: {
-    created: "2026-09-07T00:00:00Z",
+    created: args.get("--created") ?? new Date().toISOString(),
     creators: ["Organization: LamplitIsles"],
     licenseListVersion: "3.27",
   },

@@ -1,20 +1,21 @@
 # Lamplit Core/Full application image.
 #
-# The generated `.build/plugins` directory is populated by the Dagger module
-# from immutable public commits. Direct Docker builds must prepare those
-# source-built tarballs first; release builds always run through `dagger call check`.
+# Dagger supplies the generated Keet tarball and exact dependency version
+# arguments from the checked-in inputs. Build and release through Dagger.
 ARG NODE_IMAGE=node:24.20.0-bookworm-slim@sha256:6642ef280aebc09c4541bee0b15c9f89f0f3f3c247ddee79ae1d37eddfdcbbaa
 FROM ${NODE_IMAGE}
 
 ARG VARIANT=core
 ARG LAMPLIT_VERSION=0.1.0
 ARG LAMPLIT_REVISION=dev
-ARG DSH_VERSION=0.1.2-rc.1
-ARG COMPANION_VERSION=0.3.0
-ARG SPEECH_VERSION=0.1.1
-ARG GUION_WEB_VERSION=0.7.0
-ARG HINDSIGHT_VERSION=0.1.1
-ARG IMAGEGEN_VERSION=0.5.0
+# Dagger supplies these exact versions from the checked-in dependency inputs.
+ARG DSH_VERSION
+ARG COMPANION_VERSION
+ARG SPEECH_VERSION
+ARG GUION_WEB_VERSION
+ARG HINDSIGHT_VERSION
+ARG IMAGEGEN_VERSION
+ARG MAIL_VERSION
 ARG LAMPLIT_SOURCE=https://github.com/LamplitIsles/lamplit
 ARG LAMPLIT_LICENSE=Elastic-2.0
 
@@ -73,7 +74,7 @@ RUN chmod 0555 /usr/local/bin/lamplit-entrypoint \
       @guionai/dsh-web@${GUION_WEB_VERSION} \
       @lamplitisles/dsh-companion@${COMPANION_VERSION} \
       @lamplitisles/dsh-speech@${SPEECH_VERSION} \
-      @lamplitisles/dsh-mail@0.1.4 \
+      @lamplitisles/dsh-mail@${MAIL_VERSION} \
       /tmp/plugins/lamplitisles-dsh-keet.tgz \
       $(if [ "$VARIANT" = full ]; then printf '%s\n' "@lamplitisles/dsh-hindsight@${HINDSIGHT_VERSION}" "@lamplitisles/dsh-imagegen@${IMAGEGEN_VERSION}"; fi) \
     && DSH_HOME=/opt/lamplit/seed-state web dsh sync --yes \

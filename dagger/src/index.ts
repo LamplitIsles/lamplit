@@ -21,9 +21,6 @@ import {
 
 const NODE_IMAGE =
   "node:24.20.0-bookworm-slim@sha256:6642ef280aebc09c4541bee0b15c9f89f0f3f3c247ddee79ae1d37eddfdcbbaa"
-const DSH_KEET_REPOSITORY = "https://github.com/lamplitisles/keet-for-agent.git"
-const DSH_KEET_COMMIT = "bdaadd10c2ab989e165961370dcf3fbe0f4c6825"
-const DSH_KEET_ARCHIVE_SHA256 = "5cea529a7ca97974380245f416315736277f2c49c5481b8597fe755640bc86cc"
 const LAMPLIT_SOURCE = "https://github.com/LamplitIsles/lamplit"
 const LAMPLIT_LICENSE = "Elastic-2.0"
 const DEFAULT_VERSION = "0.1.0"
@@ -32,6 +29,11 @@ const NPM_DOWNLOAD_CACHE = "lamplit-npm-downloads-node-24.20.0-linux-amd64-v1"
 const DSH_KEET_PNPM_STORE_CACHE = "lamplit-dsh-keet-pnpm-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
 const DSH_KEET_VIRTUAL_STORE_CACHE = "lamplit-dsh-keet-pnpm-virtual-store-pnpm-11.22.0-node-24.20.0-linux-amd64-v1"
 const LOCKED_CACHE = { sharing: CacheSharingMode.Locked } as const
+
+type PluginInputs = {
+  npm: Array<{ buildArg: string; version: string }>
+  keet: { repository: string; commit: string; archiveSha256: string }
+}
 
 const SOURCE_IGNORE = [
   ".git",
@@ -280,6 +282,7 @@ export class Lamplit {
         .withMountedDirectory("/src", source)
         .withWorkdir("/src")
         .withExec(["npm", "install", "--no-save", "--ignore-scripts", "--no-audit", "--no-fund", "yaml@2.9.0"])
+        .withExec(["node", "scripts/validate-dependency-artifacts.mjs"])
         .withExec(["node", "scripts/validate-compose.mjs"])
         .stdout(),
     ])
@@ -292,11 +295,19 @@ export class Lamplit {
     version = DEFAULT_VERSION,
     revision = process.env.GITHUB_SHA ?? "dev",
   ): Promise<Container> {
-    const plugins = await this.pluginArtifacts()
+    const inputs = JSON.parse(await source.file("config/plugin-inputs.json").contents()) as PluginInputs
+    const runtime = JSON.parse(await source.file("docker/lamplit/runtime-package.json").contents()) as {
+      dependencies: Record<string, string>
+    }
+    const plugins = await this.pluginArtifacts(inputs.keet)
     const context = source.withDirectory(".build/plugins", plugins)
     return context.dockerBuild({
       platform: LINUX_AMD64,
-      buildArgs: this.imageBuildArgs(version, revision, variant),
+      buildArgs: [
+        ...this.imageBuildArgs(version, revision, variant),
+        { name: "DSH_VERSION", value: runtime.dependencies["@deepseek-ai/dsh"] },
+        ...inputs.npm.map((plugin) => ({ name: plugin.buildArg, value: plugin.version })),
+      ],
     })
   }
 
@@ -330,9 +341,18 @@ export class Lamplit {
       container.label("org.opencontainers.image.licenses"),
     ])
     if (capabilities.variant !== variant) throw new Error(`capability manifest variant mismatch: ${capabilities.variant}`)
-    if (!capabilities.plugins.includes("@lamplitisles/dsh-mail@0.1.4")) {
-      throw new Error("application image is missing the published dsh-mail 0.1.4 plugin contract")
-    }
+    // Check the installed packages, not just the image's declared inventory.
+    await container.withExec(["node", "-e", `
+      const fs = require("node:fs");
+      const capabilities = JSON.parse(fs.readFileSync("/opt/lamplit/capabilities.json", "utf8"));
+      for (const spec of capabilities.plugins) {
+        const split = spec.lastIndexOf("@");
+        const name = spec.slice(0, split);
+        const version = spec.slice(split + 1);
+        const installed = JSON.parse(fs.readFileSync("/opt/dsh-runtime/node_modules/" + name + "/package.json", "utf8"));
+        if (installed.name !== name || installed.version !== version) throw new Error("installed plugin mismatch: " + spec);
+      }
+    `]).sync()
     if (user !== "1000:1000" && user !== "1000") throw new Error(`application image is not non-root: ${user}`)
     if (platform !== "linux/amd64") throw new Error(`unexpected application platform: ${platform}`)
     if (!noKeetRuntime || !noCredentialStore) throw new Error("application image contains forbidden runtime state")
@@ -343,12 +363,12 @@ export class Lamplit {
     return { role: variant, user, platform, license: imageLicense, entrypoint, plugins: capabilities.plugins }
   }
 
-  private async pluginArtifacts(): Promise<Directory> {
-    return dag.directory().withFile("lamplitisles-dsh-keet.tgz", await this.buildKeetTarball())
+  private async pluginArtifacts(keet: PluginInputs["keet"]): Promise<Directory> {
+    return dag.directory().withFile("lamplitisles-dsh-keet.tgz", await this.buildKeetTarball(keet))
   }
 
-  private async buildKeetTarball() {
-    const source = this.repositoryArchive(DSH_KEET_REPOSITORY, DSH_KEET_COMMIT, DSH_KEET_ARCHIVE_SHA256)
+  private async buildKeetTarball(keet: PluginInputs["keet"]) {
+    const source = this.repositoryArchive(keet.repository, keet.commit, keet.archiveSha256)
     const result = dag
       .container()
       .from(NODE_IMAGE)

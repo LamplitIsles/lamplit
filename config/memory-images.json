@@ -18,9 +18,11 @@
       "pgvector": "0.8.6"
     },
     "codexBridge": {
-      "published": "ghcr.io/lamplitisles/kepos-codex-bridge:sha-11ca46c291fec14c2b3e88148a93786b8598c066",
-      "sourceTag": "sha-11ca46c291fec14c2b3e88148a93786b8598c066",
-      "digest": "sha256:784e9e83424ad5a385739bcbd9e9428304d22d12c86c487b19b564c51c824408"
+      "published": "ghcr.io/lamplitisles/kepos-codex-bridge:sha-13ed2c6d195d04f7ef475eacc8a92644c2c4f0f5",
+      "sourceTag": "sha-13ed2c6d195d04f7ef475eacc8a92644c2c4f0f5",
+      "digest": "sha256:06df8bb87934e3ee2414525a883852b4391bcc1dbf58604c7b0f6eac92555e60",
+      "sourceRevision": "13ed2c6d195d04f7ef475eacc8a92644c2c4f0f5",
+      "verifiedAt": "2026-09-09"
     }
   }
 }

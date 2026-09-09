@@ -96,6 +96,39 @@ and build-metadata tags before any registry authentication is attached.
 
 ## Pre-tag verification
 
+Collect current and latest dependency versions without modifying the checkout:
+
+```sh
+pnpm deps:check
+```
+
+The updater queries npm's `latest` dist-tags for the runtime and bundled
+plugins, resolves Keet's public HEAD to an immutable archive checksum, and
+checks that Codex Bridge `latest` and its `sha-<commit>` tag have the same
+public digest and target Linux amd64. It requires Node 24, npm, git, tar, and
+skopeo. Hindsight and PostgreSQL service releases remain independent operator
+updates.
+
+Apply the collected updates for the next application release:
+
+```sh
+pnpm deps:update --version X.Y.Z
+```
+
+`config/plugin-inputs.json` owns the plugin versions and Keet build inputs;
+Dagger reads it directly. The updater also refreshes the runtime manifest and
+lockfile, capability manifests, plugin notices, Bridge snapshot inventory, and
+release SBOM. It prepares the lockfile and generated artifacts in a temporary
+tree before writing the checkout, and aborts on registry, checksum, license,
+or artifact-validation failures. This command neither creates a release tag
+nor publishes or deploys an image. Review its diff before the checks below.
+
+Compose follows the latest Full application with `:full` and the latest Codex
+Bridge with `:latest`; Core alone uses the application `:latest` tag. Updating
+a tag does not change a running container. An operator can select immutable
+versions through `LAMPLIT_IMAGE` and `CODEX_BRIDGE_IMAGE` before pulling and
+recreating containers.
+
 Run the repository checks on the exact commit that will be tagged:
 
 ```sh
@@ -105,7 +138,7 @@ dagger call -m dagger check --source .
 ```
 
 Lamplit pins Node 24.20.0 in its application image. DSH core supports
-`^22.19.0 || >=24.0.0`, and the published dsh-mail 0.1.4 plus mcporter 0.13.10
+`^22.19.0 || >=24.0.0`, and the published dsh-mail plus mcporter
 packages declare `>=24`. Node 24 is the supported intersection of these
 declared contracts.
 
@@ -150,12 +183,12 @@ package-manager stores and installed-dependency caches:
 - The shared npm download cache is
   `lamplit-npm-downloads-node-24.20.0-linux-amd64-v1`.
 
-The published `@lamplitisles/dsh-mail@0.1.4` package is resolved by the image's
+The published `@lamplitisles/dsh-mail` package is resolved by the image's
 DSH profile sync and has no Dagger source-build or installed-tree cache. The
 source-built Keet installed tree is Dagger-owned and is never taken from the host:
 `node_modules` remains excluded at the source boundary. Each frozen install
 remains authoritative, and pnpm recreates workspace links around its cached
-root virtual store. Guion Web 0.7.0 is installed from npm under the runtime
+root virtual store. Guion Web is installed from npm under the runtime
 lockfile and needs no source build. These caches contain no source trees,
 build outputs, registry auth, or secrets. The workflow does not create a
 second engine or cache layer, and the module caches are useful across runs only
