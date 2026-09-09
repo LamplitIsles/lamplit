@@ -141,10 +141,10 @@ docker compose config
 pnpm run test:compose
 ```
 
-The default application image in `compose.yaml` is a versioned Full release.
-The memory services and Codex Bridge are independently versioned and pinned by
-their published registry digests. Set `LAMPLIT_IMAGE` to upgrade Lamplit; only
-override the other service images after verifying their new digests.
+Compose defaults to the rolling Full application tag `full` and Codex Bridge
+tag `latest`. Hindsight and PostgreSQL remain pinned by their published registry
+digests. Set `LAMPLIT_IMAGE` and `CODEX_BRIDGE_IMAGE` to immutable references
+when you need a fixed deployment.
 
 ## Configure your Partner
 
@@ -256,10 +256,16 @@ For a stable `vX.Y.Z` release, Lamplit publishes these application images:
 | Core | `ghcr.io/lamplitisles/lamplit:X.Y.Z` | `latest` |
 | Full | `ghcr.io/lamplitisles/lamplit:X.Y.Z-full` | `full` |
 
-There is no `full-latest` tag. Immutable tags are the upgrade and rollback
-unit; rolling tags are convenience pointers only. Hindsight, PostgreSQL, and
-Kepos Codex Bridge have independent versions and immutable references in
-`compose.yaml`.
+There is no `full-latest` tag. Compose follows the rolling `full` and Codex
+Bridge `latest` tags; pull and recreate containers to apply updates. Immutable
+references remain available for fixed deployments and rollback. Hindsight and
+PostgreSQL stay digest-pinned in `compose.yaml`; the verified Codex Bridge
+snapshot is recorded in `config/memory-images.json`.
+
+Maintainers can run `pnpm deps:check` to discover dependency updates and
+`pnpm deps:update --version X.Y.Z` to prepare release artifacts. See the
+[release workflow](docs/release.md#pre-tag-verification) for requirements and
+verification before publication.
 
 Hindsight 0.1.2 replaces the FP32 image in the supplied Compose configuration.
 Existing installations switch when the operator pulls and recreates the

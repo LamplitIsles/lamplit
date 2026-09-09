@@ -11,7 +11,7 @@ Core 与 Full 是运行能力的不同组合，并不是免费版与付费版。
 
 ## 准备部署目录
 
-需要支持 AVX2 的 Linux amd64 主机、Docker 和 Docker Compose。Full 默认使用在 CPU 上运行的 ONNX INT8 记忆向量模型，Hindsight 的 CPU 配额为 4。取得[公开仓库](https://github.com/LamplitIsles/lamplit)的完整检出，在仓库根目录运行以下命令。部署时建议选定一个已发布的稳定版本。
+需要支持 AVX2 的 Linux amd64 主机、Docker 和 Docker Compose。Full 默认使用在 CPU 上运行的 ONNX INT8 记忆向量模型，Hindsight 的 CPU 配额为 4。取得[公开仓库](https://github.com/LamplitIsles/lamplit)的完整检出，在仓库根目录运行以下命令。
 
 ```bash
 export HINDSIGHT_POSTGRES_PASSWORD='replace-with-a-long-private-value'
@@ -23,9 +23,9 @@ docker compose up -d
 
 空的 `keet-runtime` 目录允许暂不启用 Keet。完整的 Keet 接入步骤见[在 Keet 里相伴](/docs/keet/)。
 
-仓库的 `compose.yaml` 已固定应用版本和独立服务的镜像摘要。直接使用这些引用；记忆服务无需在本地构建。
+仓库的 `compose.yaml` 默认跟随 Full 应用的滚动标签 `full` 和 Codex Bridge 的 `latest`。Hindsight 与 PostgreSQL 仍固定镜像摘要，无需在本地构建。如需固定部署版本，可将 `LAMPLIT_IMAGE` 和 `CODEX_BRIDGE_IMAGE` 设为不可变引用。
 
-已有部署在更新仓库后不会自动更换运行中的容器。请在计划的升级时段应用新镜像，并保留原有 PostgreSQL 卷和已存储的记忆向量。
+已有部署在更新仓库后不会自动更换运行中的容器。先备份，再在计划的升级时段运行 `docker compose pull` 和 `docker compose up -d`，并保留原有 PostgreSQL 卷和已存储的记忆向量。
 
 ## 登录 Codex Bridge
 
