@@ -11,10 +11,12 @@ from the private Partner runtime.
 
 The first version uses TOML configuration and CLI-managed local credentials,
 with no settings page. Companion displays messages and typing; tool activity
-remains available in diagnostic session records without a tool-details UI.
-Display history must survive model compaction. Follow nanocodex's event-history
-projection approach where its public embedded SDK permits it; do not assume
-the Rust TUI's managed-service history API exists in the embedded JS SDK.
+is available through bounded process diagnostics only and is not persisted as
+a second session record. Display history must survive model compaction. The
+public embedded SDK exposes the compaction event only while the process is
+running and does not expose a stable message anchor after restart, so Lamplit
+retains minimal compact presentation anchors rather than replaying an event
+journal.
 
 There will be no DSH session-format compatibility reader or second execution
 log maintained for DSH. Existing deployed data stays intact; any one-time
@@ -24,7 +26,11 @@ existing distribution remains the current release until the replacement is
 verified. Dynamic provider-key resolution is not a prerequisite: the current
 deployment uses a static dummy key.
 
-Use local SQLite for the single-instance runtime. Context injection supplies current relationship metadata. Keet integration follows
+Use local SQLite for the single-instance runtime under the selected Partner
+workspace's `.lamplit/` directory; its WAL/SHM files, relationship data, and
+naco durability state share that managed root. Credentials remain in the
+external CLI state directory, and ordinary workspace files stay outside
+`.lamplit/`. Context injection supplies current relationship metadata. Keet integration follows
 successful migration and verification of the other capabilities. Move the
 current session with a later one-time conversion script, keeping that conversion
 outside the running application's storage contract.
@@ -42,5 +48,6 @@ Do not bind Host/Origin checks to the backend port in a way that blocks forwardi
 The interface exposes only the single Partner conversation, without a session
 selector. Local optimistic messages bridge HTTP admission latency; durable naco
 state remains authoritative for queued and active work. Uploaded images also
-have stable files under the Partner workspace's `attachments` directory, with
+have stable files under the Partner workspace's `.lamplit/attachments`
+directory, with
 paths supplied to the model so local tools and image editing share those inputs.

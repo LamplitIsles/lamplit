@@ -218,7 +218,7 @@ different privacy and backup needs.
 | --- | --- | --- |
 | Core DSH state and sessions | `lamplit-core-state` | copy or archive the stopped volume |
 | Full DSH state and sessions | `lamplit-dsh-state` | copy or archive the stopped volume |
-| Partner workspace and Companion state | Core or Full workspace volume | back up separately from DSH state |
+| Partner workspace and Companion state (`<workspace>/.lamplit/`) | Core or Full workspace volume | back up separately from DSH state while Lamplit is stopped |
 | Keet runtime | operator read-only bind mount | obtain it again; do not put it in this repository |
 | Partner Keet identity | Core or Full Keet identity volume | back up privately |
 | Hindsight long-term memory | `lamplit-hindsight-postgres` | PostgreSQL custom-format dump |
@@ -227,6 +227,13 @@ different privacy and backup needs.
 Do not treat the Hindsight container filesystem or model cache as durable
 data. This release also does not claim automatic migration of a hosted
 account, Keet identity, or mailbox data.
+
+The direct Partner runtime keeps its SQLite session, naco durability state, and
+managed attachments below `<workspace>/.lamplit/`. Credentials remain in the
+external configured state directory. Ordinary workspace files stay outside
+that managed subtree; the runtime does not add `.gitignore` entries or relocate
+older state automatically. See [Partner runtime](docs/partner-runtime.md) for
+the ownership map and explicit relocation boundary.
 
 For backup, restore, upgrades, and troubleshooting, see
 [`docs/container-operations.md`](docs/container-operations.md).

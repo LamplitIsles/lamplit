@@ -18,11 +18,20 @@ boundary on its own named volume or bind mount:
 | Data | Compose volume | Container path | Backup/restore unit |
 | --- | --- | --- | --- |
 | DSH settings, profiles, sessions, plugin state | `lamplit-dsh-state` | `/home/lamplit/.local/state/dsh` | Copy or archive the volume while Lamplit is stopped |
-| Partner files and Companion relationship state | `lamplit-partner-workspace` | `/workspace` | Back up separately from DSH state |
+| Partner ordinary files and managed Companion data | `lamplit-partner-workspace` | `/workspace` (`.lamplit/` is Lamplit-managed) | Back up separately from DSH state; stop Lamplit before copying |
 | Keet identity | `lamplit-keet-identity` | `/var/lib/lamplit/keet` and `/workspace/.dsh/dsh-keet` | Back up privately; never include the runtime bytes |
 | Keet runtime | operator bind | `/opt/keet-runtime:ro` | Obtain again from the operator's supported Keet distribution |
 | Hindsight memory | `lamplit-hindsight-postgres` | PostgreSQL data directory | PostgreSQL dump, not a container-layer copy |
 | Codex Bridge OAuth | `lamplit-codex-bridge-auth` | `/var/lib/kepos-codex-bridge` | Treat `auth.json` as a secret |
+
+For the direct Partner runtime, `/workspace/.lamplit/` is the managed
+application subtree: it contains SQLite (including naco durability and
+relationship records), its WAL/SHM files, and managed attachments. Ordinary
+files remain in `/workspace` outside that subtree. Provider, mailbox, and
+speech credentials remain in the external configured state directory, not in
+the workspace. The runtime does not edit `.gitignore`, read an older state
+location, or relocate/reset data automatically; any one-time Dev relocation
+must be performed separately after stopping the runtime.
 
 Do not mount a pre-existing host DSH home into the image. Migration of an
 existing home is intentionally outside this release. A fresh state volume is

@@ -5,6 +5,7 @@ import { z } from 'zod';
 import type { PromptInput } from 'nanocodex/node';
 import type { ImageAttachmentLimits } from '../src/lib/companion/client/contracts.ts';
 import { decodeImageDataUrl, encodeImageDataUrl } from './tools/image-core.ts';
+import { partnerPaths } from './storage-paths.ts';
 
 export const imageLimits: ImageAttachmentLimits = { mediaTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/gif'], maxImagesPerMessage: 5, maxImageBytes: 5 * 1024 * 1024, maxMessageImageBytes: 20 * 1024 * 1024 };
 export const messageBodyLimit = Math.ceil(imageLimits.maxMessageImageBytes / 3) * 4 + 128 * 1024;
@@ -30,7 +31,7 @@ export function inputImages(id: string, values: readonly z.infer<typeof imageInp
 }
 export function imagePath(workspace: string, image: Pick<InputImage, 'id' | 'media_type'>): string {
   const extension = image.media_type === 'image/jpeg' ? 'jpg' : image.media_type.slice(6);
-  return join(workspace, 'attachments', `${image.id}.${extension}`);
+  return join(partnerPaths(workspace).attachments, `${image.id}.${extension}`);
 }
 export async function materializeImages(workspace: Workspace, images: readonly InputImage[]): Promise<void> {
   for (const image of images) {

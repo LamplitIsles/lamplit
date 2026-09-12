@@ -1,5 +1,5 @@
 import type { InputImage } from './images.ts';
-import type { ContextObservation, ContinuityEvent } from "../src/lib/continuity.ts";
+import type { CompactBoundary, ContextObservation } from "../src/lib/continuity.ts";
 import { clampAffinity, type RelationshipUpdate, type CompanionState, type CompanionStateRecord } from "../src/lib/companion/domain.ts";
 import { DatabaseSync } from 'node:sqlite';
 import { createSqliteDurabilityStore, sqliteDurabilitySchema,
@@ -24,9 +24,10 @@ export class Store {
       for (const sql of sqliteDurabilitySchema) this.db.exec(sql);
       this.db.exec(`CREATE TABLE IF NOT EXISTS messages (
         id TEXT PRIMARY KEY, input TEXT NOT NULL, answer TEXT, error TEXT, usage TEXT, created INTEGER NOT NULL
-      ); CREATE TABLE IF NOT EXISTS diagnostics (cursor INTEGER PRIMARY KEY, created INTEGER NOT NULL, data TEXT NOT NULL);
+      ); CREATE TABLE IF NOT EXISTS compact_boundaries (
+        id TEXT PRIMARY KEY, anchor_id TEXT, position TEXT NOT NULL CHECK(position IN ('before','after-user','after')), time INTEGER NOT NULL
+      );
       CREATE TABLE IF NOT EXISTS context_observation (id INTEGER PRIMARY KEY CHECK(id=1), data TEXT NOT NULL);
-      CREATE INDEX IF NOT EXISTS diagnostic_type ON diagnostics(json_extract(data,'$.type'));
       CREATE TABLE IF NOT EXISTS relationship (call_id TEXT PRIMARY KEY, operation_id TEXT NOT NULL, previous_affinity INTEGER NOT NULL, data TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS input_images (id TEXT PRIMARY KEY, operation_id TEXT NOT NULL, name TEXT NOT NULL, media_type TEXT NOT NULL, data BLOB NOT NULL);
       CREATE TABLE IF NOT EXISTS images (id TEXT PRIMARY KEY, operation_id TEXT NOT NULL, name TEXT NOT NULL, data BLOB NOT NULL);`);
@@ -146,19 +147,12 @@ export class Store {
   async observedContext(): Promise<ContextObservation | null> {
     return this.transaction(() => { const row = this.db.prepare('SELECT data FROM context_observation WHERE id=1').get(); return row ? JSON.parse(String(row.data)) : null; });
   }
-  async continuityEvents(): Promise<ContinuityEvent[]> {
-    return this.transaction(() => this.db.prepare(`SELECT cursor,created,
-      json_extract(data,'$.type') AS type, json_extract(data,'$.generation') AS generation,
-      json_extract(data,'$.payload.operation_id') AS operation, json_extract(data,'$.payload.status') AS status,
-      json_extract(data,'$.payload.phase') AS phase, json_extract(data,'$.payload.trigger') AS trigger
-      FROM diagnostics WHERE json_extract(data,'$.type') IN ('execution.state','model.compaction.started','model.compaction.replaced',
-      'model.compaction.failed','companion.compaction.failed','run.failed','run.cancelled') ORDER BY cursor`).all() as ContinuityEvent[]);
+  async saveCompactBoundary(boundary: CompactBoundary): Promise<void> {
+    await this.transaction(() => this.db.prepare('INSERT OR IGNORE INTO compact_boundaries(id,anchor_id,position,time) VALUES(?,?,?,?)')
+      .run(boundary.id, boundary.anchorId, boundary.position, boundary.time));
   }
-  async log(data: unknown) {
-    await this.transaction(() => this.db.prepare('INSERT INTO diagnostics(created,data) VALUES(?,?)').run(Date.now(), JSON.stringify(data)));
-  }
-  async diagnostics(after: number) {
-    return this.transaction(() => this.db.prepare('SELECT cursor,created,data FROM diagnostics WHERE cursor>? ORDER BY cursor LIMIT 500').all(after));
+  async compactBoundaries(): Promise<CompactBoundary[]> {
+    return this.transaction(() => this.db.prepare('SELECT id,anchor_id AS anchorId,position,time FROM compact_boundaries ORDER BY time,id').all() as CompactBoundary[]);
   }
   async close() {
     this.closed = true;

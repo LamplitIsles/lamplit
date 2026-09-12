@@ -7,6 +7,7 @@ import { once } from 'node:events';
 import { createPartner } from '../runtime/partner.ts';
 import { createWebServer } from '../runtime/server.ts';
 import { fixture, eventually } from './fixture.ts';
+import { partnerPaths } from '../runtime/storage-paths.ts';
 
 test('real SDK context, tools, compaction, startup display repair, and terminal deduplication', { timeout: 20000 }, async () => {
   const f = await fixture(); let partner;
@@ -25,7 +26,7 @@ test('real SDK context, tools, compaction, startup display repair, and terminal 
     await partner.close(); partner = undefined;
     // Simulate the concrete crash gap: engine completion persisted while the
     // derived message result was not saved. Startup must repair it automatically.
-    const db = new DatabaseSync(join(f.directory, 'session.sqlite'));
+    const db = new DatabaseSync(partnerPaths(join(f.directory, 'workspace')).database);
     db.prepare('UPDATE messages SET answer=NULL,usage=NULL WHERE id=?').run(id); db.close();
     const count = f.requests.length;
     f.config.provider.model = 'gpt-6-astra';
@@ -106,7 +107,7 @@ test('Companion retains compact boundaries and exact context observation across 
     assert.equal(compacted.compactions[0].anchorId, id);
     assert.equal(compacted.compactions[0].position, 'after');
     assert(compacted.context && compacted.context.activeTokens > 0);
-    await partner.submit(randomUUID(), 'after compact');
+    const afterId = randomUUID(); await partner.submit(afterId, 'after compact');
     await eventually(async () => (await partner.snapshot()).messages[1]?.answer !== null);
     const settled = await partner.snapshot(); await partner.close();
     partner = await createPartner(f.config, f.credentials);
@@ -115,5 +116,29 @@ test('Companion retains compact boundaries and exact context observation across 
     assert.deepEqual(reopened.context, settled.context);
     assert.equal(reopened.messages.length, 2);
     assert.doesNotMatch(JSON.stringify(reopened.compactions), /PRIVATE_CHECKPOINT/);
+    f.summarize(); await partner.compact();
+    const afterRestartCompact = await partner.snapshot();
+    assert.equal(afterRestartCompact.compactions.at(-1)?.anchorId, afterId);
+    assert.equal(afterRestartCompact.compactions.at(-1)?.position, 'after');
+    assert.equal(afterRestartCompact.lifecycle.latest?.status, 'complete');
+    await partner.close(); partner = await createPartner(f.config, f.credentials);
+    assert.equal((await partner.snapshot()).lifecycle.latest, undefined);
+  } finally { await partner.close(); await f.close(); }
+});
+
+test('failed compaction reports a transient failure without creating a boundary', async () => {
+  const f = await fixture(); const partner = await createPartner(f.config, f.credentials);
+  const { Store } = await import('../runtime/store.ts');
+  try {
+    await partner.submit(randomUUID(), 'prepare compact failure');
+    await eventually(async () => (await partner.snapshot()).messages[0]?.answer !== null);
+    f.summarize();
+    const originalMessages = Store.prototype.messages;
+    Store.prototype.messages = async function () { throw new Error('forced compact failure'); };
+    try { await assert.rejects(partner.compact(), /forced compact failure/); }
+    finally { Store.prototype.messages = originalMessages; }
+    const view = await partner.snapshot();
+    assert.equal(view.compactions.length, 0);
+    assert.equal(view.lifecycle.latest?.status, 'failed');
   } finally { await partner.close(); await f.close(); }
 });

@@ -7,7 +7,7 @@ import { createPartner } from './partner.ts';
 import { createWebServer } from './server.ts';
 
 const [command, configPath, name] = process.argv.slice(2);
-if (!configPath) throw new Error('Usage: cli.ts <serve|credential|logs> <config.toml> [provider|mail|speech]');
+if (!configPath) throw new Error('Usage: cli.ts <serve|credential> <config.toml> [provider|mail|speech]');
 const config = await loadConfig(resolve(configPath));
 if (command === 'credential') {
   if (!['provider', 'mail', 'speech'].includes(name)) throw new Error('Choose provider, mail or speech');
@@ -25,16 +25,6 @@ if (command === 'credential') {
   try { await rename(temporary, path); }
   finally { await rm(temporary, { force: true }); }
   console.log('Credential saved. Restart the runtime to apply it.');
-} else if (command === 'logs') {
-  let after = 0;
-  for (;;) {
-    const response = await fetch(`http://127.0.0.1:${config.port}/api/diagnostics?after=${after}`);
-    if (!response.ok) throw new Error('Could not read runtime diagnostics');
-    const rows = await response.json() as { cursor: number; created: number; data: string }[];
-    if (!rows.length) break;
-    for (const row of rows) console.log(JSON.stringify({ cursor: row.cursor, created: row.created, event: JSON.parse(row.data) }));
-    after = rows.at(-1)!.cursor;
-  }
 } else if (command === 'serve') {
   const assets = fileURLToPath(new URL('../build/', import.meta.url));
   await access(join(assets, 'index.html'));

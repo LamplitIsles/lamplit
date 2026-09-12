@@ -8,9 +8,11 @@ import { createPartner } from '../runtime/partner.ts';
 import { createWebServer } from '../runtime/server.ts';
 import { mergeMessages } from '../src/lib/message-pages.ts';
 import { fixture, eventually } from './fixture.ts';
+import { mkdir } from 'node:fs/promises';
+import { partnerPaths } from '../runtime/storage-paths.ts';
 
 test('history pages and bounded change batches retain stable ordering and restart cursors', async () => {
-  const f = await fixture(); let store = new Store(join(f.directory, 'session.sqlite'));
+  const f = await fixture(); const paths = partnerPaths(join(f.directory, 'workspace')); await mkdir(paths.managedRoot, { recursive: true }); let store = new Store(paths.database);
   const ids = Array.from({length: 65}, () => randomUUID());
   try {
     for (const [index,id] of ids.entries()) { await store.admit(id, `message ${index}`); await store.finish(id, `answer ${index}`, null); }
@@ -30,7 +32,7 @@ test('history pages and bounded change batches retain stable ordering and restar
     const merged = mergeMessages(mergeMessages(recent.messages,changed.messages),previous.messages);
     assert.equal(merged.find(m=>m.id===ids[5])?.answer, 'updated answer');
     assert.equal(new Set(merged.map(m=>m.id)).size,merged.length);
-    await store.close(); store = new Store(join(f.directory,'session.sqlite'));
+    await store.close(); store = new Store(paths.database);
     assert.equal((await store.messagePage({after:changed.cursor})).messages.length,0);
     for (const id of ids) await store.touchMessage(id);
     let cursor=changed.cursor; const seen = new Set<string>(); let batches=0;

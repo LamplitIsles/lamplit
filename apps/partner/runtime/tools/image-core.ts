@@ -288,6 +288,7 @@ function utf8Length(value: string): number {
 }
 
 function encodeBase64(data: Uint8Array): string {
+  if (typeof Buffer !== "undefined") return Buffer.from(data).toString("base64");
   let binary = "";
   const chunkSize = 0x8000;
   for (let start = 0; start < data.length; start += chunkSize) {
@@ -297,6 +298,7 @@ function encodeBase64(data: Uint8Array): string {
 }
 
 function decodeBase64(value: string): Uint8Array {
+  if (typeof Buffer !== "undefined") return Buffer.from(value, "base64");
   const binary = atob(value);
   const data = new Uint8Array(binary.length);
   for (let index = 0; index < binary.length; index += 1) {

@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { randomUUID } from 'node:crypto';
-import { writeFile, readFile, chmod } from 'node:fs/promises';
+import { DatabaseSync } from 'node:sqlite';
+import { writeFile, readFile, chmod, mkdir, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { once } from 'node:events';
 import { createPartner } from '../runtime/partner.ts';
@@ -10,6 +11,7 @@ import { Store } from '../runtime/store.ts';
 import { inputImages } from '../runtime/images.ts';
 import { skillTools } from '../runtime/tools/basic.ts';
 import { fixture, eventually } from './fixture.ts';
+import { partnerPaths } from '../runtime/storage-paths.ts';
 
 const png = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+a9F0AAAAASUVORK5CYII=';
 const photo = { type: 'image' as const, mediaType: 'image/png' as const, name: 'sample.png', data: png };
@@ -17,7 +19,9 @@ const photo = { type: 'image' as const, mediaType: 'image/png' as const, name: '
 test('image-only admission is atomic, recovers before SDK acceptance, projects outgoing and survives compaction', async () => {
   const f = await fixture(); let app;
   const id = randomUUID();
-  const store = new Store(join(f.directory, 'session.sqlite'));
+  const paths = partnerPaths(join(f.directory, 'workspace'));
+  await mkdir(paths.managedRoot, { recursive: true });
+  const store = new Store(paths.database);
   await store.admit(id, '', inputImages(id, [photo]));
   await store.close();
   try {
@@ -31,7 +35,7 @@ test('image-only admission is atomic, recovers before SDK acceptance, projects o
     assert.equal(before.messages[0].images.length, 0);
     assert.equal(before.messages[0].inputImages.length, 1);
     const image = before.messages[0].inputImages[0];
-    const imagePath = join(f.directory, 'workspace', 'attachments', `${image.id}.png`);
+    const imagePath = join(paths.attachments, `${image.id}.png`);
     assert.equal((await readFile(imagePath)).toString('base64'), png);
     assert.ok(JSON.stringify(f.requests[0]).includes(imagePath));
     const response = await fetch(`${url}${image.url}`);
@@ -42,13 +46,16 @@ test('image-only admission is atomic, recovers before SDK acceptance, projects o
     assert.equal((await submit({ id, input: '', images: [{ ...photo, name: 'changed.png' }] })).status, 400);
     assert.equal((await submit({ id: randomUUID(), input: '', images: [{ ...photo, mediaType: 'image/jpeg' }] })).status, 422);
     assert.equal((await partner.snapshot()).messages.length, 1);
-    const diagnostics = await partner.diagnostics(0);
-    const events = diagnostics.map(row => JSON.parse(String(row.data)));
-    assert(events.some(event => event.type === 'execution.state'));
-    assert(!events.some(event => event.type === 'api.event'));
+    assert.equal((await fetch(`${url}/api/diagnostics`)).status, 404);
     f.summarize(); const compact = await partner.compact();
     assert.doesNotMatch(JSON.stringify(compact?.installed_history), /data:image/);
     assert.deepEqual((await partner.snapshot()).messages, before.messages);
+    await partner.close();
+    assert.equal((await stat(paths.database)).isFile(), true);
+    await assert.rejects(stat(join(f.directory, 'session.sqlite')), { code: 'ENOENT' });
+    const database = new DatabaseSync(paths.database);
+    assert.equal(database.prepare("SELECT name FROM sqlite_master WHERE type='table' AND name='diagnostics'").get(), undefined);
+    database.close();
   } finally { await app?.close(); await f.close(); }
 });
 

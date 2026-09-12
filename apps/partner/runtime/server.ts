@@ -63,10 +63,6 @@ export function createWebServer(partner: Partner, assets: string) {
         response.writeHead(200, { 'content-type': image.media_type, 'cache-control': 'private, max-age=31536000, immutable' });
         response.end(image.data); return;
       }
-      if (path === '/api/diagnostics' && request.method === 'GET') {
-        const after = z.coerce.number().int().min(0).max(Number.MAX_SAFE_INTEGER).parse(new URL(request.url!, 'http://localhost').searchParams.get('after') ?? 0);
-        return json(response, await partner.diagnostics(after));
-      }
       if (path === '/api/messages' && request.method === 'POST') {
         const parsed = z.object({ id: z.uuid(), input: z.string().trim().max(MAX_MESSAGE_LENGTH), images: z.array(imageInputSchema).max(5).default([]) }).strict().refine(value => value.input.length > 0 || value.images.length > 0).safeParse(await body(request, messageBodyLimit));
         if (!parsed.success) return json(response, { error: '消息内容无效，请检查文字长度和图片后重新发送。', code: 'invalid_message' }, 422);

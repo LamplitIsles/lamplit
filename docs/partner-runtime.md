@@ -1,7 +1,10 @@
 # Direct Partner runtime
 
 The first standalone slice lives in `apps/partner`. One Node 24 process hosts
-nanocodex, serves the SvelteKit-built Companion, and owns a local SQLite database.
+nanocodex, serves the SvelteKit-built Companion, and owns the Partner-managed
+portion of its configured workspace. Runtime data is kept below
+`<workspace>/.lamplit/`; credentials remain in the external configured state
+directory.
 It is separate from the static public website and the existing DSH containers.
 
 Prepare the accepted SDK archives, then build:
@@ -37,10 +40,36 @@ Companion displays complete messages and typing. New input queues in naco.
 Refreshing or closing a browser does not resubmit input or cancel execution.
 Startup reconciles unfinished display rows against naco's retained execution
 state, resumes accepted operations, and repairs completed messages. SQLite
-rejects a second running owner of the same state directory.
+rejects a second running owner of the same workspace-managed directory.
 Normal shutdown stops admission and drains accepted work before closing naco;
 forced termination relies on durable recovery. It does not mark a normal
 service shutdown as user cancellation.
+
+## Persistence and ownership
+
+The configured workspace root is the ordinary code-mode workspace. Lamplit
+creates one managed subtree inside it:
+
+| Path | Owner | Purpose |
+| --- | --- | --- |
+| `<workspace>/.lamplit/session.sqlite` (and its WAL/SHM files) | Lamplit + naco durability adapter | Partner display facts, relationship records, context observation, compact presentation anchors, image bytes, and opaque naco recovery state |
+| `<workspace>/.lamplit/attachments/` | Lamplit | Original uploaded attachment files materialized for the model and local image tools |
+| `<workspace>/` outside `.lamplit/` | Partner tools and operator | Ordinary workspace files; never used as a second session-data root |
+| `<state>/credentials.json` | CLI/operator | External provider, mailbox, and speech credentials; it is not moved into the workspace |
+
+Lamplit does not read or write a second diagnostics journal. Execution status,
+queue state, model context, and durable recovery come from naco's public SDK
+views. The small SQLite presentation records exist only where the SDK does not
+provide a product display contract: message text and idempotency, relationship
+history, image bytes, the last valid context observation for cold display, and
+compact anchors. The SDK durability payload is opaque to product code.
+
+Back up `<workspace>/.lamplit/` together with the ordinary workspace when the
+Partner conversation and its attachments must be restored. A future operator
+may add `.lamplit/` to the workspace's ignore rules; the runtime does not edit
+`.gitignore` automatically. There is no automatic relocation, migration reader,
+cleanup, or reset of an older state-directory database; stop the runtime and
+perform any separately approved one-time relocation explicitly.
 
 Continuity uses the durable conversation and naco compaction summary. No external
 memory service, recall, reflection tool, or retention outbox is used. Relationship
@@ -62,7 +91,7 @@ enable the other tools:
 
 Companion relationship updates, signatures and history are available as tools. State changes persist atomically in SQLite and per-turn affinity movement is bounded to ±10, including repeated calls. The latest state is injected at model boundaries.
 
-These tools use naco code mode with its QuickJS evaluator. Registered tools are available through `tools`, with SDK `text()` and `image()` output helpers. The naco file tools and native `exec_command` / `write_stdin` use a real local working directory, defaulting to `state/workspace`; set top-level `workspace` in TOML to choose another directory relative to the config. Commands can launch installed host programs and use pipe sessions, without PTYs. This directory is a default cwd, not an OS sandbox. Runtime shutdown closes the SDK process tools and their owned child processes.
+These tools use naco code mode with its QuickJS evaluator. Registered tools are available through `tools`, with SDK `text()` and `image()` output helpers. The naco file tools and native `exec_command` / `write_stdin` use the configured workspace root as their real local working directory. Commands can launch installed host programs and use pipe sessions, without PTYs. This directory is a default cwd, not an OS sandbox. Runtime shutdown closes the SDK process tools and their owned child processes.
 
 `skill_list`, `skill_find`, and `skill_get` invoke the installed Organon `skill` CLI with literal argv, the workspace as cwd, a 10-second deadline and a 1 MiB output limit. Install that CLI on PATH. It discovers workspace `.agents/skills` before the host user's `~/.agents/skills`; bodies are loaded on demand. Missing CLI and unavailable capabilities requested by a skill surface as tool failures, not invented results. No automatic catalogue injection is added. The code evaluator uses QuickJS and has no direct Node globals; explicit host tools provide filesystem and command access. Keet follows the other capabilities and migration.
 
@@ -75,15 +104,11 @@ on this host's one-user-message-per-turn admission and absence of steering.
 Do not add steering or other user-role context injection without revisiting that
 boundary. Visible chat remains outside the compacted model history.
 
-Inspect diagnostic events as JSONL while the runtime runs:
-
-```sh
-pnpm partner logs /absolute/path/config.toml
-```
-
-Diagnostics contain model-visible context and tool events and should be treated
-as private conversation data. They are an observation record, not a second
-execution engine or a replacement for naco's recovery state.
+Runtime failures and bounded timing metadata are written to the process
+stderr stream with prompt, image, credential, and provider-payload fields
+redacted. They are operational diagnostics only; Lamplit does not persist a
+JSONL copy or expose a diagnostics API/CLI. Use the service/container log
+collector with its normal retention and access controls.
 
 `pnpm partner:check` checks types, builds the actual client, and runs isolated
 real-SDK tests, including process termination and recovery. Tests use temporary
@@ -94,16 +119,19 @@ Speech input is optional STT only. Add `[speech]` (the endpoint defaults to
 DashScope) and write the API key through `credential ... speech`, then restart.
 The microphone records up to five minutes; stopping sends bounded audio to
 `qwen3-asr-flash` and appends recognized text to the composer for review. Only
-pressing Send admits the text to naco. Audio is not stored in the conversation or diagnostics. There is no TTS or reply speech generation. Browser
+pressing Send admits the text to naco. Audio is not stored in the conversation or managed Partner data. There is no TTS or reply speech generation. Browser
 microphone access needs permission and a secure context (localhost or HTTPS).
 Closing the page cancels its transcription request; a 60-second deadline bounds
 provider work. The complete provider audio data URL is capped at 10 MiB.
 
-Companion continuity uses naco's ordered execution and compaction events. An
-installed compaction produces a persistent, summary-free timeline marker anchored
-to the affected user/assistant contribution, including automatic mid-turn
-compaction. Running and failed compactions update the quiet lifecycle status;
-provider summary completion alone does not create a success marker.
+Companion continuity uses naco's ordered execution and compaction events while
+the process is live. An installed compaction produces a persistent,
+summary-free timeline marker anchored to the affected user/assistant
+contribution, including automatic mid-turn compaction. Running and failed
+compactions update the quiet process-local lifecycle status; that transient
+status is intentionally cleared on restart, so a stopped process cannot leave
+the UI permanently running. Provider summary completion alone does not create
+a success marker.
 
 The capacity circle uses naco's active-context estimate and model window, never
 cumulative usage. Completed turns and compactions persist the SDK observation for
@@ -115,7 +143,7 @@ For inexpensive live acceptance, select `[provider] model = "gpt-5.6-luna"`. Sol
 
 The current naco SDK retains the model stored in a durable session and only
 allows `setModel` before any turn was accepted. To test another model, use a
-separate state directory; retain the old directory to resume its conversation.
+separate Partner workspace; retain the old workspace to resume its conversation.
 Lamplit rejects mismatched models when restoring a completed session rather
 than silently using the old model. A never-completed interrupted session has no
 safe snapshot for this startup check; model switching is not supported there.
@@ -152,7 +180,7 @@ visually muted and labeled; server-observed IDs replace local echoes without
 creating duplicate bubbles. Failures restore the draft for an idempotent retry.
 
 Uploaded images retain their SQLite original and are materialized before model
-admission at `<workspace>/attachments/<image-id>.<extension>`. Missing files are
+admission at `<workspace>/.lamplit/attachments/<image-id>.<extension>`. Missing files are
 restored from SQLite on startup, including earlier uploads. Existing files are
 not overwritten. Model input includes both the image and its ID/absolute path;
 recent text retained through compaction also keeps those attachment references.

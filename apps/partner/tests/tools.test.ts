@@ -3,11 +3,13 @@ import { test } from 'node:test';
 import { createServer } from 'node:http';
 import { once } from 'node:events';
 import { randomUUID } from 'node:crypto';
+import { mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createPartner } from '../runtime/partner.ts';
 import { createWebServer } from '../runtime/server.ts';
 import { fixture, eventually } from './fixture.ts';
 import { rollDice } from '../runtime/tools/dice-core.ts';
+import { partnerPaths } from '../runtime/storage-paths.ts';
 
 test('tabletop preserves modifiers and labels and rejects invalid input before drawing', () => {
   assert.deepEqual(rollDice({ count: 2, sides: 6, modifier: -1, label: '判断' }, () => 4),
@@ -94,7 +96,8 @@ test('real naco invokes all six fixed-mailbox MCP tools, and durable image gener
 test('Companion relationship tools persist atomic reactions, bound per-turn affinity and deduplicate retries', async () => {
   const f = await fixture();
   const { Store } = await import('../runtime/store.ts');
-  const store = new Store(join(f.directory, 'relationship-test.sqlite'));
+  const paths = partnerPaths(join(f.directory, 'workspace')); await mkdir(paths.managedRoot, { recursive: true });
+  const store = new Store(join(paths.managedRoot, 'relationship-test.sqlite'));
   try {
     const first = await store.updateRelationship('turn-one', 'call-one', { mood: { value: 'bright', note: '想出门走走', reason: '聊起了散步' }, affinity: { delta: 8, reason: '坦诚交流' } });
     assert.equal(first.affinity, 58);

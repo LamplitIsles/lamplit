@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { spawn, type ChildProcess } from 'node:child_process';
 import { once } from 'node:events';
-import { writeFile } from 'node:fs/promises';
+import { writeFile, stat } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createServer } from 'node:net';
@@ -32,6 +32,8 @@ test('SIGKILL after durable acceptance resumes once in a fresh CLI process', { t
   };
   try {
     f.holdProvider(true); await start();
+    assert.equal((await stat(join(f.directory, 'credentials.json'))).isFile(), true);
+    await assert.rejects(stat(join(f.directory, 'workspace/.lamplit/credentials.json')), { code: 'ENOENT' });
     const id = randomUUID();
     const accepted = await fetch(`${url}/api/messages`, { method: 'POST', headers, body: JSON.stringify({ id, input: 'persist this accepted message' }) });
     assert.equal(accepted.status, 202);
