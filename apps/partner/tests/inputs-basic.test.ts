@@ -42,6 +42,10 @@ test('image-only admission is atomic, recovers before SDK acceptance, projects o
     assert.equal((await submit({ id, input: '', images: [{ ...photo, name: 'changed.png' }] })).status, 400);
     assert.equal((await submit({ id: randomUUID(), input: '', images: [{ ...photo, mediaType: 'image/jpeg' }] })).status, 422);
     assert.equal((await partner.snapshot()).messages.length, 1);
+    const diagnostics = await partner.diagnostics(0);
+    const events = diagnostics.map(row => JSON.parse(String(row.data)));
+    assert(events.some(event => event.type === 'execution.state'));
+    assert(!events.some(event => event.type === 'api.event'));
     f.summarize(); const compact = await partner.compact();
     assert.doesNotMatch(JSON.stringify(compact?.installed_history), /data:image/);
     assert.deepEqual((await partner.snapshot()).messages, before.messages);

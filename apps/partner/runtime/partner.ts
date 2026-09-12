@@ -101,7 +101,9 @@ ${relationshipContext}
   }
   watcher.onEvent((event) => {
     notifications = notifications.then(async () => {
-      await log({ generation, ...event });
+      // Raw protocol frames repeat the full multimodal request on every call.
+      // Persist semantic execution/tool/transport events, not duplicate wire bodies.
+      if (event.type !== 'api.event') await log({ generation, ...event });
       if (event.type === 'execution.state') {
         const payload = event.payload as { operation_id: string };
         await store.touchMessage(payload.operation_id);
