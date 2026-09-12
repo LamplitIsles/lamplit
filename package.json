@@ -8,6 +8,9 @@
   },
   "packageManager": "pnpm@11.22.0",
   "scripts": {
+    "partner:build": "pnpm --filter @lamplitisles/partner build",
+    "partner:check": "pnpm --filter @lamplitisles/partner check && pnpm --filter @lamplitisles/partner build && pnpm --filter @lamplitisles/partner test",
+    "partner": "pnpm --filter @lamplitisles/partner cli",
     "check": "node scripts/check.mjs",
     "test": "node --test tests/release-references.test.ts tests/memory-images.test.mjs tests/dependency-updates.test.mjs",
     "deps:check": "node scripts/update-dependencies.mjs",

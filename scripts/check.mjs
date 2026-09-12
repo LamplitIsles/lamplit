@@ -22,4 +22,5 @@ execFileSync(process.execPath, [
   join(root, "tests/dependency-updates.test.mjs"),
 ], { cwd: root, stdio: "inherit" });
 execFileSync("pnpm", ["run", "web:check"], { cwd: root, stdio: "inherit" });
+execFileSync("pnpm", ["run", "partner:check"], { cwd: root, stdio: "inherit" });
 process.stdout.write("Lamplit repository checks passed (run `dagger call -m dagger check --source .` for image builds)\n");

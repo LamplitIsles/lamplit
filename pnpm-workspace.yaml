@@ -1,5 +1,10 @@
 packages:
   - apps/web
+  - apps/partner
 allowBuilds:
   esbuild: true
   workerd: true
+  '@mongodb-js/zstd': false
+  node-liblzma: false
+overrides:
+  nanocodex-tools: file:.cache/nanocodex/nanocodex-tools.tgz

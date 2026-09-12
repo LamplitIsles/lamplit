@@ -278,10 +278,17 @@ Lamplit uses Node 24 and pnpm 11.22.0 for repository checks. The TypeScript
 Dagger module is the Linux amd64 image build and verification interface.
 
 ```bash
+node apps/partner/scripts/prepare-sdk.mjs /path/to/accepted/artifacts
 pnpm install --frozen-lockfile
 pnpm run check
 dagger call -m dagger check --source .
 ```
+
+The workspace includes Partner and requires the two operator-supplied SDK archives
+before installation. Obtain the accepted archive directory from the maintainer;
+`prepare-sdk.mjs` verifies their pinned checksums and copies them into the local
+cache. See [Partner setup](docs/partner-runtime.md) for the archive prerequisite
+and runtime workflow. The archives are not downloaded automatically.
 
 The checks use disposable, test-owned state. They do not call a paid model,
 read a real DSH home, or use operator credentials.
