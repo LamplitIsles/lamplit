@@ -54,9 +54,6 @@ export class Store {
     this.writes = result.catch(() => {});
     return result;
   };
-  async messageIds(): Promise<string[]> {
-    return this.transaction(() => this.db.prepare('SELECT id FROM messages').all().map(row => String(row.id)));
-  }
   async messages(): Promise<Message[]> {
     return this.transaction(() => this.db.prepare('SELECT * FROM messages ORDER BY created,rowid').all() as Message[]);
   }
