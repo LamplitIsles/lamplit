@@ -1852,7 +1852,7 @@ packages:
     engines: {node: '>=22.13.0'}
 
   nanocodex@file:.cache/nanocodex/nanocodex.tgz:
-    resolution: {integrity: sha512-aOoikrYQVAoFNXg8TS1brxNqg81Pbsd2vvVYhVhgnU9nN77lIDpmnnQJFKGFqH0BnVGZH3QbKirwpnUTFSgg6Q==, tarball: file:.cache/nanocodex/nanocodex.tgz}
+    resolution: {integrity: sha512-QGOTlwW6E7Rq5KrP4Buetp8GOvw82nSC6s/MxbQ5WjcMHxMoLJ1KB1sKib/2fFZ13nKjqUJn6aF4LoEytuPhkA==, tarball: file:.cache/nanocodex/nanocodex.tgz}
     version: 0.5.0
     engines: {node: '>=22.13.0'}
 

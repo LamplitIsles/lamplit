@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 const source = process.argv[2];
 if (!source) throw new Error('Usage: node apps/partner/scripts/prepare-sdk.mjs <accepted-artifact-directory>');
 const files = [
-  ['nanocodex-0.5.0.tgz', 'nanocodex.tgz', '2f5254dd97ec44cbe7ec9bef0e499a924798c6abf0cbf1deb9a8bbc0c11682ae'],
+  ['nanocodex-0.5.0.tgz', 'nanocodex.tgz', '3f00c4ac89140417affe36d81cecfbcb841a76354223b436e7042d64ef8f3cd7'],
   ['nanocodex-tools-0.1.0.tgz', 'nanocodex-tools.tgz', '27d984ecc36f00a74e7463a6985019ab2b56f852b202ad7b1cabb5c20d8ce25c'],
 ];
 const verified = await Promise.all(files.map(async ([name, target, sha256]) => {
@@ -16,4 +16,4 @@ const verified = await Promise.all(files.map(async ([name, target, sha256]) => {
 const destination = new URL('../../../.cache/nanocodex/', import.meta.url);
 await mkdir(destination, { recursive: true });
 for (const { target, bytes } of verified) await writeFile(new URL(target, destination), bytes);
-console.log('Accepted naco 3810b50e57ec4583ede48e21e76bfbb1afa12670 artifacts prepared.');
+console.log('Accepted naco a300831bade7ec2cbc57ec6efc0aed36a6759b3d artifacts prepared; nanocodex-tools remains pinned at its existing artifact.');

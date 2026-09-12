@@ -6,10 +6,14 @@ summary instruction from LamplitIsles/dsh-plugins at `29ed11a`, files
 The Host-specific prompt assembly and request rewriting were removed. The
 Apache-2.0 license text is retained in `licenses/dsh-hindsight-Apache-2.0.txt`.
 
-Nanocodex and nanocodex-tools remain external package artifacts, built from
-`3810b50e57ec4583ede48e21e76bfbb1afa12670` (nanocodex) and
-`828099bab8a2ac6ad4a075e4c599013253a13abf` (unchanged nanocodex-tools). The cache preparation script verifies
-their SHA-256 values. They are not copied source modules or publicly published
+Nanocodex and nanocodex-tools remain external package artifacts. The accepted
+nanocodex candidate is built from `a300831bade7ec2cbc57ec6efc0aed36a6759b3d`
+and has SHA-256
+`3f00c4ac89140417affe36d81cecfbcb841a76354223b436e7042d64ef8f3cd7`.
+`nanocodex-tools` remains unchanged at `828099bab8a2ac6ad4a075e4c599013253a13abf`
+with SHA-256
+`27d984ecc36f00a74e7463a6985019ab2b56f852b202ad7b1cabb5c20d8ce25c`.
+The cache preparation script verifies both SHA-256 values. They are not copied source modules or publicly published
 release claims. The deferred dynamic credential changes are not included.
 
 Noto Sans SC
